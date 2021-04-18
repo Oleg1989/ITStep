@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+}
+p {
+    font-size: 1.1em;
+}
+/*Стилі для header*/
+header {
+    width: 100vw;
+    background-color: #FFC017;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5vw 20vw; 
+    border-bottom: 1px solid black;
+}
+.header_left {
+    display: flex;
+}
+.header_left > a {
+    font-size: 2.5em;
+    font-weight: bolder;
+}
+.header_right ul {
+    min-width: 25vw;
+}
+.header_right ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header_right ul li {
+    list-style-type: none; 
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+.header_right button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.5vw 1vw;
+    border-radius: 0.3vw;
+}
+/*Стилі для main_header*/
+main {
+    width: 100vw;
+}
+.main_header {
+    min-height: 20vw;
+    padding: 2vw 20vw;
+    background-color: #FFC017;
+    border-bottom: 1px solid black;
+}
+.main_header_text {
+    max-width: 30vw;
+    min-height: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.main_header_text h1 {
+    font-size: 3.5em;
+}
+.main_header_text a {
+    text-decoration: underline;
+}
+.main_header_text button {
+    width: 7vw;
+    background-color: #FFC017;
+    border: 1px solid black;
+    border-radius: 0.3vw;
+    padding: 0.8vw 0;
+}
+/*Стилі для #block_1*/
+#block_1 {
+    min-height: 25vw;
+    border-bottom: 1px solid silver;
+}
+#block {
+    width: 60vw;
+    margin: 3vw auto;
+    border: 1px solid red;
+}
+#block_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.box {
+    width: 28%;
+    border: 1px solid seagreen;
+    margin: 1vw 1vw;
+}
+#block h3{
+    margin: 1vw 1vw;
+    text-transform: uppercase;
+}
+#block h3::before{
+    content: "\2622";
+    margin-right: 10px;
+}

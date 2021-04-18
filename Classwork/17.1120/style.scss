@@ -1,0 +1,62 @@
+// $fontSize: 20px;
+// div.main {
+//     color: black;
+//     font: {
+//         family: serif;
+//         size: $fontSize;
+//         weight: bold;
+//     }
+
+//     div.fullscreen {
+//         width: 100%;
+//         font: 10px/8px;
+//         $width: 1000px;
+//         width: $width/2;
+//     }
+//     &-sidebar {
+//         background-color: brown;
+//     }
+// }
+// a {
+//     text-decoration: none;
+
+//     &:hover {
+//         color: blue;
+//     }
+// }
+@use "sass:color";
+@import "veriables";
+$primarycolor: $mainColor;
+
+
+@mixin large-text($color, $fontSize) {
+    font: {
+        family: Arial;
+        size: $fontSize;
+        weight: 900;
+    }
+    color: $color;
+}
+
+#main {
+    color: $primarycolor;
+    border: 1px solid color.scale($primarycolor, $lightness: 90%);
+}
+p:before {
+    content: "Demo "+ "text";
+}
+div {
+    width: 100%;
+    
+    p {
+        color: black;
+        span {
+            text-decoration: underline;
+            @include large-text(blue, 20px);
+        }
+
+        h1 {
+            @include large-text(red, 40px);
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task_7</title>
+  <script>
+    var userNumber = prompt("Ввеіть число!");
+    var numberOffset = +prompt("Введіть на скільки сдвинути число!");
+    var newNumber1 = "";
+    var newNumber2 = "";
+    for (var i = 0; i < userNumber.length; i++) {
+      if (i < numberOffset) {
+        newNumber1 += userNumber[i];
+      } else {
+        newNumber2 += userNumber[i];
+      }
+    }
+    alert(newNumber2 + newNumber1);
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

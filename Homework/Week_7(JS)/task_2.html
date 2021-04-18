@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<body>
+	<script>
+		function printoutOfTheCheckOnTheScreen(arr) {
+			let result = "";
+			for (let i = 0; i < arr.length; i++) {
+				result += `${arr[i].quantity} шт.  x  ${arr[i].pricePerUnit} грн.\n`;
+				result += `${arr[i].name} - ${arr[i].quantity * arr[i].pricePerUnit} грн.\n`;
+			}
+			return result;
+		}
+		function totalAmountOfTheCheck(arr) {
+			let sum = 0;
+			for (let i = 0; i < arr.length; i++) {
+				sum += arr[i].quantity * arr[i].pricePerUnit;
+			}
+			return `Сума - ${sum} грн.`;
+		}
+		function showTheMostExpensivePurchaseInCheck(arr) {
+			let result = arr[0].quantity * arr[0].pricePerUnit;
+			let name = arr[0].name;
+			let sum = arr[0].quantity;
+			for (let i = 1; i < arr.length; i++) {
+				if (result < arr[i].quantity * arr[i].pricePerUnit) {
+					result = arr[i].quantity * arr[i].pricePerUnit;
+					name = arr[i].name;
+					sum = arr[i].quantity;
+
+				}
+			}
+			return `Найдорожча покупка: ${name} - ${sum} шт.\nСума - ${result} грн.`;
+		}
+		function averagePriceOfTheGoodsInTheCheck(arr) {
+			let sum = arr[0].quantity * arr[0].pricePerUnit;
+			let number = arr[0].quantity;
+			for (let i = 1; i < arr.length; i++) {
+				sum += arr[i].quantity * arr[i].pricePerUnit;
+				number = arr[i].quantity;
+			}
+			return `Середня ціна одного товара в чеку - ${Math.round(sum / number)} грн.`;
+		}
+		var checkFromTheStore = [
+			{
+				name: "water",
+				quantity: 2,
+				pricePerUnit: 2
+			},
+			{
+				name: "apple",
+				quantity: 10,
+				pricePerUnit: 3
+			},
+			{
+				name: "bread",
+				quantity: 1,
+				pricePerUnit: 4
+			},
+			{
+				name: "pineapple",
+				quantity: 3,
+				pricePerUnit: 8
+			}
+		];
+		var exit = '';
+		do {
+			exit = prompt("Виберіть одну із нижще навединих дій!!!\nРоздруковка чека на екран введіть - 1!\nПідрахунок загальної суми покупок введіть - 2!\nОтримати самої дорогої покупки в чеку введіть - 3!\nПідрахунок середньої ціни одного товара в чеку введіть - 4!\nЩоб вийти введіть - 0!", "");
+			switch (exit) {
+				case "1":
+					alert(printoutOfTheCheckOnTheScreen(checkFromTheStore));
+					break;
+				case "2":
+					alert(totalAmountOfTheCheck(checkFromTheStore));
+					break;
+				case "3":
+					alert(showTheMostExpensivePurchaseInCheck(checkFromTheStore));
+					break;
+				case "4":
+					alert(averagePriceOfTheGoodsInTheCheck(checkFromTheStore));
+					break;
+				case "0":
+					alert("Вихід!!!");
+					break;
+				default:
+					exit = prompt("Виберіть одну із нижще навединих дій!!!\nРоздруковка чека на екран введіть - 1!\nПідрахунок загальної суми покупок введіть - 2!\nОтримати самої дорогої покупки в чеку введіть - 3!\nПідрахунок середньої ціни одного товара в чеку введіть - 4!\nЩоб вийти введіть - 0!", "");
+					break;
+			}
+		} while (exit !== "0");
+	</script>
+</body>
+
+</html>

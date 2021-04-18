@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    background-color: rgb(247, 241, 241);
+}
+.main {
+	position: absolute;
+	left: 30px;
+	top: 30px;
+}
+.gallery {
+	position: absolute;
+	left: 630px;
+	top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+.gallery  img {
+	width: 100px;
+	height: 150px;
+}
+#img_1,
+#img_2,
+#img_3,
+#img_4,
+#img_5 {
+	position: absolute;
+	z-index: 0;
+	width: 600px;
+	height: 760px;
+}
+#img_1:target, 
+#img_2:target,
+#img_3:target,
+#img_4:target, 
+#img_5:target {
+    z-index: 1;
+}

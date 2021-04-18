@@ -1,0 +1,16 @@
+.left {
+	width: 1.6em !important;
+	height: 1.6em !important;
+	border-right: 1px solid #dee2e6 !important;
+	border-top: 1px solid #dee2e6 !important;
+	transform: rotate(45deg)!important;
+	transform-origin: 22% -15%;
+}
+.right {
+	width: 1.6em !important;
+	height: 1.6em !important;
+	border-left: 1px solid #dee2e6 !important;
+	border-top: 1px solid #dee2e6 !important;
+	transform: rotate(-45deg)!important;
+	transform-origin: 78% -15%;
+}

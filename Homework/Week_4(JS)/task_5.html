@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<body>
+	<script>
+		function returnAllMultipliers(x) {
+			if (x < 2) return answer + userNumber;
+			if(userNumber % x === 0 && userNumber !== x){
+				answer += `${userNumber / x} * `;
+				userNumber = x;
+			}
+			return returnAllMultipliers(x - 1);
+		}
+			
+		var answer = "";
+		var userNumber = +prompt("Введіть число!", "");
+		alert(returnAllMultipliers(userNumber));
+	</script>
+</body>
+
+</html>

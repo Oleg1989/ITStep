@@ -1,0 +1,80 @@
+/*Загальні стилі*/
+body {
+	background-color: rgb(243, 246, 251);
+    margin: 0;
+    font-family: sans-serif;
+	color: rgb(243, 246, 251);
+}
+/*Стилі для footer*/
+footer {
+	background-color: #004080;
+	margin: 20px;
+}
+/*Стилі для списків*/
+ul {
+	list-style-type: none;
+	line-height: 1.5em;
+}
+/*Стилі для силок*/
+a {
+	color: white;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+/*Стилі для container*/
+.container {
+	border-bottom: 2px solid rgb(243, 246, 251);
+	padding: 20px;
+	margin: 0 40px;
+	display: flex;
+}
+.first_list {
+	flex-grow: 1;
+}
+.second_list {
+	flex-grow: 1;
+}
+.copyright {
+	padding: 20px;
+	text-align: center;
+}
+.img {
+	display: flex
+}
+#fb, #insta, #youtube  {
+	width: 64px;
+	height: 64px;
+	padding: 0px 20px;
+	margin-top: 25px;
+	background-repeat: no-repeat;
+	flex-grow: 1;
+}
+#fb {
+	background-image: url(../img/fb_gray.png);
+}
+#fb:hover {
+	background-image: url(../img/fb.png);
+
+}
+#insta {
+	background-image: url(../img/insta_gray.png);
+}
+#insta:hover {
+	background-image: url(../img/insta.png);
+
+}
+#youtube {
+	background-image: url(../img/youtube_gray.png);
+
+}
+#youtube:hover {
+	background-image: url(../img/youtube.png);
+
+}
+/*Стилі для copyright*/
+.copyright {
+	padding: 20px;
+	text-align: center;
+}

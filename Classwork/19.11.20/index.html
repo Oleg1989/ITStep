@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>prezentor.</title>
+	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet">
+</head>
+
+<body class="bg-body">
+	<div class="container-fluid">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand text-primary font-weight-bolder" href="#">prezentor.</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link font-weight-bold" href="#">CLIENTS<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link font-weight-bold" href="#">REPORTS</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link font-weight-bold" href="#">PRESENTATIONS</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link font-weight-bold" href="#">FILE ARCHIVE</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link font-weight-bold" href="#">USERS</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link font-weight-bold" href="#">COMPANY SETTINGS</a>
+					</li>
+				</ul>
+				<div class="form-inline my-2 my-lg-0">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link text-black-50 font-weight-bold" href="#"><i
+									class="fas fa-hands-helping mr-1 text-info"></i>Help</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-black-50 font-weight-bold" href="#"><i
+									class="fas fa-user mr-1 text-info"></i>Mikkel Filskov</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-black-50 font-weight-bold" href="#"><i
+									class="fas fa-ban mr-1 font-weight-bolder text-info"></i>Logout</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="row ml-1 mr-2">
+			<div class="col-md-12 col-lg-8">
+				<div class="row">
+					<div class="col-6 p-0">
+						<button type="button" class="btn btn-outline-success btn-sm mb-1 mt-1" data-toggle="modal"
+							data-target="#CreateNewClientModalCenter">Create new client</button>
+						<div class="modal fade bd-example-modal-lg" id="CreateNewClientModalCenter" tabindex="-1" role="dialog"
+							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										...
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 p-0 text-right">
+						<button type="button" class="btn btn-outline-info btn-sm mb-1 mt-1" data-toggle="modal"
+							data-target="#SendModalCenter"><i class="fas fa-share-square mr-2"></i>Send</button>
+						<div class="modal fade bd-example-modal-lg" id="SendModalCenter" tabindex="-1" role="dialog"
+							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										...
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row bg-info rounded">
+					<div class="col-12 col-sm-3">
+						<div class="row">
+							<div class="col-12">
+								<input class="form-control form-control-sm mr-sm-2 mt-2 mb-2" type="date" id="date-1">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<input class="form-control form-control-sm mr-sm-2 mt-2 mb-2" type="date" id="date-2">
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-sm-9">
+						<div class="row">
+							<div class="col-12 col-sm-4">
+								<select class="form-control form-control-sm mr-sm-2 mt-2 mb-2">
+									<option>ASSIGNED SELLER</option>
+								</select>
+							</div>
+							<div class="col-12 col-sm-4">
+								<select class="form-control form-control-sm mr-sm-2 mt-2 mb-2">
+									<option>MIN EMAILS</option>
+								</select>
+							</div>
+							<div class="col-12 col-sm-4">
+								<select class="form-control form-control-sm mr-sm-2 mt-2 mb-2">
+									<option>MIN MEETINGS</option>
+								</select>
+							</div>
+						</div>
+						<div class="row mb-2 mt-2">
+							<div class="col-12">
+								<form class="form">
+									<div class="row">
+										<div class="col-7">
+											<input class="form-control form-control-sm" type="search"
+												placeholder="Search" aria-label="Search">
+										</div>
+										<div class="col-5 text-right">
+											<button
+												class="btn btn-sm btn-success text-black-50 border border-white-50 w-100"
+												type="submit">Search</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row bg-primary text-white rounded-top mt-1 main-content">
+					<div class="col-12">
+						<div class="row text-center">
+							<div class="col-2 pl-1 pr-1"><span>Name</span></div>
+							<div class="col-2 pl-1 pr-1"><span>Company</span></div>
+							<div class="col-2 pl-1 pr-1"><span>Last action</span></div>
+							<div class="col-1 pl-1 pr-1"><span>Emails</span></div>
+							<div class="col-2 pl-1 pr-1"><span>Meetings</span></div>
+							<div class="col-2 pl-1 pr-1"><span>Assigned seller</span></div>
+							<div class="col-1 pl-1 pr-1"><span>Action</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="row vh-70 overflow-auto">
+					<div class="col-12">
+						<div class="row">
+							<div class="col-12 border p-0">
+								<div class="accordion" id="accordionExample1">
+									<div class="card">
+										<div class="card-header p-0" id="heading-1">
+											<div class="row text-center main-content m-0">
+												<div class="col-2 pl-1 pr-1">
+													<button class="btn btn-outline-info p-0 m-1 w-100" id="btn-user-1" type="button"
+														data-toggle="collapse" data-target=".multi-collapse-1"
+														aria-expanded="false"
+														aria-controls="collapse-1 multiCollapseExample1"><span
+															class="main-content name-button">Helen
+															Shvetz</span>
+													</button>
+												</div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Prezentor</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>25-10-2016 14:22</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Sara Leander Pehensd</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<div class="btn-group dropleft">
+														<button
+															class="btn btn-outline-info btn-sm pt-0 pb-0 dropdown-toggle" id="dropdown-menu-user-1"
+															type="button" data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false"></button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item text-info" href="#">Edit</a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-trash-alt"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-envelope"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-user-friends"></i></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="collapse-1" class="collapse multi-collapse-1 main-content"
+											aria-labelledby="heading-1" data-parent="#accordionExample1">
+											<div class="card-body">
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>01-07-2016</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingOne"
+															aria-expanded="false"
+															aria-controls="collapseMeetingOne"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 02-07-2016
+													</div>
+													<div class="col-3">
+														Time: 00:27
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>13-06-2016</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingTwo"
+															aria-expanded="false"
+															aria-controls="collapseMeetingTwo"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 13-06-2016
+													</div>
+													<div class="col-3">
+														Time: 11:40
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>06-06-2016</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailOne"
+															aria-expanded="false" aria-controls="collapseEmailOne"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 06-06-2016
+													</div>
+													<div class="col-3">
+														Time: 13:30
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>20-05-2016</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailTwo"
+															aria-expanded="false" aria-controls="collapseEmailTwo"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 20-05-2016
+													</div>
+													<div class="col-3">
+														Time: 11:56
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="accordion" id="accordionExample2">
+									<div class="card">
+										<div class="card-header p-0" id="heading-2">
+											<div class="row text-center main-content m-0">
+												<div class="col-2 pl-1 pr-1">
+													<button class="btn btn-outline-info collapsed p-0 m-1 w-100"
+														type="button" data-toggle="collapse"
+														data-target=".multi-collapse-2" aria-expanded="false"
+														aria-controls="collapse-2 multiCollapseExample2"><span
+															class="main-content name-button">Jan Olsen</span>
+													</button>
+												</div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Prezentor</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>25-10-2016 14:22</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Sara Leander Pehensd</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<div class="btn-group dropleft">
+														<button
+															class="btn btn-outline-info btn-sm pt-0 pb-0 dropdown-toggle"
+															type="button" data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false"></button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item text-info" href="#">Edit</a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-trash-alt"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-envelope"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-user-friends"></i></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="collapse-2" class="collapse multi-collapse-2 main-content"
+											aria-labelledby="heading-2" data-parent="#accordionExample2">
+											<div class="card-body">
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>01-07-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingOne"
+															aria-expanded="false"
+															aria-controls="collapseMeetingOne"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 02-07-2016
+													</div>
+													<div class="col-3">
+														Time: 00:27
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>13-06-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingTwo"
+															aria-expanded="false"
+															aria-controls="collapseMeetingTwo"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 13-06-2016
+													</div>
+													<div class="col-3">
+														Time: 11:40
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>06-06-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailOne"
+															aria-expanded="false" aria-controls="collapseEmailOne"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 06-06-2016
+													</div>
+													<div class="col-3">
+														Time: 13:30
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="accordion" id="accordionExample3">
+									<div class="card">
+										<div class="card-header p-0" id="heading-3">
+											<div class="row text-center main-content m-0">
+												<div class="col-2 pl-1 pr-1">
+													<button class="btn btn-outline-info collapsed p-0 m-1 w-100"
+														type="button" data-toggle="collapse"
+														data-target=".multi-collapse-3" aria-expanded="false"
+														aria-controls="collapse-3 multiCollapseExample3"><span
+															class="main-content name-button">Jess Dybro</span>
+													</button>
+												</div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>WeMakeTraffic</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>11-10-2016 11:09</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Mikkel Filskow</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<div class="btn-group dropleft">
+														<button
+															class="btn btn-outline-info btn-sm pt-0 pb-0 dropdown-toggle"
+															type="button" data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false"></button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item text-info" href="#">Edit</a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-trash-alt"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-envelope"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-user-friends"></i></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="collapse-3" class="collapse multi-collapse-3 main-content"
+											aria-labelledby="heading-3" data-parent="#accordionExample3">
+											<div class="card-body">
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>13-06-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingOne"
+															aria-expanded="false"
+															aria-controls="collapseMeetingOne"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 13-06-2016
+													</div>
+													<div class="col-3">
+														Time: 11:40
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>06-06-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailOne"
+															aria-expanded="false" aria-controls="collapseEmailOne"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 06-06-2016
+													</div>
+													<div class="col-3">
+														Time: 13:30
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>20-05-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailTwo"
+															aria-expanded="false" aria-controls="collapseEmailTwo"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 20-05-2016
+													</div>
+													<div class="col-3">
+														Time: 11:56
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="accordion" id="accordionExample4">
+									<div class="card">
+										<div class="card-header p-0" id="heading-1">
+											<div class="row text-center main-content m-0">
+												<div class="col-2 pl-1 pr-1">
+													<button class="btn btn-outline-info p-0 m-1 w-100" id="btn-user-1" type="button"
+														data-toggle="collapse" data-target=".multi-collapse-4"
+														aria-expanded="false"
+														aria-controls="collapse-4 multiCollapseExample1"><span
+															class="main-content name-button">Helen
+															Shvetz</span>
+													</button>
+												</div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Prezentor</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>25-10-2016 14:22</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Sara Leander Pehensd</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<div class="btn-group dropleft">
+														<button
+															class="btn btn-outline-info btn-sm pt-0 pb-0 dropdown-toggle" id="dropdown-menu-user-1"
+															type="button" data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false"></button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item text-info" href="#">Edit</a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-trash-alt"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-envelope"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-user-friends"></i></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="collapse-4" class="collapse multi-collapse-4 main-content"
+											aria-labelledby="heading-1" data-parent="#accordionExample4">
+											<div class="card-body">
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>01-07-2016</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingOne"
+															aria-expanded="false"
+															aria-controls="collapseMeetingOne"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 02-07-2016
+													</div>
+													<div class="col-3">
+														Time: 00:27
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>13-06-2016</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingTwo"
+															aria-expanded="false"
+															aria-controls="collapseMeetingTwo"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 13-06-2016
+													</div>
+													<div class="col-3">
+														Time: 11:40
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>06-06-2016</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailOne"
+															aria-expanded="false" aria-controls="collapseEmailOne"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 06-06-2016
+													</div>
+													<div class="col-3">
+														Time: 13:30
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>20-05-2016</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailTwo"
+															aria-expanded="false" aria-controls="collapseEmailTwo"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 20-05-2016
+													</div>
+													<div class="col-3">
+														Time: 11:56
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="accordion" id="accordionExample5">
+									<div class="card">
+										<div class="card-header p-0" id="heading-2">
+											<div class="row text-center main-content m-0">
+												<div class="col-2 pl-1 pr-1">
+													<button class="btn btn-outline-info collapsed p-0 m-1 w-100"
+														type="button" data-toggle="collapse"
+														data-target=".multi-collapse-5" aria-expanded="false"
+														aria-controls="collapse-5 multiCollapseExample2"><span
+															class="main-content name-button">Jan Olsen</span>
+													</button>
+												</div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Prezentor</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>25-10-2016 14:22</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Sara Leander Pehensd</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<div class="btn-group dropleft">
+														<button
+															class="btn btn-outline-info btn-sm pt-0 pb-0 dropdown-toggle"
+															type="button" data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false"></button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item text-info" href="#">Edit</a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-trash-alt"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-envelope"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-user-friends"></i></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="collapse-5" class="collapse multi-collapse-5 main-content"
+											aria-labelledby="heading-2" data-parent="#accordionExample5">
+											<div class="card-body">
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>01-07-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingOne"
+															aria-expanded="false"
+															aria-controls="collapseMeetingOne"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 02-07-2016
+													</div>
+													<div class="col-3">
+														Time: 00:27
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>13-06-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingTwo"
+															aria-expanded="false"
+															aria-controls="collapseMeetingTwo"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 13-06-2016
+													</div>
+													<div class="col-3">
+														Time: 11:40
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>06-06-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailOne"
+															aria-expanded="false" aria-controls="collapseEmailOne"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 06-06-2016
+													</div>
+													<div class="col-3">
+														Time: 13:30
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="accordion" id="accordionExample6">
+									<div class="card">
+										<div class="card-header p-0" id="heading-3">
+											<div class="row text-center main-content m-0">
+												<div class="col-2 pl-1 pr-1">
+													<button class="btn btn-outline-info collapsed p-0 m-1 w-100"
+														type="button" data-toggle="collapse"
+														data-target=".multi-collapse-6" aria-expanded="false"
+														aria-controls="collapse-6 multiCollapseExample3"><span
+															class="main-content name-button">Jess Dybro</span>
+													</button>
+												</div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>WeMakeTraffic</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>11-10-2016 11:09</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto">
+													<span>2</span></div>
+												<div class="col-2 pl-1 pr-1 m-auto text-truncate">
+													<span>Mikkel Filskow</span></div>
+												<div class="col-1 pl-1 pr-1 m-auto">
+													<div class="btn-group dropleft">
+														<button
+															class="btn btn-outline-info btn-sm pt-0 pb-0 dropdown-toggle"
+															type="button" data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false"></button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item text-info" href="#">Edit</a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-trash-alt"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-envelope"></i></a>
+															<a class="dropdown-item text-info" href="#"><i
+																	class="fas fa-user-friends"></i></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="collapse-6" class="collapse multi-collapse-6 main-content"
+											aria-labelledby="heading-3" data-parent="#accordionExample3">
+											<div class="card-body">
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>13-06-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseMeetingOne"
+															aria-expanded="false"
+															aria-controls="collapseMeetingOne"><span
+																class="name-button">Meeting</span></button>
+													</div>
+													<div class="col-4">
+														Date: 13-06-2016
+													</div>
+													<div class="col-3">
+														Time: 11:40
+													</div>
+													<div class="col">
+														<a href="#" class="text-info">View stats</a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>06-06-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailOne"
+															aria-expanded="false" aria-controls="collapseEmailOne"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 06-06-2016
+													</div>
+													<div class="col-3">
+														Time: 13:30
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+												<div class="row bg-info">
+													<div class="col-12">
+														<span>20-05-2016</span>
+													</div>
+												</div>
+												<div class="row p-2">
+													<div class="col-2">
+														<button class="btn btn-link text-info collapsed" type="button"
+															data-toggle="collapse" data-target="#collapseEmailTwo"
+															aria-expanded="false" aria-controls="collapseEmailTwo"><span
+																class="name-button">Email</span></button>
+													</div>
+													<div class="col-4">
+														Date: 20-05-2016
+													</div>
+													<div class="col-3">
+														Time: 11:56
+													</div>
+													<div class="col">
+														<a href="#" class="text-info"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-4">
+				<div class="row">
+					<div class="col-12 p-0">
+						<div class="collapse multi-collapse-1 multi-collapse-4 main-content" id="multiCollapseExample1"
+							aria-labelledby="heading-1" data-parent="#accordionExample4">
+							<div class="card card-body m-1">
+								<div class="row">
+									<div class="col-12 text-center">
+										<h2 class="text-info font-weight-bolder text-uppercase">Profil score</h2>
+										<div class="progress">
+											<div class="progress-bar bg-success" role="progressbar" style="width: 85%;"
+												aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+										</div>
+									</div>
+								</div>
+								<div class="row p-2 border-bottom">
+									<div class="col-12">
+										<h2 class="font-weight-bolder">Helen Shvetz</h2>
+										<div>Prezentor</div>
+									</div>
+								</div>
+								<div class="row p-2 border-bottom font-weight-bold">
+									<div class="col-12">
+										<div><span>Email: helen@wmt.dk</span></div>
+										<div class="d-flex justify-content-between"><span>Phone:
+												456926988</span><span><a href="#" class="text-info">View all</a></span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class=" d-flex justify-content-end">
+											<button type="button" class="btn btn-outline-info m-2 btn-sm"><i
+													class="fas fa-share-square"></i> Send</button>
+											<button type="button" class="btn btn-outline-secondary m-2 btn-sm"><i
+													class="fas fa-user-friends"></i> Meeting</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="collapse multi-collapse-2 multi-collapse-5 main-content" id="multiCollapseExample2"
+							aria-labelledby="heading-2" data-parent="#accordionExample5">
+							<div class="card card-body m-1">
+								<div class="row">
+									<div class="col-12 text-center">
+										<h2 class="text-info font-weight-bolder text-uppercase">Profil score</h2>
+										<div class="progress">
+											<div class="progress-bar bg-primary" role="progressbar" style="width: 55%;"
+												aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">55%</div>
+										</div>
+									</div>
+								</div>
+								<div class="row p-2 border-bottom">
+									<div class="col-12">
+										<h2 class="font-weight-bolder">Jan Oslen</h2>
+										<div>Prezentor</div>
+									</div>
+								</div>
+								<div class="row p-2 border-bottom font-weight-bold">
+									<div class="col-12">
+										<div><span>Email: jan@wmt.dk</span></div>
+										<div class="d-flex justify-content-between"><span>Phone:
+												312626988</span><span><a href="#" class="text-info">View all</a></span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class=" d-flex justify-content-end">
+											<button type="button" class="btn btn-outline-info m-2 btn-sm"><i
+													class="fas fa-share-square"></i> Send</button>
+											<button type="button" class="btn btn-outline-secondary m-2 btn-sm"><i
+													class="fas fa-user-friends"></i> Meeting</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="collapse multi-collapse-3 multi-collapse-6 main-content" id="multiCollapseExample3"
+							aria-labelledby="heading-3" data-parent="#accordionExample6">
+							<div class="card card-body m-1">
+								<div class="row">
+									<div class="col-12 text-center">
+										<h2 class="text-info font-weight-bolder text-uppercase">Profil score</h2>
+										<div class="progress">
+											<div class="progress-bar bg-warning" role="progressbar" style="width: 40%;"
+												aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+										</div>
+									</div>
+								</div>
+								<div class="row p-2 border-bottom">
+									<div class="col-12">
+										<h2 class="font-weight-bolder">Jass Dybro</h2>
+										<div>WeMakeTraffic</div>
+									</div>
+								</div>
+								<div class="row p-2 border-bottom font-weight-bold">
+									<div class="col-12">
+										<div><span>Email: jess@wmt.dk</span></div>
+										<div class="d-flex justify-content-between"><span>Phone: 31262698</span><span><a
+													href="#" class="text-info">View all</a></span></div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class=" d-flex justify-content-end">
+											<button type="button" class="btn btn-outline-info m-2 btn-sm"><i
+													class="fas fa-share-square"></i> Send</button>
+											<button type="button" class="btn btn-outline-secondary m-2 btn-sm"><i
+													class="fas fa-user-friends"></i> Meeting</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 p-0">
+						<div id="collapseMeetingOne" class="collapse">
+							<div class="row bg-light pt-0 m-2">
+								<div class="col-12">
+									<div class="row mb-2">
+										<div class="col-12">
+											<button type="button" class="close" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>											
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 bg-primary text-white d-flex justify-content-between">
+											<div><span class="font-weight-bolder">Was Sent:</span> 06-06-2016 12:30
+											</div>
+											<div><span class="font-weight-bolder">Sent By:</span> Mikkel Filson</div>
+										</div>
+									</div>
+									<div class="row bg-primary mt-2">
+										<div class="col-12 bg-primary">
+											<div class="col-1"></div>
+											<div class="col-3 bg-danger text-white text-center">
+												<div>Coffee</div>
+												<div>World</div>
+											</div>
+											<div class="col-8"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-1 mr-1 ml-1">
+									<div class="col-12 bg-white">
+										<h4>Meeting Jack</h4>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est
+											nisi
+											quos modi, cumque asperiores nostrum alias recusandae voluptate sed.
+											Illo
+											aliquam dolorem quis quam? Repudiandae repellendus illum optio in!</p>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est
+											nisi
+											quos modi, cumque asperiores nostrum alias recusandae voluptate sed.
+											Illo
+											aliquam dolorem quis quam? Repudiandae repellendus illum optio in!</p>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-1"></div>
+									<div class="col">
+										<div>&copy; Powered by Prezentor</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="collapseMeetingTwo" class="collapse">
+							<div class="row bg-light pt-0 m-2">
+								<div class="col-12">
+									<div class="row mb-2">
+										<div class="col-12">
+											<button type="button" class="close" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 bg-primary text-white d-flex justify-content-between">
+											<div><span class="font-weight-bolder">Was Sent:</span> 06-06-2016 12:30
+											</div>
+											<div><span class="font-weight-bolder">Sent By:</span> Mikkel Filson</div>
+										</div>
+									</div>
+									<div class="row bg-primary mt-2">
+										<div class="col-12 bg-primary">
+											<div class="col-1"></div>
+											<div class="col-3 bg-danger text-white text-center">
+												<div>Coffee</div>
+												<div>World</div>
+											</div>
+											<div class="col-8"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-1 mr-1 ml-1">
+									<div class="col-12 bg-white">
+										<h4>Meeting Mikkle</h4>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est
+											nisi
+											quos modi, cumque asperiores nostrum alias recusandae voluptate sed.
+											Illo
+											aliquam dolorem quis quam? Repudiandae repellendus illum optio in!</p>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est
+											nisi
+											quos modi, cumque asperiores nostrum alias recusandae voluptate sed.
+											Illo
+											aliquam dolorem quis quam? Repudiandae repellendus illum optio in!</p>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-1"></div>
+									<div class="col">
+										<div>&copy; Powered by Prezentor</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="collapseEmailOne" class="collapse">
+							<div class="row bg-light pt-0 m-2">
+								<div class="col-12">
+									<div class="row mb-2">
+										<div class="col-12">
+											<button type="button" class="close"  aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 bg-primary text-white d-flex justify-content-between">
+											<div><span class="font-weight-bolder">Was Sent:</span> 06-06-2016 12:30
+											</div>
+											<div><span class="font-weight-bolder">Sent By:</span> Mikkel Filson</div>
+										</div>
+									</div>
+									<div class="row bg-primary mt-2">
+										<div class="col-12 bg-primary">
+											<div class="col-1"></div>
+											<div class="col-3 bg-danger text-white text-center">
+												<div>Coffee</div>
+												<div>World</div>
+											</div>
+											<div class="col-8"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-1 mr-1 ml-1">
+									<div class="col-12 bg-white">
+										<h4>Email Jack</h4>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est
+											nisi
+											quos modi, cumque asperiores nostrum alias recusandae voluptate sed.
+											Illo
+											aliquam dolorem quis quam? Repudiandae repellendus illum optio in!</p>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est
+											nisi
+											quos modi, cumque asperiores nostrum alias recusandae voluptate sed.
+											Illo
+											aliquam dolorem quis quam? Repudiandae repellendus illum optio in!</p>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-1"></div>
+									<div class="col">
+										<div>&copy; Powered by Prezentor</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="collapseEmailTwo" class="collapse">
+							<div class="row bg-light pt-0 m-2">
+								<div class="col-12">
+									<div class="row mb-2">
+										<div class="col-12">
+											<button type="button" class="close" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 bg-primary text-white d-flex justify-content-between">
+											<div><span class="font-weight-bolder">Was Sent:</span> 06-06-2016 12:30
+											</div>
+											<div><span class="font-weight-bolder">Sent By:</span> Mikkel Filson</div>
+										</div>
+									</div>
+									<div class="row bg-primary mt-2">
+										<div class="col-12 bg-primary">
+											<div class="col-1"></div>
+											<div class="col-3 bg-danger text-white text-center">
+												<div>Coffee</div>
+												<div>World</div>
+											</div>
+											<div class="col-8"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-1 mr-1 ml-1">
+									<div class="col-12 bg-white">
+										<h4>Email Mikkle</h4>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est
+											nisi
+											quos modi, cumque asperiores nostrum alias recusandae voluptate sed.
+											Illo
+											aliquam dolorem quis quam? Repudiandae repellendus illum optio in!</p>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est
+											nisi
+											quos modi, cumque asperiores nostrum alias recusandae voluptate sed.
+											Illo
+											aliquam dolorem quis quam? Repudiandae repellendus illum optio in!</p>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-1"></div>
+									<div class="col">
+										<div>&copy; Powered by Prezentor</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_6</title>
+    <script>
+        do{
+			var firstNumber = +prompt("First number!");
+			var secondNumber = +prompt("Second number!");
+			var mathematicalAction = prompt("Mathematical action!");
+			switch(mathematicalAction){
+				case "+":
+					alert("Result " + (firstNumber + secondNumber));
+					break;
+				case "-":
+					alert("Result " + (firstNumber - secondNumber));
+					break;
+				case "/": 
+					alert("Result " + (firstNumber / secondNumber));
+					break;
+				default:
+					alert("Result " + (firstNumber * secondNumber));
+			}
+		}while(confirm("Take another action"));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

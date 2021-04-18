@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_8</title>
+    <script>
+        var sumMoneyInWallet = +prompt("Сума гривнів в кошильку!");
+        var priceOfChocolates = +prompt("Ціна шоколатки!");
+        var numberOfChocolates = 0;
+        while (sumMoneyInWallet >= priceOfChocolates) {
+            sumMoneyInWallet -= priceOfChocolates;
+            numberOfChocolates++;
+        }
+        alert("Ви придбаєте - " + numberOfChocolates + " шоколадок! І у вас залишиться - " + sumMoneyInWallet + " гривнів!");
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

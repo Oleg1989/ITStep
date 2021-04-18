@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task_2</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			background-color: #fae9e9;
+			font-family: sans-serif;
+			color: #787878;
+		}
+
+		/* Стилі для head*/
+
+		h1 {
+			text-align: center;
+			margin: 20px 0;
+		}
+
+		#selection-of-figures {
+			width: 100%;
+			display: flex;
+		}
+
+		#figures {
+			width: 60%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding: 20px;
+		}
+
+		input[type=radio] {
+			border: 0px;
+			width: 3%;
+			height: 1.5em;
+		}
+
+		#color-palette {
+			width: 40%;
+		}
+
+		#square {
+			width: 8vw;
+			height: 8vw;
+			background-color: cadetblue;
+			display: inline-block;
+		}
+
+		#circle {
+			width: 8vw;
+			height: 8vw;
+			background-color: cadetblue;
+			display: inline-block;
+			border-radius: 50%;
+		}
+
+		#diamond {
+			width: 5vw;
+			height: 5vw;
+			background-color: cadetblue;
+			display: inline-block;
+			transform: rotate(45deg);
+		}
+
+		#triangle {
+			width: 0;
+			height: 0;
+			border-bottom: 8vw solid cadetblue;
+			border-right: 8vw solid transparent;
+		}
+
+		#color-palette {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#color-palette div {
+			display: flex;
+			width: 80%;
+		}
+
+		.color {
+			width: 3vw;
+			height: 4vw;
+			border: 1px solid black
+		}
+
+		/* Стилі для body*/
+
+		#body {
+			width: 100%;
+			height: 60vh;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="head">
+			<h1>PAINT</h1>
+			<hr>
+			<div id="selection-of-figures">
+				<div id="figures">
+					<input name="figure" type="radio" value="square">
+					<div id="square"></div>
+					<input name="figure" type="radio" value="circle">
+					<div id="circle"></div>
+					<input name="figure" type="radio" value="diamond">
+					<div id="diamond"></div>
+					<input name="figure" type="radio" value="triangle">
+					<div id="triangle"></div>
+				</div>
+				<div id="color-palette">
+					<div>
+						<div class="color" style="background: #000000"></div>
+						<div class="color" style="background: #c0c0c0"></div>
+						<div class="color" style="background: #ffff00"></div>
+						<div class="color" style="background: #7676d4"></div>
+						<div class="color" style="background: #ca8585"></div>
+						<div class="color" style="background: #9ec79e"></div>
+						<div class="color" style="background: #dd9add"></div>
+					</div>
+					<div>
+						<div class="color" style="background: #ffffff"></div>
+						<div class="color" style="background: #7c7b7b"></div>
+						<div class="color" style="background: #ffa500"></div>
+						<div class="color" style="background: #0000ff"></div>
+						<div class="color" style="background: #ff0000"></div>
+						<div class="color" style="background: #008000"></div>
+						<div class="color" style="background: #800080"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div id="body">
+			<canvas id="canvas">Your browser is not supported!</canvas>
+		</div>
+		<hr>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+	<script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_8</title>
+    <script>
+	    var day;
+		var count = 1;
+        do{
+			switch(count){
+				case(1): 
+					day = "Понеділок!";
+					count++;
+					break;
+				case(2): 
+					day = "Вівторок!";
+					count++;
+					break;
+				case(3): 
+					day = "Середа!";
+					count++;
+					break;
+				case(4): 
+					day = "Четверг!";
+					count++;
+					break;
+				case(5): 
+					day = "П'ятниця!";
+					count++;
+					break;
+				case(6): 
+					day = "Субота!";
+					count++;
+					break;
+				default:
+					day = "Неділя!";
+					count = 1;
+			}
+		}while(confirm(`${day} Хочете побачити наступний день тижня?`));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

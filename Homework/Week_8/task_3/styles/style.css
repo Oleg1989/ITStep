@@ -1,0 +1,333 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: rgb(248, 244, 244);
+    font-family: sans-serif;
+}
+h2 {
+    font-weight: 500;
+	margin: 20px 0;
+}
+button:active, 
+button:focus {
+    outline: none;
+}
+input:active, 
+input:focus {
+    outline: none;
+}
+select:active, 
+select:focus {
+    outline: none;
+}
+div #id_username::before {
+        content: url(../img/username.png);
+        zoom: 0.5;
+}
+div #id_email::before {
+	content: url(../img/email.png);
+	zoom: 0.5;
+}
+.container {
+        width: 90vw;
+        margin: 50px auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+		border-radius: 20px;
+    }
+button {
+	padding: 10px;
+	margin: 40px;
+	width: 150px;
+	text-transform: uppercase;
+	background-color: teal;
+	color: white;
+	border-radius: 5px;
+	border: none;
+}
+@media (min-width:900px){
+	#form {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 30px;
+    }
+    #registration_form {
+        width: 50%;
+        padding: 10px;
+    }
+    #block_username {
+        display: flex;
+        flex-direction: column;
+    }
+    #block_username input {
+        width: 90%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #block_password {
+		width: 100%;
+        display: flex;
+        flex-direction: row;
+        
+    }
+	#block_password div{
+		width: 50%;
+    }
+    #block_password input{
+		width: 90%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+	div #block_password::before {
+		content: url(../img/pswd.png);
+		zoom: 0.5;
+	}
+    #personal_details {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    #personal_details input{
+        width: 49%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #name {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #sex_data {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #sex_data select {
+        width: 49%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #subscription {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    #subscription div{
+        margin: 10px 0;
+    }
+    #button {
+        text-align: right;
+        margin-top: 30px;
+    }
+}
+@media (min-width:600px) and (max-width:900px){
+	#form {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+    }
+    #registration_form {
+        padding: 10px;
+    }
+    #block_username {
+        display: flex;
+        flex-direction: column;
+    }
+	#id_username {
+		display: flex;
+        flex-direction: row;
+		justify-content: space-between;
+	}
+	#id_email {
+		display: flex;
+        flex-direction: row;
+		justify-content: space-between;
+	}
+    #block_username input {
+        width: 100%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #block_password {
+		width: 100%;
+        display: flex;
+        flex-direction: row;
+		justify-content: space-between;
+    }
+	#block_password div{
+		width: 49%;
+    }
+    #block_password input{
+		width: 100%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+	#id_password {
+		display: flex;
+        flex-direction: row;
+		justify-content: space-between;
+	}
+	#id_password::before {
+		content: url(../img/pswd.png);
+		zoom: 0.5;
+	}
+    #personal_details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    #personal_details input{
+        width: 49%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #name {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #sex_data {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #sex_data select {
+        width: 49%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #subscription {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    #subscription div{
+        margin: 10px 0;
+    }
+    #button {
+        text-align: right;
+        margin-top: 30px;
+    }
+}
+@media (max-width:600px) {
+	#form {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+    }
+    #registration_form {
+        padding: 10px;
+    }
+    #block_username {
+        display: flex;
+        flex-direction: column;
+    }
+	#id_username {
+		display: flex;
+        flex-direction: row;
+		justify-content: space-between;
+	}
+	#id_email {
+		display: flex;
+        flex-direction: row;
+		justify-content: space-between;
+	}
+    #block_username input {
+        width: 100%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #block_password {
+		width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+	#block_password div{
+		width: 100%;
+    }
+    #block_password input{
+		width: 100%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+	#id_password {
+		display: flex;
+        flex-direction: row;
+		justify-content: space-between;
+	}
+	#id_confirm_password input{
+		margin-left: 25px;
+		width: 94%;
+	}
+	#id_password::before {
+		content: url(../img/pswd.png);
+		zoom: 0.5;
+	}
+    #personal_details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    #personal_details input{
+        width: 100%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #name {
+        display: flex;
+        flex-direction: column;
+    }
+    #sex_data {
+        display: flex;
+        flex-direction: column;
+    }
+    #sex_data select {
+        width: 100%;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid silver;
+    }
+    #subscription {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    #subscription div{
+        margin: 10px 0;
+    }
+    #button {
+        text-align: right;
+        margin-top: 30px;
+    }
+}

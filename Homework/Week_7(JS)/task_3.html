@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<body>
+	<script>
+		function showDate(obj) {
+			let result = `Поточний час - ${obj.hours}:${obj.minutes}:${obj.seconds}`;
+			return result;
+		}
+		function addingSecondsToTheDate(obj, number) {
+			let result = "";
+			obj.seconds += number;
+			if (obj.seconds >= 60) {
+				while (obj.seconds >= 60) {
+					obj.seconds -= 60;
+					obj.minutes++;
+				}
+			}
+			result = `Поточний час - ${obj.hours}:${obj.minutes}:${obj.seconds}`;
+			return result;
+		}
+		function addingMinutesToTheDate(obj, number) {
+			let result = "";
+			obj.minutes += number;
+			if (obj.minutes >= 60) {
+				while (obj.minutes >= 60) {
+					obj.minutes -= 60;
+					obj.hours++;
+				}
+			}
+			result = `Поточний час - ${obj.hours}:${obj.minutes}:${obj.seconds}`;
+			return result;
+		}
+		function addingHoursToTheDate(obj, number) {
+			let result = `Поточний час - ${obj.hours + number}:${obj.minutes}:${obj.seconds}`;
+			return result;
+		}
+		var currentDate = {
+			hours: 24,
+			minutes: 43,
+			seconds: 36
+		};
+		alert(showDate(currentDate));
+		var secondsUser = +prompt("Введіть секунди!", "");
+		alert(addingSecondsToTheDate(currentDate, secondsUser));
+		var minutesUser = +prompt("Введіть хвилини!", "");
+		alert(addingMinutesToTheDate(currentDate, minutesUser));
+		var hoursUser = +prompt("Введіть години!", "");
+		alert(addingHoursToTheDate(currentDate, hoursUser));
+	</script>
+
+</body>
+
+</html>

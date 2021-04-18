@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<script>
+		function showShoppingList(arr) {
+			let result1 = "";
+			let result2 = "";
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i].state === true) {
+					result1 += `${arr[i].name} - ${arr[i].quantity}, `;
+				} else {
+					result2 += `${arr[i].name} - ${arr[i].quantity}, `;
+				}
+			}
+			return `Куплені продукти з списка: ${result1};\nНе куплені продукти з списка: ${result2};`;
+		}
+		function addingProductsToTheList(arr, str, number) {
+			let counter = 0;
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i].name === str) {
+					arr[i].quantity += number;
+					counter++;
+				}
+			}
+			if (counter === 0) {
+				arr.push({ name: str, quantity: number, state: false });
+			}
+			return arr;
+		}
+		function productPurchase(arr, str) {
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i].name === str) {
+					arr[i].state = true;
+				}
+			}
+			return arr;
+		}
+		var shoppingList = [
+			{
+				name: "water",
+				quantity: 2,
+				state: true
+			},
+			{
+				name: "apple",
+				quantity: 10,
+				state: false
+			},
+			{
+				name: "bread",
+				quantity: 1,
+				state: true
+			},
+			{
+				name: "pineapple",
+				quantity: 3,
+				state: false
+			}
+		];
+		var exit = '';
+		do {
+			exit = prompt("Виберіть одну із нижще навединих дій!!!\nЩоб вивести список покупок введіть - 1!\nЩоб добавити покупку в список введіть - 2!\nЩоб відмітити покупку як придбану введіть - 3!\nЩоб вийти введіть - 0!", "");
+			switch (exit) {
+				case "1":
+					alert(showShoppingList(shoppingList));
+					break;
+				case "2":
+					var newProduct = prompt("Назва продукту: ", "");
+					var numberOfProducts = +prompt("Кількість продуктів: ", "");
+					alert(showShoppingList(addingProductsToTheList(shoppingList, newProduct.toLowerCase(), numberOfProducts)));
+					break;
+				case "3":
+					var purchasedProduct = prompt("Введіть назву купленого продукту: ", "");
+					alert(showShoppingList(productPurchase(shoppingList, purchasedProduct.toLowerCase())));
+					break;
+				case "0":
+					alert("Вихід!!!");
+					break;
+				default:
+					exit = prompt("Виберіть одну із нижще навединих дій!!!\nЩоб вивести список покупок введіть - 1!\nЩоб добавити покупку в список введіть - 2!\nЩоб відмітити покупку як придбану введіть - 3!\nЩоб вийти введіть - 0!", "");
+					break;
+			}
+		} while (exit !== "0");
+	</script>
+</body>
+
+</html>

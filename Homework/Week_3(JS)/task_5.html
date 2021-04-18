@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<body>
+	<script>
+		var number = 0;
+		function perfectNumber(x) {
+			for (var i = 0; i < x; i++) {
+				if (x % i === 0) {
+					number += i;
+				} else {
+					continue;
+				}
+			}
+			if (number === x) {
+				return `Число - ${x} являється досконалим!`;
+			} else {
+				return `Число - ${x} не являється досконалим!`;
+			}
+		}
+		alert(perfectNumber(+prompt("Введіть число!", "")));
+	</script>
+</body>
+
+</html>

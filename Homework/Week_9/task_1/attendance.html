@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Attendance</title>
+	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<header>
+			<nav>
+				<div class="row bg-primary">
+					<div class="col-6">
+						<ul class="nav nav-pills justify-content-start d-flex align-items-center text-white-50">
+							<li class="nav-item">
+								<a class="nav-link text-light" href="attendance.html"><h1><i class="fas fa-user-graduate"></i></h1></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-white-50 active" id="pills-attendance-tab" data-toggle="pill" href="#pills-attendance" role="tab" aria-controls="pills-attendance" aria-selected="true">Attendance</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-white-50 disabled" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Shedule</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-white-50" id="pills-homework-tab" data-toggle="pill" href="#pills-homework" role="tab" aria-controls="pills-homework" aria-selected="false">Homework</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-6">
+						<ul class="nav pt-1 pb-1 justify-content-end d-flex align-items-center">
+							<li class="nav-item">
+								<a class="nav-link text-white-50 active" href="#"><h2><i class="fas fa-bell"></i></h2></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-white-50" href="#"><h2><i class="fas fa-user-circle"></i></h2></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-white-50" href="#"><h2><i class="fas fa-door-open"></i></h2></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+	</div>
+	<div class="tab-content" id="pills-tabContent">
+	  <div class="tab-pane fade show active" id="pills-attendance" role="tabpanel" aria-labelledby="pills-attendance-tab">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 text-center mt-5 mb-5">
+					<h1 class="font-weight-light">23 April,Tusday</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<ul class="nav nav-tabs m-2" id="myTab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" href="#lesson-1" id="lesson-1-tab" data-toggle="tab" role="tab"
+								 aria-selected="true">1 lesson</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="lesson-2" id="lesson-2-tab" data-toggle="tab" role="tab"
+								 aria-selected="true">2 lesson</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="lesson-3" id="lesson-3-tab" data-toggle="tab" role="tab"
+								 aria-selected="true">3 lesson</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="lesson-4" id="lesson-4-tab" data-toggle="tab" role="tab"
+								 aria-selected="true">4 lesson</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="lesson-5" id="lesson-5-tab" data-toggle="tab" role="tab"
+								 aria-selected="true">5 lesson</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="lesson-6" id="lesson-6-tab" data-toggle="tab" role="tab"
+								 aria-selected="true">6 lesson</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="lesson-7" id="lesson-7-tab" data-toggle="tab" role="tab"
+								 aria-selected="true">7 lesson</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="lesson-8" id="lesson-8-tab" data-toggle="tab" role="tab"
+							 aria-selected="true">8 lesson</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<form class="form m-3">
+				<div class="row">
+					<div class="col-3">
+						<small class="help-block text-secondary">Group</small>
+						<h2 class="font-weight-bold">ABC-1234</h2>
+					</div>
+					<div class="col-3">
+						<small class="help-block text-secondary">Subject</small>
+						<h2 class="font-weight-bold"> HTML&CSS </h2>
+					</div>
+					<div class="col-3">
+						<small class="help-block text-secondary m-3">Lesson topic</small>
+						<div class="form-group mx-sm-3 mb-2">
+							<input type="text" class="form-control" id="inputLessonTopic">
+						</div>
+					</div>
+					<div class="col-3">
+						<small class="help-block text-secondary m-3">Homework</small>
+						<div class="form-group mx-sm-3 mb-2">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add homework</button>
+						</div>
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered " role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">New homework</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<label for="formGroupExampleInput">Topic:</label>
+											<input type="text" class="form-control" id="formGroupExampleInput">
+										</div>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" id="validatedCustomFile"
+												required>
+											<label class="custom-file-label" for="validatedCustomFile">Choose
+												file...</label>
+											<div class="invalid-feedback">Example invalid custom file feedback</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Save
+											changes</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<table class="table table-hover">
+				<thead class="table-success text-light">
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">Name</th>
+						<th scope="col">GPA</th>
+						<th scope="col">Is present</th>
+						<th scope="col">Test</th>
+						<th scope="col">Classwork</th>
+						<th scope="col">Comment</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>Ashton Hickman</td>
+						<td>10</td>
+						<td>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-outline-success rounded-circle p-3">
+									<input type="radio" name="options" checked></label>
+								<label class="btn btn-outline-warning ml-2 rounded-circle p-3">
+									<input type="radio" name="options"></label>
+								<label class="btn btn-outline-danger ml-2 rounded-circle p-3">
+									<input type="radio" name="options"></label>
+							</div>
+						</td>
+						<td>
+							<select class="form-control">
+								<option>-</option>
+								<option value="Mar">1</option>
+								<option value="Gre">2</option>
+								<option value="Yel">3</option>
+								<option value="Blu">4</option>
+								<option value="Red">5</option>
+								<option value="Mar">6</option>
+								<option value="Gre">7</option>
+								<option value="Yel">8</option>
+								<option value="Blu">9</option>
+								<option value="Red">10</option>
+								<option value="Red">11</option>
+								<option value="Red">12</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control">
+								<option>-</option>
+								<option value="Mar">1</option>
+								<option value="Gre">2</option>
+								<option value="Yel">3</option>
+								<option value="Blu">4</option>
+								<option value="Red">5</option>
+								<option value="Mar">6</option>
+								<option value="Gre">7</option>
+								<option value="Yel">8</option>
+								<option value="Blu">9</option>
+								<option value="Red">10</option>
+								<option value="Red">11</option>
+								<option value="Red">12</option>
+							</select>
+						</td>
+						<td>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>Mischa Roberson</td>
+						<td>9</td>
+						<td>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-outline-success rounded-circle p-3">
+									<input type="radio" name="options" checked></label>
+								<label class="btn btn-outline-warning ml-2 rounded-circle p-3">
+									<input type="radio" name="options"></label>
+								<label class="btn btn-outline-danger ml-2 rounded-circle p-3">
+									<input type="radio" name="options"></label>
+							</div>
+						</td>
+						<td>
+							<select class="form-control">
+								<option>-</option>
+								<option value="Mar">1</option>
+								<option value="Gre">2</option>
+								<option value="Yel">3</option>
+								<option value="Blu">4</option>
+								<option value="Red">5</option>
+								<option value="Mar">6</option>
+								<option value="Gre">7</option>
+								<option value="Yel">8</option>
+								<option value="Blu">9</option>
+								<option value="Red">10</option>
+								<option value="Red">11</option>
+								<option value="Red">12</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control">
+								<option>-</option>
+								<option value="Mar">1</option>
+								<option value="Gre">2</option>
+								<option value="Yel">3</option>
+								<option value="Blu">4</option>
+								<option value="Red">5</option>
+								<option value="Mar">6</option>
+								<option value="Gre">7</option>
+								<option value="Yel">8</option>
+								<option value="Blu">9</option>
+								<option value="Red">10</option>
+								<option value="Red">11</option>
+								<option value="Red">12</option>
+							</select>
+						</td>
+						<td>
+							<textarea class="form-control" rows="1"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td>Jaydon Metcalfe</td>
+						<td>11</td>
+						<td>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-outline-success rounded-circle p-3">
+									<input type="radio" name="options" checked></label>
+								<label class="btn btn-outline-warning ml-2 rounded-circle p-3">
+									<input type="radio" name="options"></label>
+								<label class="btn btn-outline-danger ml-2 rounded-circle p-3">
+									<input type="radio" name="options"></label>
+							</div>
+						</td>
+						<td>
+							<select class="form-control">
+								<option>-</option>
+								<option value="Mar">1</option>
+								<option value="Gre">2</option>
+								<option value="Yel">3</option>
+								<option value="Blu">4</option>
+								<option value="Red">5</option>
+								<option value="Mar">6</option>
+								<option value="Gre">7</option>
+								<option value="Yel">8</option>
+								<option value="Blu">9</option>
+								<option value="Red">10</option>
+								<option value="Red">11</option>
+								<option value="Red">12</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control">
+								<option>-</option>
+								<option value="Mar">1</option>
+								<option value="Gre">2</option>
+								<option value="Yel">3</option>
+								<option value="Blu">4</option>
+								<option value="Red">5</option>
+								<option value="Mar">6</option>
+								<option value="Gre">7</option>
+								<option value="Yel">8</option>
+								<option value="Blu">9</option>
+								<option value="Red">10</option>
+								<option value="Red">11</option>
+								<option value="Red">12</option>
+							</select>
+						</td>
+						<td>
+							<textarea class="form-control" rows="1"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">4</th>
+						<td>Gary Jacobcon</td>
+						<td>8</td>
+						<td>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-outline-success rounded-circle p-3">
+									<input type="radio" name="options" checked></label>
+								<label class="btn btn-outline-warning ml-2 rounded-circle p-3">
+									<input type="radio" name="options"></label>
+								<label class="btn btn-outline-danger ml-2 rounded-circle p-3">
+									<input type="radio" name="options"></label>
+							</div>
+						</td>
+						<td>
+							<select class="form-control">
+								<option>-</option>
+								<option value="Mar">1</option>
+								<option value="Gre">2</option>
+								<option value="Yel">3</option>
+								<option value="Blu">4</option>
+								<option value="Red">5</option>
+								<option value="Mar">6</option>
+								<option value="Gre">7</option>
+								<option value="Yel">8</option>
+								<option value="Blu">9</option>
+								<option value="Red">10</option>
+								<option value="Red">11</option>
+								<option value="Red">12</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control">
+								<option>-</option>
+								<option value="Mar">1</option>
+								<option value="Gre">2</option>
+								<option value="Yel">3</option>
+								<option value="Blu">4</option>
+								<option value="Red">5</option>
+								<option value="Mar">6</option>
+								<option value="Gre">7</option>
+								<option value="Yel">8</option>
+								<option value="Blu">9</option>
+								<option value="Red">10</option>
+								<option value="Red">11</option>
+								<option value="Red">12</option>
+							</select>
+						</td>
+						<td>
+							<textarea class="form-control" rows="1"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	  </div>
+	  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+	  <div class="tab-pane fade" id="pills-homework" role="tabpanel" aria-labelledby="pills-homework-tab">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 text-center mt-5 mb-5">
+					<h1 class="font-weight-light">Homework</h1>
+				</div>
+			</div>
+			<div class="form-row ml-2">
+				<div class="col-2">
+					<small class="form-text text-muted p-1">Group</small>
+				</div>
+				<div class="col-2">
+					<small class="form-text text-muted p-1">Subject</small>
+				</div>
+				<div class="col-auto"></div>
+			</div>
+			<form class="form m-3">
+				<div class="form-row">
+					<div class="col-2 ml-2">
+						<select class="form-control">
+							<option>-</option>
+							<option value="">ABC-1234</option>
+							<option value="">DFG-567</option>
+						</select>
+					</div>
+					<div class="col-2 ml-2">
+						<select class="form-control">
+							<option>-</option>
+							<option value="">JavaScript</option>
+							<option value="">HTML & CSS</option>
+						</select>
+					</div>
+					<div class="col-auto ml-2">
+						<div class="form-group">
+							<button type="button" class="btn btn-primary">Show</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<table class="table table-hover">
+				<thead class="table-success text-light">
+					<tr>
+						<th  scope="col"></th>
+						<th  scope="col">Student</th>
+						<th  scope="col">18.04</th>
+						<th  scope="col">14.04</th>
+						<th  scope="col">12.04</th>
+						<th  scope="col">10.04</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>1</th>
+						<td>Ashton Hickman</td>
+						<td>
+							<form class="form-inline">
+								<h1><i class="fas fa-file-code text-info"></i></h1>
+								<select class="form-control w-25 ml-2">
+									<option>-</option>
+									<option value="Mar">1</option>
+									<option value="Gre">2</option>
+									<option value="Yel">3</option>
+									<option value="Blu">4</option>
+									<option value="Red">5</option>
+									<option value="Mar">6</option>
+									<option value="Gre">7</option>
+									<option value="Yel">8</option>
+									<option value="Blu">9</option>
+									<option value="Red">10</option>
+									<option value="Red">11</option>
+									<option value="Red">12</option>
+								</select>
+							</form>
+						</td>
+						<td>
+							<h2><i class="fas fa-window-minimize text-info align-top"></i></h2>
+						</td>
+						<td>
+						    <form class="form-inline">
+								<h1><i class="fas fa-file-code text-info"></i></h1>
+								<select class="form-control w-25 ml-2">
+									<option>-</option>
+									<option value="Mar">1</option>
+									<option value="Gre">2</option>
+									<option value="Yel">3</option>
+									<option value="Blu">4</option>
+									<option value="Red">5</option>
+									<option value="Mar">6</option>
+									<option value="Gre">7</option>
+									<option value="Yel">8</option>
+									<option value="Blu">9</option>
+									<option value="Red">10</option>
+									<option value="Red">11</option>
+									<option value="Red">12</option>
+								</select>
+							</form>
+						</td>
+						<td>
+							<h2><i class="fas fa-window-minimize text-info align-top"></i></h2>
+						</td>
+					</tr>
+					<tr>
+						<th>2</th>
+						<td>Mischa Roberson</td>
+						<td>
+							<form class="form-inline">
+								<h1><i class="fas fa-file-code text-info"></i></h1>
+								<select class="form-control w-25 ml-2">
+									<option>-</option>
+									<option value="Mar">1</option>
+									<option value="Gre">2</option>
+									<option value="Yel">3</option>
+									<option value="Blu">4</option>
+									<option value="Red">5</option>
+									<option value="Mar">6</option>
+									<option value="Gre">7</option>
+									<option value="Yel">8</option>
+									<option value="Blu">9</option>
+									<option value="Red">10</option>
+									<option value="Red">11</option>
+									<option value="Red">12</option>
+								</select>
+							</form>
+						</td>
+						<td>
+							<h2><i class="fas fa-window-minimize text-info align-top"></i></h2>
+						</td>
+						<td>
+						    <form class="form-inline">
+								<h1><i class="fas fa-file-code text-info"></i></h1>
+								<select class="form-control w-25 ml-2">
+									<option>-</option>
+									<option value="Mar">1</option>
+									<option value="Gre">2</option>
+									<option value="Yel">3</option>
+									<option value="Blu">4</option>
+									<option value="Red">5</option>
+									<option value="Mar">6</option>
+									<option value="Gre">7</option>
+									<option value="Yel">8</option>
+									<option value="Blu">9</option>
+									<option value="Red">10</option>
+									<option value="Red">11</option>
+									<option value="Red">12</option>
+								</select>
+							</form>
+						</td>
+						<td>
+							<h2><i class="fas fa-window-minimize text-info align-top"></i></h2>
+						</td>
+					</tr>
+					<tr>
+						<th>3</th>
+						<td>Jaydon Metcalfe</td>
+						<td>
+							<form class="form-inline">
+								<h1><i class="fas fa-file-code text-info"></i></h1>
+								<select class="form-control w-25 ml-2">
+									<option>-</option>
+									<option value="Mar">1</option>
+									<option value="Gre">2</option>
+									<option value="Yel">3</option>
+									<option value="Blu">4</option>
+									<option value="Red">5</option>
+									<option value="Mar">6</option>
+									<option value="Gre">7</option>
+									<option value="Yel">8</option>
+									<option value="Blu">9</option>
+									<option value="Red">10</option>
+									<option value="Red">11</option>
+									<option value="Red">12</option>
+								</select>
+							</form>
+						</td>
+						<td>
+							<h2><i class="fas fa-window-minimize text-info align-top"></i></h2>
+						</td>
+						<td>
+						    <form class="form-inline">
+								<h1><i class="fas fa-file-code text-info"></i></h1>
+								<select class="form-control w-25 ml-2">
+									<option>-</option>
+									<option value="Mar">1</option>
+									<option value="Gre">2</option>
+									<option value="Yel">3</option>
+									<option value="Blu">4</option>
+									<option value="Red">5</option>
+									<option value="Mar">6</option>
+									<option value="Gre">7</option>
+									<option value="Yel">8</option>
+									<option value="Blu">9</option>
+									<option value="Red">10</option>
+									<option value="Red">11</option>
+									<option value="Red">12</option>
+								</select>
+							</form>
+						</td>
+						<td>
+							<h2><i class="fas fa-window-minimize text-info align-top"></i></h2>
+						</td>
+					</tr>
+					<tr>
+						<th>4</th>
+						<td>Gary Jacobcon</td>
+						<td>
+							<form class="form-inline">
+								<h1><i class="fas fa-file-code text-info"></i></h1>
+								<select class="form-control w-25 ml-2">
+									<option>-</option>
+									<option value="Mar">1</option>
+									<option value="Gre">2</option>
+									<option value="Yel">3</option>
+									<option value="Blu">4</option>
+									<option value="Red">5</option>
+									<option value="Mar">6</option>
+									<option value="Gre">7</option>
+									<option value="Yel">8</option>
+									<option value="Blu">9</option>
+									<option value="Red">10</option>
+									<option value="Red">11</option>
+									<option value="Red">12</option>
+								</select>
+							</form>
+						</td>
+						<td>
+							<h2><i class="fas fa-window-minimize text-info align-top"></i></h2>
+						</td>
+						<td>
+						    <form class="form-inline">
+								<h1><i class="fas fa-file-code text-info"></i></h1>
+								<select class="form-control w-25 ml-2">
+									<option>-</option>
+									<option value="Mar">1</option>
+									<option value="Gre">2</option>
+									<option value="Yel">3</option>
+									<option value="Blu">4</option>
+									<option value="Red">5</option>
+									<option value="Mar">6</option>
+									<option value="Gre">7</option>
+									<option value="Yel">8</option>
+									<option value="Blu">9</option>
+									<option value="Red">10</option>
+									<option value="Red">11</option>
+									<option value="Red">12</option>
+								</select>
+							</form>
+						</td>
+						<td>
+							<h2><i class="fas fa-window-minimize text-info align-top"></i></h2>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	  </div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

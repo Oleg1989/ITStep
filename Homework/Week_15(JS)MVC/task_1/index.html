@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task_1</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<h1 class="center-align grey-text text-lighten-1">Search:</h1>
+		</div>
+		<div class="row center-align">
+			<div class="col s2"></div>
+			<form class="col s8 teal accent-1 z-depth-1">
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="title" type="text" class="validate">
+						<label for="title">Title</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<select id="select">
+							<option value="" disabled selected>Select a type</option>
+							<option value="movie">movie</option>
+							<option value="series">series</option>
+							<option value="episode">episode</option>
+						</select>
+						<label>Type</label>
+					</div>
+				</div>
+				<div class="row">
+					<button class="btn waves-effect waves-light" type="button" id="btn" name="button">Search
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="container-fluid" id="container"></div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+	<script type="module" src="./index.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('select').material_select();
+		});
+	</script>
+</body>
+
+</html>

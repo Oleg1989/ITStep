@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<body>
+	<script>
+		var number = 0;
+		var perfectNumber = "";
+		function findPerfectNumber(x, y) {
+			for (var i = x; i < y; i++) {
+				for (var j = 0; j < x; j++) {
+					if (x % j === 0) {
+						number += j;
+					} else {
+						continue;
+					}
+				}
+				if (number === x) {
+					perfectNumber += String(number);
+				}
+			}
+			return `Числа ${perfectNumber}`;
+		}
+		alert(findPerfectNumber(+prompt("Введіть перше число діапазону!", ""), +prompt("Введіть останнє число діапазону!", "")));
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#basket {
+  font-size: 24px;
+  width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid rgb(92, 87, 87);
+  background: rgba(250, 128, 114, 0.2);
+  border-radius: 5px;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid blue;
+  background: rgba(0, 255, 255, 0.2);
+  border-radius: 5px;
+}
+.img {
+  margin: 0 10px;
+}
+.name-cost {
+  flex-grow: 2;
+  color: blue;
+}
+.number {
+  display: flex;
+}
+.btn {
+  padding: 0 20px;
+  margin: 0 10px;
+}
+.content-red {
+  color: red;
+}
+.content-green {
+  color: green;
+}
+#total {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid green;
+  background: rgba(0, 255, 0, 0.2);
+  border-radius: 5px;
+}
+.total-content {
+  padding: 10px;
+  text-align: center;
+}
+.basket-info {
+  text-align: center;
+  margin: 20px;
+  color: red;
+}

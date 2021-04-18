@@ -1,0 +1,43 @@
+body {
+    background-color: rgb(243, 246, 251);
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .container {
+	  background-color: #808080;
+	  font-size: 36px;
+	  width: 500px;
+	  margin: 40px 40px;
+	  /* position: absolute;
+	  top: 40px;
+	  left:40px;  */
+  }
+  .container > div {
+    color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 50px 150px;
+  }
+  .container > div:hover {
+	  background-color: rgb(61, 63, 63);
+  }
+  #edit {
+    background-image: url(../img/edit.png);
+  }
+  #favorites {
+    background-image: url(../img/favorites.png);
+  }
+  #history {
+    background-image: url(../img/history.png);
+  }
+  #security {
+    background-image: url(../img/security.png);
+  }
+  #settings {
+    background-image: url(../img/settings.png);
+  }
+  span {
+	  text-transform: uppercase;
+  }
+  
+  

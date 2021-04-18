@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_5</title>
+    <script>
+		var positiveNumber = 0;
+		var negativeNumber = 0;
+		var zeros = 0;
+		var evenNumber = 0;
+		var oddNumber = 0;
+		for(var i = 0; i < 10; i++){
+			var userNumber = +prompt("Input the number!");
+			if(userNumber > 0 && (userNumber % 2) === 0){
+				positiveNumber++;
+				evenNumber++;
+			}else if(userNumber > 0 && (userNumber % 2) !== 0){
+				positiveNumber++;
+				oddNumber++;
+			}else if(userNumber < 0 && (userNumber % 2) === 0){
+				negativeNumber++;
+				evenNumber++;
+			}else if(userNumber < 0 && (userNumber % 2) !== 0){
+				negativeNumber++;
+				oddNumber++;
+			}else{
+				zeros++;
+			}
+		}
+		alert("The user entered positiv numbers - " + positiveNumber + "; negative numbers - " + negativeNumber +  "; zeros - " + zeros + "; even numbers - " + evenNumber + "; odd numbers - " + oddNumber);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

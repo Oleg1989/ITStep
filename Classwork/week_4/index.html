@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border:  solid 1px blue;
+            padding: 10px;
+        }
+        #container > div {
+            border:  solid 1px red;
+            padding: 0 10px;
+        }
+        #menu {
+            flex-grow: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+
+        } 
+        #block_1 {
+           flex-grow: 1;
+        }
+        #block_2 {
+           flex-grow: 2;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="menu">
+            <h1>Menu</h1>
+            <div>LKJJK</div>
+            <div>LKJJK</div>
+            <div>LKJJK</div>
+            <div>LKJJK</div>
+        </div>
+        <div id="block_1">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, facilis.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, facilis.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, facilis.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, facilis.</p>
+        </div>
+        <div id="block_2">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, facilis.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, facilis.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, facilis.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, facilis.</p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+	width: 100vw;
+	height: 100vh;
+}
+.main {
+	width: 50%;
+	height: 98%;
+	margin: auto;
+}
+.gallery {
+	text-align: center;
+}
+#img_1,
+#img_2,
+#img_3,
+#img_4,
+#img_5 {
+	position: absolute;
+	z-index: 0;
+	width: 50%;
+	height: 100%;
+}
+#img_1:target, 
+#img_2:target,
+#img_3:target,
+#img_4:target, 
+#img_5:target {
+    z-index: 1;
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<script>
+		function exponentiation(x, y) { 
+			if (y < 2) return x ;
+			return exponentiation(x, y - 1) * x;
+		}
+		alert(exponentiation(+prompt("Введіть число!", ""), +prompt("Введіть степінь числа!", "")));
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	background-color: #F0F0F0;
+	font-family: sans-serif;
+}
+p {
+	color: #C0C0C0;
+}
+.grid_container {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: auto auto auto;
+	gap: 1vw;
+	padding: 50px;
+	justify-content: center;
+	align-content: center;
+}
+.Amie_message {
+	background-color: #FFB0D8;
+	border-radius: 1em 1em 1em 0;
+	padding: 2em;
+	
+}
+.Jack_message {
+	background-color: #C1EBFF;
+	border-radius: 1em 1em 0 1em;
+	padding: 2em;
+}
+.user_Anie {
+	justify-self: end;
+	align-self: center;
+	display: flex; 
+}
+.user_Anie div {
+	text-align: end;
+	padding: 10px;
+} 
+.user_Anie::after {
+	content: url(../img/avatar_2.png);
+}
+.user_Jack {
+	justify-self: start;
+	align-self: center;
+	display: flex;
+}
+.user_Jack div {
+	padding: 10px;
+} 
+.user_Jack::before {
+	content: url(../img/avatar_1.png);
+}

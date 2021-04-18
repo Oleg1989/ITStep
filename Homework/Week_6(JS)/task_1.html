@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<script>
+		function carInformation(obj) {
+			return `Виробник - ${obj.manufacturerCar}; модель - ${obj.model}; рік випуску - ${obj.graduationYear}; середня швидкість - ${obj.averageSpeed}.`;
+		}
+		function travelTime(arr, x) {
+			let result = 0;
+			let counter = 0;
+			while (x >= arr.averageSpeed) {
+				if (x >= arr.averageSpeed) {
+					result++;
+				}
+				if (result % 4 === 0) {
+					counter++;
+				}
+				x -= arr.averageSpeed;
+			}
+			return `Вам потрібно буде потратити ${result + counter} годин і ${Math.round(x / arr.averageSpeed * 60)} хвилин!!!`;
+		}
+		let car = {
+			manufacturerCar: "Toyota",
+			model: "Corolla",
+			graduationYear: 2008,
+			averageSpeed: 90
+		};
+		alert(carInformation(car));
+		let distanceInWay = +prompt("Введіть відстань в кілометрах!", "");
+		alert(travelTime(car, distanceInWay));
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <table>
+        <tr>
+            <td>1</td>
+            <td class="active">2</td>
+            <td id="playground">
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td class="list">
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>
+                <div id="demo">demo</div>
+            </td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td class="active">6</td>
+            <td>7</td>
+        </tr>
+    </table>
+    <script>
+        let classActive = document.querySelectorAll("table .active");
+        console.log(classActive);
+        for(let i = 0; i < classActive.length; i++){
+            classActive[i].style.background = "red";
+        }
+        
+    </script> -->
+
+    <!-- <ul id="list">
+        <li>1</li>
+    </ul>
+    <button id="added">Добавити</button>
+    <script>
+
+        function addTeg(){
+            const div = document.createElement('li');
+            number += 1; 
+            div.innerHTML = `${number}`;
+            ulList.append(div);
+        }
+
+        let ulList = document.getElementById('list');
+        let number = 1;
+        added.addEventListener('click', addTeg);
+
+    </script> -->
+    <button id="show">Show</button>
+    <button id="hide">Hide</button>
+
+    <script>
+        class Notification {
+            div;
+            t;
+            p;
+            constructor(title, text){
+                this.title = title;
+                this.text = text;
+                console.log("Створили клас Notification");
+            }
+
+            show = ()  => {
+                this.div = document.createElement('div');
+                this.t = document.createElement('h1');
+                this.p = document.createElement('p');
+                this.t.innerHTML = `${this.title}`;
+                this.p.innerHTML = `${this.text}`;
+
+                document.body.append(this.div);
+                this.div.style.width = '500px';
+                this.div.style.height = '500px';
+                this.div.style.border = '1px solid red';
+                this.div.style.position = 'absolute';
+                this.div.style.top = '15px';
+                this.div.style.right = '15px';
+                this.div.style.paddingLeft = '30px';
+
+                this.div.append(this.t);
+                this.t.style.color = 'green';
+
+                this.div.append(this.p);
+
+            }
+            hide = () => {
+                this.div.remove();
+            }
+        }
+
+        let title = "Lorem ipsum";
+        let text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea alias amet hic laborum, labore delectus, ullam tempora tenetur quod, aperiam ex sint. Voluptatem, harum. Reprehenderit ab dolorum facilis repellendus velit.";
+
+        const notif = new Notification(title, text);
+
+        show.addEventListener('click', notif.show);
+        hide.addEventListener('click', notif.hide);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddItemForm should match snaphot 1`] = `
+<div
+  id="container"
+>
+  Add new item you want to purchase
+</div>
+`;

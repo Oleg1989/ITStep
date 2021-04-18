@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<body>
+	<script>
+		function additionOfTwoFractions(obj1, obj2) {
+			let result = 0;
+			let counter = 2;
+			if (obj1.denominator === obj2.denominator) {
+				result = obj1.numerator + obj2.numerator;
+				return `${result} / ${obj1.denominator}`;
+			} else {
+				while ((counter % obj1.denominator !== 0) || (counter % obj2.denominator !== 0)) {
+					counter++;
+				}
+				result = ((counter / obj1.denominator) * obj1.numerator) + ((counter / obj2.denominator) * obj2.numerator);
+				return `${result} / ${counter}`;
+			}
+		}
+		function subtractionOfTwoFractions(obj1, obj2) {
+			let result = 0;
+			let counter = 2;
+			if (obj1.denominator === obj2.denominator) {
+				result = obj1.numerator - obj2.numerator;
+				return `${result} / ${obj1.denominator}`;
+			} else {
+				while ((counter % obj1.denominator !== 0) || (counter % obj2.denominator !== 0)) {
+					counter++;
+				}
+				result = ((counter / obj1.denominator) * obj1.numerator) - ((counter / obj2.denominator) * obj2.numerator);
+				return `${result} / ${counter}`;
+			}
+		}
+		function multiplicationOfTwoFractions(obj1, obj2) {
+			return `${obj1.numerator * obj2.numerator} / ${obj1.denominator * obj2.denominator}`;
+		}
+		function divisionOfTwoFractions(obj1, obj2) {
+			return `${obj1.numerator * obj2.denominator} / ${obj1.denominator * obj2.numerator}`;
+		}
+		function reductionOfFractions(obj) {
+			let result = "";
+			let counter = 1;
+			if (obj.numerator < obj.denominator || obj.numerator > obj.denominator) {
+				for (let i = 2; i <= obj.numerator; i++) {
+					if (obj.numerator % i === 0 && obj.denominator % i === 0) {
+						counter = i;
+					}
+				}
+			}
+			if (obj.numerator !== obj.denominator) {
+				result = `${obj.numerator / counter} / ${obj.denominator / counter}`;
+			} else {
+				result = `${obj.numerator / obj.denominator}`;
+			}
+			return result;
+		}
+		let fractionalNumberOne = {
+			numerator: 9,
+			denominator: 10
+		};
+		let fractionalNumberTwo = {
+			numerator: 8,
+			denominator: 28
+		};
+		alert("Додавання: " + additionOfTwoFractions(fractionalNumberOne, fractionalNumberTwo));
+		alert("Віднімання: " + subtractionOfTwoFractions(fractionalNumberOne, fractionalNumberTwo));
+		alert("Множення: " + multiplicationOfTwoFractions(fractionalNumberOne, fractionalNumberTwo));
+		alert("Ділення: " + divisionOfTwoFractions(fractionalNumberOne, fractionalNumberTwo));
+		alert("Скорочення: " + reductionOfFractions(fractionalNumberOne));
+		alert("Скорочення: " + reductionOfFractions(fractionalNumberTwo));
+	</script>
+</body>
+
+</html>

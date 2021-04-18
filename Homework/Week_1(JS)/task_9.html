@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_9</title>
+    <script>
+        // var userNumber = +prompt("Введіть трьохзачне число!");
+        // var firstNumber = 0;
+        // var secondNumber = 0;
+        // while (userNumber >= 10) {
+        //     if (userNumber >= 100) {
+        //         userNumber -= 100;
+        //         firstNumber++;
+        //     } else if (userNumber >= 10) {
+        //         userNumber -= 10;
+        //         secondNumber++;
+        //     }
+        // }
+        // alert(String(userNumber) + String(secondNumber) + String(firstNumber));
+
+        var userNumber = +prompt("Введіть трьохзачне число!");
+        var firstNumber = userNumber % 10; 
+        var secondNumber = ((userNumber % 100) - firstNumber) / 10;
+        var thirdNumber = (userNumber - (userNumber % 100)) / 100;      
+
+        alert(String(firstNumber) + String(secondNumber) + String(thirdNumber));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

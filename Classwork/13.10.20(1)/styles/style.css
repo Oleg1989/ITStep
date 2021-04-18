@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+*::before, *::after {
+	box-sizing: border-box;
+}
+h1 {
+    font-size: 3em;
+}
+h2 {
+    color: white;
+    font-size: 2em;
+}
+h3 {
+	display: inline;
+	border-bottom: 2px dotted black;
+}
+#text_center {
+    display: block;
+	border-bottom: 2px dotted black;
+	width: 150px;
+	margin: 20px auto;
+}
+.container {
+    background-color: rgb(244, 248, 248);
+    display: flex;
+    flex-direction: column;
+}
+header {
+    width: 100vw;
+    background-color: red;
+    text-align: center;
+    padding: 10vw 0;
+	margin-bottom: 20px;
+}
+main {
+	width: 100vw;
+}
+#block_1 {
+    display: flex;
+    flex-direction: row;
+    margin: 0 20px;
+}
+#block_1 div {
+    width: 50%;
+    margin: 10px;
+}
+#block_1 div p {
+    margin: 20px 0;
+}
+#block_1 img {
+    width: 15%;
+    float: right;
+	margin: 40px 0;
+}
+#block_2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	padding: 20px 20px;
+}
+.conteiner_box {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+	display: inline-block;
+}
+#box_1, 
+#box_2, 
+#box_3, 
+#box_4, 
+#box_5  {
+    width: 100%;
+    height: 150px;
+    border-radius: 0 20px 0 0;
+    border: 4px double silver;
+}
+#box_1 {
+	background-color: #FF8000;
+}
+#box_2 {
+	background-color: #800000;
+}
+#box_3 {
+	background-color: #0000A0;
+}
+#box_4 {
+	background-color: #8000FF;
+}
+#box_5 {
+	background-color: #008000;
+}
+.head {
+    width: 70%;
+    background-color: yellow;
+    margin: 10px 0;
+    padding: 5px 10px;
+    border-radius: 0 15px 15px 0;
+}
+#box_1 p, 
+#box_2 p, 
+#box_3 p, 
+#box_4 p, 
+#box_5 p {
+    text-align: center;
+    color: white;
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 0 16px;
+}
+.text {
+    margin: 10px 0;
+}
+.price {
+    text-align: right;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+footer {
+	color: white;
+	background-color: black;
+	width: 100vw;
+	border-top: 2px solid #808080;
+
+}
+#block_3 {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	color: black;
+	background-color: silver;
+	padding: 20px 50px;
+	border-bottom: 2px solid #808080;
+}
+.footer_block {
+	width: 30%;
+	margin-top: 20px;
+}
+.footer_block ul {
+	list-style-type: none;
+	line-height: 1.5;
+	margin-top: 20px;
+}
+#left, #right {
+	margin: 20px;
+}
+#left {
+	float: left;
+	padding-left: 30px;
+}
+#right {
+	float: right;
+	padding-right: 50px;
+}

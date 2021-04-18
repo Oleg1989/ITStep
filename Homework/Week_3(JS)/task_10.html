@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_10</title>
+	<script>
+		var userNumber = +prompt("Загадай число від 0 до 100!", "");
+		var myNumber = 50;
+		var win = "==";
+		var userAnswer = prompt(`Ваше число >, < або == ${myNumber}`, "");
+		if (userAnswer === "<") {
+			var minNumber = 0;
+			var maxNumber = 49;
+			do {
+				switch (userAnswer) {
+					case "<":
+						myNumber = Math.round(minNumber + (maxNumber - minNumber) / 2);
+						userAnswer = prompt(`Ваше число >, < або == ${myNumber}`, "");
+						if (userAnswer === ">") {
+							minNumber = myNumber;
+							maxNumber = myNumber * 2;
+						} else {
+							maxNumber = myNumber;
+						}
+						break;
+					case ">":
+						myNumber = Math.round(minNumber + (maxNumber - minNumber) / 2);
+						userAnswer = prompt(`Ваше число >, < або == ${myNumber}`, "");
+						if (userAnswer === ">") {
+							minNumber = myNumber;
+							maxNumber = myNumber * 2;
+						} else {
+							maxNumber = myNumber;
+						}
+						break;
+					default:
+						userAnswer = prompt(`Ваше число >, < або == ${myNumber}`, "");
+				}
+			} while (win !== userAnswer);
+			alert(`Ваше число - ${myNumber}`);
+		} else if (userAnswer === ">") {
+			var minNumber = 51;
+			var maxNumber = 100;
+			do {
+				switch (userAnswer) {
+					case "<":
+						myNumber = Math.round(minNumber + (maxNumber - minNumber) / 2);
+						userAnswer = prompt(`Ваше число >, < або == ${myNumber}`, "");
+						if (userAnswer === ">") {
+							minNumber = minNumber;
+						} else {
+							maxNumber = myNumber;
+						}
+						break;
+					case ">":
+						myNumber = Math.round(minNumber + (maxNumber - minNumber) / 2);
+						userAnswer = prompt(`Ваше число >, < або == ${myNumber}`, "");
+						if (userAnswer === ">") {
+							minNumber = myNumber;
+							maxNumber = maxNumber;
+						} else {
+							maxNumber = myNumber;
+						}
+						break;
+					default:
+						userAnswer = prompt(`Ваше число >, < або == ${myNumber}`, "");
+				}
+			} while (win !== userAnswer);
+			alert(`Ваше число - ${myNumber}`);
+		} else {
+			alert(`Ваше число - ${myNumber}`);
+		}
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

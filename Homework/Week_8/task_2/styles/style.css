@@ -1,0 +1,233 @@
+/*Загальні стилі*/
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	background-color: #F5F5F5;
+	font-family: sans-serif;
+	font-size: 1em;
+}
+/*Стилі для заголовків*/
+h2 {
+	margin-top: 3vw;
+	margin-bottom: 1vw;
+	font-size: 1.5em;
+}
+/*Стилі для блока container*/
+.container {
+	padding: 0 3vw ;
+}
+/*Стилі для  label*/
+label {
+	margin-right: 10px;
+}
+/*Стилі для  inputs*/
+.some_text {
+	border: 1px solid #C0C0C0;
+	padding: 1vw 2vw;
+	border-radius: 0.5vw;
+	min-width: 23vw;
+}
+.valid_text {
+	border: 1px solid green;
+	background-image: url(../img/valid.png);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+	background-size: 8%;
+	padding: 1vw 2vw;
+	border-radius: 0.5vw;
+	min-width: 23vw;
+}
+.valid_text::placeholder {
+    color: green;
+} 
+.invalid_text {
+	border: 1px solid red;
+	background-image: url(../img/invalid.png);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+	background-size: 8%;
+	padding: 1vw 2vw;
+	border-radius: 0.5vw;
+	min-width: 23vw;
+}
+.invalid_text::placeholder {
+    color: red;
+} 
+.some_text, .valid_text, .invalid_text:active, 
+.some_text, .valid_text, .invalid_text:focus {
+    outline: none;
+}
+/*Стилі для класу checkbox_on*/
+.checkbox_on:checked, 
+.checkbox_on:not(:checked) 
+{
+    position: absolute;
+    left: -9999px;
+}
+.checkbox_on:checked + label, 
+.checkbox_on:not(:checked) + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 48px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.checkbox_on:checked + label:before, 
+.checkbox_on:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 38px;
+    height: 18px;
+    border: 1px solid green;
+    background-color: #F5F5F5;
+	border-radius: 4px;
+}
+.checkbox_on:checked + label:after, 
+.checkbox_on:not(:checked) + label:after {
+    content: "";
+    position: absolute;
+    transition: all 0.2s ease;
+	left: 3px;
+    top: 3px;
+    width: 18px;
+    height: 14px;
+    border-radius: 4px;
+    background-color: green;
+}
+/*Стилі для класу checkbox_off*/
+.checkbox_off:checked, 
+.checkbox_off:not(:checked) 
+{
+    position: absolute;
+    left: -9999px;
+}
+.checkbox_off:checked + label, 
+.checkbox_off:not(:checked) + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 48px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.checkbox_off:checked + label:before, 
+.checkbox_off:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 38px;
+    height: 18px;
+    border: 1px solid red;
+    background-color: #F5F5F5;
+	border-radius: 4px;
+}
+.checkbox_off:checked + label:after, 
+.checkbox_off:not(:checked) + label:after {
+    content: "";
+    position: absolute;
+    transition: all 0.2s ease;
+	left: 18px;
+    top: 3px;
+    width: 18px;
+    height: 14px;
+    border-radius: 4px;
+    background-color: red;
+}
+/*Стилі для класу radio button*/
+.radio_button:checked, 
+.radio_button:not(:checked) 
+{
+    position: absolute;
+    left: -9999px;
+}
+.radio_button:checked + label, 
+.radio_button:not(:checked) + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 28px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.radio_button:checked + label:before, 
+.radio_button:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid green;
+    background-color: #F5F5F5;
+	border-radius: 100%;
+}
+.radio_button:checked + label:after, 
+.radio_button:not(:checked) + label:after {
+    content: "";
+    position: absolute;
+    transition: all 0.2s ease;
+	left: 3px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    background-color: green;
+}
+.radio_button:not(:checked) + label:after {
+    opacity: 0;
+}
+.radio_button:checked + label:after {
+    opacity: 1;
+}
+/*Стилі для buttons*/
+button {
+	color: white;
+	border: none;
+	border-radius: 0.5vw;
+	padding: 1vw 3vw;
+	margin: 0 0.5vw;
+}
+button:active, 
+button:focus {
+    outline: none;
+}
+.active {
+	background-color: #009F00;
+}
+.active_hover {
+	background-color: #008040;
+}
+.danger {
+	background-color: #FF4848;
+}
+.danger_hover {
+	background-color: #AA0000;
+}
+.disabled {
+	background-color: #808080;
+}
+.button_plus {
+	background-color: green;
+	border-radius: 50%;
+	width: 3vw;
+	height: 3vw;
+	padding: 0;
+	font-weight: bolder;
+}
+.button_minus {
+	background-color: red;
+	border-radius: 50%;
+	width: 3vw;
+	height: 3vw;
+	padding: 0;
+	font-weight: bolder;
+}
+/*Стилі для класу text area*/
+.text_area {
+	width: 50vw;
+	height: 15vw;
+	padding: 1em;
+	border-radius: 0.5vw;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<form action="#" method="GET" autocomplete="off">
+			<div class="header">Credit Card Details</div>
+			<div class="main">
+				<label for="card_number">Card Number</label>
+				<input type="text" name="crad_number" value="" placeholder="1234 5678 9012 3456" id="card_number" required autofocus tabindex="1">
+				<label for="name_card">Name On Card</label>
+				<input type="text" name="card_name" value="" placeholder="Name Samame" id="name_card" required tabindex="2">
+			</div>
+			<div class="footer">
+				<div id="head">
+					<label for="month">Expiry Date</label>
+					<label for="cvv_cvn">CVV/CVN</label>
+				</div>
+				<div id="main">
+					<input type="text" name="month" value="" placeholder="10" id="month" required tabindex="3">
+					<input type="text" name="year" value="" placeholder="2020" id="year" required tabindex="4">
+					<input type="password" name="cvv_cvn" value="" placeholder="***" id="cvv_cvn" required tabindex="5">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

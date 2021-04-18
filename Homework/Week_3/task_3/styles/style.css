@@ -1,0 +1,58 @@
+/*Загальні стилі*/
+body {
+	background-color: rgb(243, 246, 251);
+    margin: 20px 5px;
+    font-family: sans-serif;
+	display: flex;
+	flex-direction: column;
+	text-transform: uppercase;
+	color: white;
+}
+header, nav, footer, main {
+	margin: 5px;
+}
+nav, footer {
+	background-color: #791126;
+}
+h1, h2, h3 {
+	padding: 40px 40px;
+	margin: 0;
+}
+/*Стилі для header*/
+header {
+	background-color: #F589A5;
+}
+/*Стилі для main*/
+main {
+	display: flex;
+}
+.aside {
+	flex-grow: 2;
+}
+.main_content {
+	flex-grow: 4;
+	margin: 0 10px;
+	background-color: #FF80C0;
+	min-height: 400px;
+}
+.main_content > section {
+	background-color: #FFC1E0;
+	margin: 10px 40px;
+	min-height: 120px;
+}
+ #aside_1, #aside_2 {
+	background-color: #FF80C0;
+}
+#aside_1 {
+	margin-bottom: 10px;
+	min-height: 50px;
+}
+#aside_2 {
+	min-height: 150px;
+}
+#aside_3 {
+	min-height: 250px;
+	background-color: #FF80C0;
+	writing-mode: vertical-lr;
+    text-orientation: upright;
+}

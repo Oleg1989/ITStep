@@ -1,0 +1,34 @@
+body {
+    background-color: rgb(243, 246, 251);
+    margin: 0;
+    font-family: sans-serif;
+}
+.block {
+    margin: 0 40px;
+    padding: 0;
+}
+.unmarked_first,
+.unmarked_second,
+.marked {
+    list-style-position: inside;
+    padding: 10px 40px;
+}
+.unmarked_first {
+    background-color: rgb(14, 140, 172);
+    list-style-image: url(../img/unchecked_16.png);
+}
+.unmarked_second {
+    background-color: rgb(91, 162, 180);
+    list-style-image: url(../img/unchecked_16.png);
+}
+.marked {
+    background-color: rgb(170, 177, 179);
+    list-style-image: url(../img/checked_16.png);
+}
+ul {
+    padding: 0;
+}
+span {
+    color: red;
+    padding-left: 10px;
+}

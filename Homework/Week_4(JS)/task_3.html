@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<body>
+	<script>
+		function greatestCommonDivisor(x) { 
+			if(x < 1) return largestNumber;
+			if(largestNumber < userNumber[x]) {
+				largestNumber = userNumber[x];
+			}
+			return greatestCommonDivisor(x - 1);
+		}
+		var largestNumber = "0";
+		var userNumber = prompt("Введіть число!", "");
+		alert(greatestCommonDivisor(userNumber.length));
+	</script>
+
+</body>
+
+</html>

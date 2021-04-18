@@ -1,0 +1,24 @@
+body {
+  background-color: rgb(243, 246, 251);
+  margin: 0;
+  font-size: 50px;
+  font-family: sans-serif;
+}
+.block {
+  color: white;
+  background-color: rgb(202, 169, 202);
+  margin: 40px;
+}
+ol {
+  padding: 20px 40px;
+}
+ol li {
+  list-style-position: inside;
+  background-color: rgb(173, 71, 131);
+  padding: 0 10px;
+  margin: 20px 0;
+}
+span {
+  background-color: rgb(97, 6, 59);
+  padding: 0 20px;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_7</title>
+    <script>
+        var sizeFolder = 820;
+        var flashDriveSize = 1000 * +prompt("Введіть розмір флешки в Гб!");
+        var numberOfFiles = 0;
+        while (flashDriveSize > sizeFolder) {
+            flashDriveSize -= sizeFolder;
+            numberOfFiles++;
+        }
+        alert("На флешку поміститься " + numberOfFiles + "файлів!");
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+/* на xs */
+.main-content {
+    font-size: 0.4rem;
+  }
+  /* на sm */
+  @media (min-width: 576px) {
+    .main-content {
+      font-size: 0.6rem;
+    }
+  }
+  /* на md */
+  @media (min-width: 768px) {
+    .main-content {
+      font-size: 0.9rem;
+    }
+  }
+  /* на lg */
+  @media (min-width: 992px) {
+    .main-content {
+      font-size: 1rem;
+    }
+  }
+  /* на xl */
+  @media (min-width: 1200px) {
+    .main-content {
+      font-size: 1rem;
+    }
+  }
+
+  .name-button {
+    font-size: 0.6rem;
+  }
+   /* на sm */
+   @media (min-width: 576px) {
+    .name-button {
+      font-size: 0.6rem;
+    }
+  }
+  /* на md */
+  @media (min-width: 768px) {
+    .name-button {
+      font-size: 0.9rem;
+    }
+  }
+  /* на lg */
+  @media (min-width: 992px) {
+    .name-button {
+      font-size: 1rem;
+    }
+  }
+  /* на xl */
+  @media (min-width: 1200px) {
+    .name-button {
+      font-size: 1rem;
+    }
+  }
+  .bg-body {
+    background-color: rgb(253, 250, 250);
+  }
+.vh-70 {
+	height: 70vh;
+}

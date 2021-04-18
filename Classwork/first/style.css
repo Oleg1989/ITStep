@@ -1,0 +1,47 @@
+div {
+  background-color: aliceblue;
+  margin: 20px 40px;
+}
+.season {
+  list-style-type: square;
+}
+.season::before {
+  content: ")";
+}
+.winter {
+  list-style-image: url(winter_16.png);
+}
+.spring {
+  list-style-image: url(spring_16.png);
+}
+.summer {
+  list-style-image: url(summer_16.png);
+}
+.autumn {
+  list-style-image: url(autumn_16.png);
+}
+.autumn li {
+  padding: 0 0 0 10px;
+}
+.a {
+  list-style-type: none;
+  counter-reset: number;
+}
+.a::before {
+  content: counter(number) ")";
+  counter-increment: number;
+}
+.arebic {
+  list-style-type: upper-roman;
+  list-style-type: none;
+  counter-reset: num;
+}
+.arebic::before {
+  content: counter(num) ". ";
+  counter-increment: num;
+  color: red;
+  font-style: italic;
+}
+.abc {
+  list-style-type: lower-latin;
+}

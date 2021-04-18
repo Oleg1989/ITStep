@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_4</title>
+    <script>
+        var userNumber = +prompt("Введіть число!");
+		var counter = 1;
+		if(userNumber !== 0){
+			for(var i = 10; i < userNumber; i = i*10){
+				if((userNumber % i) !== 0){
+					counter++;
+				}
+			}
+			alert("Число складається з " + counter + " цифр!");
+		}else{
+			alert("Ви ввели число нуль, або не ввели число взагалі!!!");
+		}
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

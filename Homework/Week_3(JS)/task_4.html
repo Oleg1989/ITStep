@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+
+<body>
+	<script>
+		function perimeterOrArea(x, y) {
+			if (x <= 0 || y <= 0 || x === y) {
+				if (x <= 0) {
+					return `Площа квадрата ${y * y}`;
+				} else {
+					return `Площа квадрата ${x * x}`;
+				}
+			} else {
+				return `Площа прямокутника ${x * y}`;
+			}
+		}
+		alert(perimeterOrArea(+prompt("Введіть довжину прямокутника!", ""), +prompt("Введіть ширину прямокутника!", "")))
+	</script>
+
+</body>
+
+</html>

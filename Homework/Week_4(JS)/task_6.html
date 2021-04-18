@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<body>
+	<script>
+		function fibonacciNumbers(x) {
+			if(x < 2) {
+				return answer;
+			}else {
+				answer += `,${numberOne + numberTwo}`;
+				numberTwo = numberOne + numberTwo;
+				numberOne = numberTwo - numberOne;
+			}
+			return fibonacciNumbers(x - 1);
+		}
+		var answer = "1";
+		var numberOne = 0;
+		var numberTwo = 1;
+		var userNumber = +prompt("Введіть число!", "");
+		alert(`Послідовність Фібоначчі для числа ${userNumber} - ${fibonacciNumbers(userNumber)}`);
+	</script>
+</body>
+
+</html>

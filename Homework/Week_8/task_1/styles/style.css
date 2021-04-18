@@ -1,0 +1,75 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	background-color: #F5F5F5;
+	font-family: sans-serif;
+}
+.container {
+	display: flex;
+	flex-direction: column; 
+	width: 80vw;
+	margin: 50px auto;
+	background-color: #88B0C6;
+	padding: 5vw;
+	color: #5E005E;
+	border-radius: 1vw;
+	background-image: url(../img/moon_flag.png);
+	background-repeat: no-repeat;
+	background-position: 57.5vw 31vh;
+	background-size: 40%;
+}
+form {
+	width: 45vw;
+}
+.header {
+	background-color: #FF8000;
+	color: white;
+	width: 70vw;
+	padding: 2vw 5vw;
+	position: relative;
+	left: -10vw;
+	text-transform: uppercase;
+	font-size: 2em;
+	font-weight: bolder;
+}
+.main {
+	display: flex;
+	flex-direction: column;
+	padding-top: 2vw;
+}
+.footer {
+	width: 45vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+div {
+	background-color: #88B0C6;
+}
+input {
+	background-color: #93C9FF;
+	font-size: 2em;
+	border: none;
+	border-bottom: 2px solid black;
+	margin: 1vw 0;
+	padding: 1vw ;
+}
+label {
+	background-color: #88B0C6;
+	padding: 0 0.5vw;
+	font-size: 1.5em;
+}
+.footer input {
+	width: 13vw;
+}
+#head {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+#main {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}

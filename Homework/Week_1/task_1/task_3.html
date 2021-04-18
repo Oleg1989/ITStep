@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Tutorial</title>
+  <style>
+    * {
+      background-color: #f2f7f2;
+      font-family: sans-serif;
+      margin: 5px;
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+      margin: 20px;
+    }
+
+    pre {
+      padding: 10px 0;
+    }
+
+    .code {
+      color: black;
+    }
+
+    .code,
+    .tag_in_text,
+    .tag {
+      background-color: #c0c0c0;
+    }
+
+    .dotted {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .tag_in_text {
+      color: #ff0000;
+    }
+
+    .tag {
+      color: #0080ff;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>HTML Tutorial</h1>
+    <hr />
+  </header>
+  <main>
+    <article>
+      <h2>What is HTML?</h2>
+      <p>
+        <strong>Hypertext Markup Language (<span class="dotted">HTML</span>)</strong> is the standard markup language
+        for creating web pages and web applications.
+      </p>
+      <br>
+      <p>
+        Web browsers receive <span class="dotted">HTML</span> documents from a web server or from local storage and
+        render the documents into multimedia web pages. <span class="dotted">HTML</span> describes the structure of a
+        web page semantically and originally included cues for the appearance of the document.
+      </p>
+      <br>
+      <p>
+        <span class="dotted">HTML</span> elements are the building blocks of <span class="dotted">HTML</span> pages.
+        With<span class="dotted">HTML</span> constructs, images and other objects such as interactive forms may be
+        embedded into the rendered page.<span class="dotted">HTML</span> provides a means to create structured documents
+        by denoting structural semantics for text such as headings, paragraphs, lists, links, quotes and other items.
+        <span class="dotted">HTML</span> elements are delineated by <i>tags</i>, written using angle brackets. Tags such
+        as <span class="tag_in_text">&lt;img /&gt;</span> and <span class="tag_in_text">&lt;input /&gt;</span> directly
+        introduce content into the page. Other tags such as <span class="tag_in_text">&lt;p&gt;</span> surround and
+        provide information about document text and may include other tags as sub-elements. Browsers do not display the
+        <span class="dotted">HTML</span> tags, but use them to interpret the content of the page.
+      </p>
+      <br>
+      <hr />
+    </article>
+    <article>
+      <h2>Markup</h2>
+      <p>
+        <span class="dotted">HTML</span> markup consists of several key components, including those called <i>tags</i>
+        (and their <i>attributes</i>), character-based <i>data types</i>, <i>character references</i> and <i>entity
+          references</i>. <span class="dotted">HTML</span> tags most commonly come in pairs like <span
+          class="tag_in_text">&lt;h1&gt;</span> and <span class="tag_in_text">&lt;/h1&gt;</span>, although some
+        represent <i>empty elements</i> and so are unpaired, for example <span class="tag_in_text">&lt;img&gt;</span>.
+        The first tag in such a pair is the <i>start tag</i>, and the second is the <i>end tag</i> (they are also called
+        <i>opening tags</i> and <i>closing tags</i>).
+      </p>
+      <br>
+      <p>
+        Another important component is the <span class="dotted">HTML</span> <i>document type declaration</i>, which
+        triggers standards mode rendering.
+      </p>
+      <br>
+      <p>
+        The following is an example of the classic "Hello, World!" program:
+      </p>
+      <br>
+      <pre class="tag_in_text">
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+            &lt;head&gt;
+                &lt;title&gt;<span class="code">This is a title</span>&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;p&gt;<span class="code">Hello world!</span>&lt;/p&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;</pre>
+      <br>
+      <hr />
+      <br>
+    </article>
+  </main>
+  <footer>
+    <p>
+      <b>Tags:</b> <span class="tag">CodingScripting</span>
+      <span class="tag">head</span> <span class="tag">HTML</span>
+      <span class="tag">Introduction to HTML</span>
+      <span class="tag">Landing</span>
+      <span class="tag">Links semantics</span>
+      <span class="tag">Structure</span> <span class="tag">Text</span>
+    </p>
+  </footer>
+</body>
+
+</html>

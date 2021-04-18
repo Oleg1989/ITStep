@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_2</title>
+    <script>
+        var firstNumber = +prompt("Введіть перше число!");
+		var secondNumber = +prompt("Введіть друге число!");
+		var largestCommonDivisor = 1;
+		if(firstNumber < secondNumber){
+			for(var i = 2; i <= firstNumber; i++){
+				if((firstNumber % i) === 0 && (secondNumber % i) === 0){
+					largestCommonDivisor = i;
+				}
+			}
+			alert("Найбільший спільний дільник - " + largestCommonDivisor);
+		}else if(firstNumber > secondNumber){
+			for(var i = 2; i <= secondNumber; i++){
+				if((firstNumber % i) === 0 && (secondNumber % i) === 0){
+					largestCommonDivisor = i;
+				}
+			}
+			alert("Найбільший спільний дільник - " + largestCommonDivisor);
+		} else {
+			alert("Найбільший спільний дільник - " + firstNumber);
+		}
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

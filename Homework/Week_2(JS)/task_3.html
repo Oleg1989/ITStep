@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_3</title>
+    <script>
+        var userNumber = +prompt("Введіть число!");
+		var divisor = "1";
+		for(var i = 2; i <= userNumber; i++){
+				if((userNumber % i) === 0){
+					divisor += ", " + i;
+				}
+		}
+		alert("Всі дільника числа " + userNumber + " - " + divisor);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

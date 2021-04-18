@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #edf9fa;
+}
+* .container {
+  padding: 5vw;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+* .container .card {
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 50px;
+  padding-bottom: 10px;
+  border: 1px solid silver;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+* .container .card .star {
+  color: orange;
+}
+* .container .card img {
+  width: 14vw;
+  margin: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+* .container .card .footer {
+  display: flex;
+  justify-content: space-around;
+}
+* .container .card .footer .buy {
+  color: white;
+  background-color: blue;
+  margin: 10px;
+}

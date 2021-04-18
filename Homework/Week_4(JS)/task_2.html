@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<body>
+	<script>
+		function greatestCommonDivisor(x, y) { 
+			if (x < y){
+				if(firstNumber % x === 0 && y % x === 0) return x;
+				return greatestCommonDivisor(x - 1, y);
+			}else if (x > y){
+				if(secondNumber % y === 0 && x % y === 0) return y;
+				return greatestCommonDivisor(x, y - 1);
+			}else {
+			    return "Невірно заданні числа!";
+			}
+		}
+		var firstNumber = +prompt("Введіть перше число!", "");
+		var secondNumber = +prompt("Введіть друге число!", "");
+		alert(greatestCommonDivisor(firstNumber, secondNumber));
+	</script>
+</body>
+
+</html>

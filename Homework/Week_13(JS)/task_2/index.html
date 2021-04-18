@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_2</title>
+    <style>
+        .bold {
+            font-weight: bolder;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .hide.show {
+            font-weight: normal;
+            display: block;
+        }
+
+        ul {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li>This PS
+                <ul class="hide">
+                    <li class="bolder-text">Local Disk (C:)
+                        <ul class="hide">
+                            <li>Program Files</li>
+                            <li>Users</li>
+                            <li>Windows</li>
+                        </ul>
+                    </li>
+                    <li class="bolder-text">Local Disk (D:)
+                        <ul class="hide">
+                            <li>New Folder 1</li>
+                            <li>New Folder 2</li>
+                            <li>New Folder 3</li>
+                        </ul>
+                    </li>
+                    <li class="bolder-text">Local Disk (E:)
+                        <ul class="hide">
+                            <li>New Folder 4</li>
+                            <li>New Folder 5</li>
+                            <li>New Folder 6</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

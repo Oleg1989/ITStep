@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddRegistrationForm should match snaphot 1`] = `
+<div
+  id="container"
+>
+  Add a registration form
+  <input
+    id="email"
+  >
+    Email
+  </input>
+  <input
+    id="password"
+  >
+    Password
+  </input>
+  <input
+    id="repeat-password"
+  >
+    Repeat password
+  </input>
+  <button
+    disabled=""
+    id="btnCreate"
+    value="Create accout"
+  />
+</div>
+`;

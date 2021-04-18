@@ -1,0 +1,91 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+h1 {
+	color: white;
+	margin: 0.8em;
+	text-transform: uppercase;
+}
+h2 {
+	text-align: left;
+}
+img {
+	zoom: 0.5;
+}
+p {
+	margin-bottom: 20px;
+}
+.grid_container {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto auto;
+}
+.header {
+	width: 100vw;
+	height: 15vh;
+	background-color: #0077B0;
+}
+.main {
+	min-width: 100vw;
+	height: 85vh;
+	background-color: #009EEA;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	overflow: auto;
+}
+.bord {
+	min-width: 31%;
+	height: 95%;
+	background-color: #C0C0C0;
+	border-radius: 10px;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px;
+	flex-grow: 1;
+}
+.bord > div {
+	width: 90%;
+	background-color: white;
+	border-radius: 10px;
+	margin: 5px 0;
+	padding: 20px;
+}
+.bord > h2 {
+	align-self: flex-start;
+	margin: 20px;
+}
+.bord > div > div {
+	display: flex;
+	justify-content: space-between;
+}
+ul {
+	display: flex;
+	justify-content: space-between;
+	list-style-type: none;
+	align-self: center;
+}
+.justify_26::before{
+	content: url(../img/justify_26.png);
+	zoom: 0.5;
+}
+.checkbox_26::before{
+	content: url(../img/checkbox_26.png);
+	zoom: 0.5;
+	margin: 0 10px 0 30px;
+}
+.attach_26::before{
+	content: url(../img/attach_26.png);
+	zoom: 0.5;
+	margin: 0 10px 0 30px;
+}
+.comments_26::before{
+	content: url(../img/comments_26.png);
+	zoom: 0.5;
+	margin: 0 10px 0 30px;
+}

@@ -1,0 +1,55 @@
+@mixin card-border-radius($sizeBorder, $bordercolor, $sizeBorderRadius) {
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 50px;
+    padding-bottom: 10px;
+    border: $sizeBorder solid $bordercolor;
+    border-radius: $sizeBorderRadius;
+}
+@mixin colorStar($colorStar) {
+    color: $colorStar;
+}
+@mixin buyColor($buyBagrauncolor, $buyColorolor) {
+    color: $buyColorolor;
+    background-color: $buyBagrauncolor;
+    margin: 10px;
+}
+$sizeShadow: 10px;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: rgb(237, 249, 250);
+
+    .container {
+        padding: 5vw;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .card {
+            @include card-border-radius(1px, silver, 10px);
+            box-shadow: 0 0 ($sizeShadow + 10) rgba(0,0,0,0.5);
+
+            .star {
+                @include colorStar(orange);
+            }
+            img {
+                width: 14vw;
+                margin: 5px;
+                box-shadow: 0 0 $sizeShadow rgba(0,0,0,0.5);
+            }
+            .footer {
+                display: flex;
+                justify-content: space-around;
+
+                .buy {
+                    @include buyColor(blue, white);
+                }
+            }
+        }
+    }
+}
