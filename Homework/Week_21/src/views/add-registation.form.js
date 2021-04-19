@@ -1,6 +1,7 @@
 import { el, mount } from "redom";
 export class AddRegistrationForm {
     #dom;
+    #form;
     #email;
     #password;
     #repeatPassword;
@@ -86,34 +87,50 @@ export class AddRegistrationForm {
     }
     constructor() {
         this.#dom = el("div#container", "Add a registration form");
-        this.#email = el("input#email", "Email");
-        this.#password = el("input#password", "Password");
-        this.#repeatPassword = el("input#repeat-password", "Repeat password");
+        this.#form = el("form#form", {name: "myForm"});
+        this.#email = el("input#email", {name: "email", placeholder: "Email"});
+        this.#password = el("input#password", {name: "password", placeholder: "Password"});
+        this.#repeatPassword = el("input#repeat-password", {name: "repeatPassword", placeholder: "Repeat password"});
         this.#button = el("button#btnCreate", { disabled: true, value: "Create accout" });
-        mount(this.#dom, this.#email);
-        mount(this.#dom, this.#password);
-        mount(this.#dom, this.#repeatPassword);
-        mount(this.#dom, this.#button);
+        mount(this.#form, this.#email);
+        mount(this.#form, this.#password);
+        mount(this.#form, this.#repeatPassword);
+        mount(this.#form, this.#button);
+        mount(this.#dom, this.#form);
         this.#button.addEventListener("click", this.onCreateClicked);
+        this.#form.addEventListener("change", this.checkInputs);
+        this.myForm = document.forms.myForm;
     }
     get dom() {
         return this.#dom;
     }
+    validationForm(form) {
+        if (!this._validationEmail(form.email)) {
+            return false;
+        }
+        if (!this._validationPassword(form.password)) {
+            return false;
+        }
+        if (!this._validationPassword(form.repeatPassword)) {
+            return false;
+        }
+        return true;
+    }
+    checkInputs() {
+        if(this.validationForm(this.myForm)){
+            document.getElementById("btnCreate").disabled = false;
+            return document.getElementById("btnCreate").disabled;
+        } else {
+            return document.getElementById("btnCreate").disabled;
+        }
+    }
     onCreateClicked() {
-        if (!this._validationEmail(this.#email)) {
-            return false;
-        }
-        if (!this._validationPassword(this.#password)) {
-            return false;
-        }
-        if (!this._validationPassword(this.#repeatPassword)) {
-            return false;
-        }
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-        document.getElementById("repeat-password").value = "";
-        document.getElementById("btnCreate").disabled = false;
-
+        this.myForm.email = '';
+        this.myForm.password = '';
+        this.myForm.repeatPassword = '';
         alert("Create new account");
+        return this.myForm;
     }
 }
+
+const form = new AddRegistrationForm();

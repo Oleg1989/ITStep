@@ -5,25 +5,30 @@ exports[`AddRegistrationForm should match snaphot 1`] = `
   id="container"
 >
   Add a registration form
-  <input
-    id="email"
+  <form
+    id="form"
+    name="myForm"
   >
-    Email
-  </input>
-  <input
-    id="password"
-  >
-    Password
-  </input>
-  <input
-    id="repeat-password"
-  >
-    Repeat password
-  </input>
-  <button
-    disabled=""
-    id="btnCreate"
-    value="Create accout"
-  />
+    <input
+      id="email"
+      name="email"
+      placeholder="Email"
+    />
+    <input
+      id="password"
+      name="password"
+      placeholder="Password"
+    />
+    <input
+      id="repeat-password"
+      name="repeatPassword"
+      placeholder="Repeat password"
+    />
+    <button
+      disabled=""
+      id="btnCreate"
+      value="Create accout"
+    />
+  </form>
 </div>
 `;
