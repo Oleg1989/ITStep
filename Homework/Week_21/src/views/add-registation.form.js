@@ -6,6 +6,7 @@ export class AddRegistrationForm {
     #password;
     #repeatPassword;
     #button;
+    myform;
     _validationPassword(password) {
         const MIN_LENGTH = 8;
         const ARRAY_NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -88,9 +89,9 @@ export class AddRegistrationForm {
     constructor() {
         this.#dom = el("div#container", "Add a registration form");
         this.#form = el("form#form", {name: "myForm"});
-        this.#email = el("input#email", {name: "email", placeholder: "Email"});
-        this.#password = el("input#password", {name: "password", placeholder: "Password"});
-        this.#repeatPassword = el("input#repeat-password", {name: "repeatPassword", placeholder: "Repeat password"});
+        this.#email = el("input#email", {type: "email", name: "email", placeholder: "Email", value: ''});
+        this.#password = el("input#password", {type:"password", name: "password", placeholder: "Password", value: ''});
+        this.#repeatPassword = el("input#repeat-password", {type:"password", name: "repeatPassword", placeholder: "Repeat password", value: ''});
         this.#button = el("button#btnCreate", { disabled: true, value: "Create accout" });
         mount(this.#form, this.#email);
         mount(this.#form, this.#password);
@@ -99,7 +100,7 @@ export class AddRegistrationForm {
         mount(this.#dom, this.#form);
         this.#button.addEventListener("click", this.onCreateClicked);
         this.#form.addEventListener("change", this.checkInputs);
-        this.myForm = document.forms.myForm;
+        //this.myForm = document.forms.myForm;
     }
     get dom() {
         return this.#dom;
@@ -117,7 +118,8 @@ export class AddRegistrationForm {
         return true;
     }
     checkInputs() {
-        if(this.validationForm(this.myForm)){
+        const myForm = document.forms.myForm;
+        if(this.validationForm(myForm)){
             document.getElementById("btnCreate").disabled = false;
             return document.getElementById("btnCreate").disabled;
         } else {
@@ -125,11 +127,11 @@ export class AddRegistrationForm {
         }
     }
     onCreateClicked() {
-        this.myForm.email = '';
-        this.myForm.password = '';
-        this.myForm.repeatPassword = '';
-        alert("Create new account");
-        return this.myForm;
+        const myForm = document.forms.myForm;
+        console.log(`Email: ${myForm.email}; Password: ${myForm.password}; Repeat password: ${myForm.repeatPassword};`);
+        myForm.email = '';
+        myForm.password = '';
+        myForm.repeatPassword = '';
     }
 }
 

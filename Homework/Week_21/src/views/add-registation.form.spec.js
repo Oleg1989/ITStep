@@ -1,75 +1,76 @@
-
 import { AddRegistrationForm } from "./add-registation.form";
+
 let form;
-let onSubmit;
+
 beforeEach(() => {
     form = new AddRegistrationForm();
     document.body.innerHTML = "";
     document.body.append(form.dom);
 });
 afterEach(() => {
-    jest.resetAllMocks();
-  });
+    jest.clearAllMocks();
+    jest.restoreAllMocks();
+});
 
 describe('AddRegistrationForm', () => {
     it("should match snaphot", () => {
         expect.assertions(1);
         expect(form.dom).toMatchSnapshot();
     });
-    describe('Layout', () => {
-        it("should render div#container", () => {
-            expect.assertions(1);
-            const container = document.getElementById("container");
-            expect(container).toBeTruthy();
-        });
-        it("should render input#email", () => {
-            expect.assertions(1);
-            const email = document.getElementById("email");
-            expect(email).toBeTruthy();
-        });
-        it("should render input#password", () => {
-            expect.assertions(1);
-            const password = document.getElementById("password");
-            expect(password).toBeTruthy();
-        });
-        it("should render input#repeat-password", () => {
-            expect.assertions(1);
-            const repeatPassword = document.getElementById("repeat-password");
-            expect(repeatPassword).toBeTruthy();
-        });
-        it("should render button", () => {
-            expect.assertions(1);
-            const button = document.getElementById("btnCreate");
-            expect(button).toBeTruthy();
-        });
-    });
+    // describe('Layout', () => {
+    //     it("should render div#container", () => {
+    //         expect.assertions(1);
+    //         const container = document.getElementById("container");
+    //         expect(container).toBeTruthy();
+    //     });
+    //     it("should render input#email", () => {
+    //         expect.assertions(1);
+    //         const email = document.getElementById("email");
+    //         expect(email).toBeTruthy();
+    //     });
+    //     it("should render input#password", () => {
+    //         expect.assertions(1);
+    //         const password = document.getElementById("password");
+    //         expect(password).toBeTruthy();
+    //     });
+    //     it("should render input#repeat-password", () => {
+    //         expect.assertions(1);
+    //         const repeatPassword = document.getElementById("repeat-password");
+    //         expect(repeatPassword).toBeTruthy();
+    //     });
+    //     it("should render button", () => {
+    //         expect.assertions(1);
+    //         const button = document.getElementById("btnCreate");
+    //         expect(button).toBeTruthy();
+    //     });
+    // });
     describe('_validationPassword()', () => {
-        it('should perform password verification', () => {
+        it('the password field must return true', () => {
             expect.assertions(1);
             const PASSWORD_VALID = "Oleg98!@+";
             document.getElementById("password").value = PASSWORD_VALID;
             expect(form._validationPassword(document.getElementById("password").value)).toBe(true);
         });
-        it('should not perform password verification', () => {
+        it('the password field must return false', () => {
             expect.assertions(5);
             const PASSWORD_NOT_VALID = ["Oleg", "Olegsdsd@", "SDFSFSDFSSD2@", "dfsdfsfsdsfd2@", "Oleg12596"];
             PASSWORD_NOT_VALID.forEach(element => {
                 document.getElementById("password").value = element;
-                expect(form._validationPassword(document.getElementById("password").value)).not.toBe(true);
+                expect(form._validationPassword(document.getElementById("password").value)).toBe(false);
             });
         });
-        it('should perform repeat password verification', () => {
+        it('the repeat password field must return true', () => {
             expect.assertions(1);
             const REPEAT_PASSWORD_VALID = "Oleg98!@+";
             document.getElementById("repeat-password").value = REPEAT_PASSWORD_VALID;
             expect(form._validationPassword(document.getElementById("repeat-password").value)).toBe(true);
         });
-        it('should not repeat perform password verification', () => {
+        it('the repeat password field must return false', () => {
             expect.assertions(5);
             const PASSWORD_NOT_VALID = ["Oleg", "Olegsdsd@", "SDFSFSDFSSD2@", "dfsdfsfsdsfd2@", "Oleg12596"];
             PASSWORD_NOT_VALID.forEach(element => {
                 document.getElementById("password").value = element;
-                expect(form._validationPassword(document.getElementById("password").value)).not.toBe(true);
+                expect(form._validationPassword(document.getElementById("password").value)).toBe(false);
             });
         });
         it('the password and password repeat fields should match', () => {
@@ -82,18 +83,18 @@ describe('AddRegistrationForm', () => {
         });
     });
     describe('_validationEmail()', () => {
-        it('should perform email verification', () => {
+        it('the email field must return true', () => {
             expect.assertions(1);
             const EMAIL_VALID = "oleg9869852@gmail.com";
             document.getElementById("email").value = EMAIL_VALID;
             expect(form._validationEmail(document.getElementById("email").value)).toBe(true);
         });
-        it('should not perform email verification', () => {
+        it('the email field must return false', () => {
             expect.assertions(2);
             const EMAIL_VALID = ["oleg98gmail.com", "+++++++++++@gmail.com"];
             EMAIL_VALID.forEach(element => {
                 document.getElementById("email").value = element;
-                expect(form._validationEmail(document.getElementById("email").value)).not.toBe(true);
+                expect(form._validationEmail(document.getElementById("email").value)).toBe(false);
             });
         });
     });
@@ -111,12 +112,20 @@ describe('AddRegistrationForm', () => {
                 .mockImplementation(() => {;
                     return true;
                 });
+            // const submitSpy = jest
+            //     .spyOn(HTMLFormElement.prototype, "submit")
+            //     .mockImplementation(() => {;
+            //         return true;
+            //     });
             const f = new AddRegistrationForm();
             document.body.append(f.dom);
             const button = document.getElementById("btnCreate");
             button.disabled = false;
             button.click();
+            // const myForm = document.forms.myForm;
+            // myForm.submit();
             expect(clickSpy).toBeCalled();
+            //expect(submitSpy).toBeCalled();
         });
     });
     describe('validationForm()', () => {
@@ -171,24 +180,37 @@ describe('AddRegistrationForm', () => {
             expect(form.checkInputs()).toBe(true);
         });
     });
-    // describe('onCreateClicked()', () => {
-    //     it('should all form fields be reset', () => {
-    //         expect.assertions(3);
-    //         form.myForm = document.forms.myForm;
-    //         const EMAIL_VALID = "oleg9869852gmail.com";
-    //         form.myForm.email = EMAIL_VALID;
-    //         const PASSWORD_VALID = "Oleg98!@+";
-    //         form.myForm.password = PASSWORD_VALID;
-    //         const REPEAT_PASSWORD_VALID = "Oleg98!@+";
-    //         form.myForm.repeatPassword = REPEAT_PASSWORD_VALID;
-
-    //         const button = document.getElementById("btnCreate");
-    //         button.disabled = false;
-    //         button.click();
-
-    //         expect(form.myForm.email).toBe('');
-    //         expect(form.myForm.password).toBeUndefined();
-    //         expect(form.myForm.repeatPassword).toBeUndefined();
-    //     });
-    // });
+    describe('onCreateClicked()', () => {
+        it('should return the registration settings', () => {
+            expect.assertions(2);
+            document.body.innerHTML = "";
+            const VALID_FORM_INPUTS = 'Email: oleg9869852gmail.com; Password: Oleg98!@+; Repeat password: Oleg98!@+;';
+            const onCreateClickedSpy = jest
+                .spyOn(AddRegistrationForm.prototype, "onCreateClicked")
+                .mockImplementation(() => {
+                    return VALID_FORM_INPUTS;
+                });
+            const newForm = new AddRegistrationForm();
+            document.body.append(newForm.dom);
+            const myForm = document.forms.myForm;
+            myForm.email = 'oleg9869852gmail.com';
+            myForm.password = 'Oleg98!@+';
+            myForm.repeatPassword = 'Oleg98!@+';
+            const formParameters = `Email: ${myForm.email}; Password: ${myForm.password}; Repeat password: ${myForm.repeatPassword};`;
+            newForm.onCreateClicked();
+            expect(onCreateClickedSpy).toBeCalled();
+            expect(onCreateClickedSpy()).toBe(formParameters);
+        });
+        it('should all form fields be cleared', () => {
+            expect.assertions(3);
+            const myForm = document.forms.myForm;
+            myForm.email = 'oleg9869852gmail.com';
+            myForm.password = 'Oleg98!@+';
+            myForm.repeatPassword = 'Oleg98!@+';
+            form.onCreateClicked();
+            expect(myForm.email).toBe('');
+            expect(myForm.password).toBe('');
+            expect(myForm.repeatPassword).toBe('');
+        });
+    });
 });

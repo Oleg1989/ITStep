@@ -13,16 +13,19 @@ exports[`AddRegistrationForm should match snaphot 1`] = `
       id="email"
       name="email"
       placeholder="Email"
+      type="email"
     />
     <input
       id="password"
       name="password"
       placeholder="Password"
+      type="password"
     />
     <input
       id="repeat-password"
       name="repeatPassword"
       placeholder="Repeat password"
+      type="password"
     />
     <button
       disabled=""
