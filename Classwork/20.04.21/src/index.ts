@@ -1,30 +1,42 @@
-type ToDoId = number;
+export type UserId = number;
 
-interface ElementToDo {
-    id: ToDoId;
-    text: string;
-    body: string;
-    deleted: boolean;
+interface UserInterface {
+  id: UserId;
+  firstName: string;
+  lastName: string;
+  nickname?: string;
+  email: string;
+  sendEmail: (draft: boolean) => boolean;
+  update: (params: Partial<UserInterface>) => boolean;
 }
 
-class ToDo implements ElementToDo {
-    id: number;
-    text: string;
-    body: string;
-    deleted: boolean;
+class User implements UserInterface {
+  id: number;
 
-    constructor(params: ElementToDo){
-        this.id = params.id;
-        this.text = params.text;
-        this.body = params.body;
-        this.deleted = params.deleted;
-    }
+  firstName: string;
+  lastName: string;
+  email: string;
+
+  constructor(params: Omit<UserInterface, "sendEmail" | "update">) {
+    this.id = params.id;
+    this.email = params.email;
+    this.firstName = params.firstName;
+    this.lastName = params.lastName;
+  }
+  update = (params: Omit<Partial<UserInterface>, "id">) => {
+    if (params.email) this.email = params.email;
+
+    return true;
+  };
+
+  sendEmail = (draft: boolean) => {
+    return false;
+  };
 }
 
-const toDo: ToDo = new ToDo({
-    id: 1,
-    text: "Hello",
-    body: "Body",
-    deleted: false
+const user: User = new User({
+  id: 1,
+  firstName: "John",
+  lastName: "Doe",
+  email: "test@example.com",
 });
-
