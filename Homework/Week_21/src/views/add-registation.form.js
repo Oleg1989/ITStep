@@ -88,10 +88,10 @@ export class AddRegistrationForm {
     }
     constructor() {
         this.#dom = el("div#container", "Add a registration form");
-        this.#form = el("form#form", {name: "myForm"});
-        this.#email = el("input#email", {type: "email", name: "email", placeholder: "Email", value: ''});
-        this.#password = el("input#password", {type:"password", name: "password", placeholder: "Password", value: ''});
-        this.#repeatPassword = el("input#repeat-password", {type:"password", name: "repeatPassword", placeholder: "Repeat password", value: ''});
+        this.#form = el("form#form", { name: "myForm" });
+        this.#email = el("input#email", { type: "email", name: "email", placeholder: "Email", value: '' });
+        this.#password = el("input#password", { type: "password", name: "password", placeholder: "Password", value: '' });
+        this.#repeatPassword = el("input#repeat-password", { type: "password", name: "repeatPassword", placeholder: "Repeat password", value: '' });
         this.#button = el("button#btnCreate", { disabled: true, value: "Create accout" });
         mount(this.#form, this.#email);
         mount(this.#form, this.#password);
@@ -119,7 +119,7 @@ export class AddRegistrationForm {
     }
     checkInputs() {
         const myForm = document.forms.myForm;
-        if(this.validationForm(myForm)){
+        if (this.validationForm(myForm)) {
             document.getElementById("btnCreate").disabled = false;
             return document.getElementById("btnCreate").disabled;
         } else {
@@ -128,7 +128,7 @@ export class AddRegistrationForm {
     }
     onCreateClicked() {
         const myForm = document.forms.myForm;
-        console.log(`Email: ${myForm.email}; Password: ${myForm.password}; Repeat password: ${myForm.repeatPassword};`);
+        alert(`Email: ${myForm.email}; Password: ${myForm.password}; Repeat password: ${myForm.repeatPassword};`);
         myForm.email = '';
         myForm.password = '';
         myForm.repeatPassword = '';

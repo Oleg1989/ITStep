@@ -1,6 +1,7 @@
 import { AddRegistrationForm } from "./add-registation.form";
 
 let form;
+let emit;
 
 beforeEach(() => {
     form = new AddRegistrationForm();
@@ -12,38 +13,27 @@ afterEach(() => {
     jest.restoreAllMocks();
 });
 
+//стрічки коду 20 - 30 написані для очищення консолі від помилки 
+//console.error 
+//  Error: Not implemented: HTMLFormElement.prototype.submit
+
+beforeAll(() => {
+    ({ emit } = window._virtualConsole);
+});
+
+beforeEach(() => {
+    window._virtualConsole.emit = jest.fn();
+});
+
+afterAll(() => {
+    window._virtualConsole.emit = emit;
+});
+
 describe('AddRegistrationForm', () => {
     it("should match snaphot", () => {
         expect.assertions(1);
         expect(form.dom).toMatchSnapshot();
     });
-    // describe('Layout', () => {
-    //     it("should render div#container", () => {
-    //         expect.assertions(1);
-    //         const container = document.getElementById("container");
-    //         expect(container).toBeTruthy();
-    //     });
-    //     it("should render input#email", () => {
-    //         expect.assertions(1);
-    //         const email = document.getElementById("email");
-    //         expect(email).toBeTruthy();
-    //     });
-    //     it("should render input#password", () => {
-    //         expect.assertions(1);
-    //         const password = document.getElementById("password");
-    //         expect(password).toBeTruthy();
-    //     });
-    //     it("should render input#repeat-password", () => {
-    //         expect.assertions(1);
-    //         const repeatPassword = document.getElementById("repeat-password");
-    //         expect(repeatPassword).toBeTruthy();
-    //     });
-    //     it("should render button", () => {
-    //         expect.assertions(1);
-    //         const button = document.getElementById("btnCreate");
-    //         expect(button).toBeTruthy();
-    //     });
-    // });
     describe('_validationPassword()', () => {
         it('the password field must return true', () => {
             expect.assertions(1);
@@ -109,23 +99,15 @@ describe('AddRegistrationForm', () => {
             document.body.innerHTML = "";
             const clickSpy = jest
                 .spyOn(AddRegistrationForm.prototype, "onCreateClicked")
-                .mockImplementation(() => {;
+                .mockImplementation(() => {
                     return true;
                 });
-            // const submitSpy = jest
-            //     .spyOn(HTMLFormElement.prototype, "submit")
-            //     .mockImplementation(() => {;
-            //         return true;
-            //     });
             const f = new AddRegistrationForm();
             document.body.append(f.dom);
             const button = document.getElementById("btnCreate");
             button.disabled = false;
             button.click();
-            // const myForm = document.forms.myForm;
-            // myForm.submit();
             expect(clickSpy).toBeCalled();
-            //expect(submitSpy).toBeCalled();
         });
     });
     describe('validationForm()', () => {
@@ -143,9 +125,9 @@ describe('AddRegistrationForm', () => {
         it('should return false', () => {
             expect.assertions(3);
             const NOT_VALID_DATA = [
-                {email: "oleg9869852gmail.com", password: "Oleg98!@+", repeatPassword: "Oleg98!@+"},
-                {email: "oleg9869852@gmail.com", password: "l98!@+", repeatPassword: "Oleg98!@+"},
-                {email: "oleg9869852@gmail.com", password: "Oleg98!@+", repeatPassword: "O!@+"}
+                { email: "oleg9869852gmail.com", password: "Oleg98!@+", repeatPassword: "Oleg98!@+" },
+                { email: "oleg9869852@gmail.com", password: "l98!@+", repeatPassword: "Oleg98!@+" },
+                { email: "oleg9869852@gmail.com", password: "Oleg98!@+", repeatPassword: "O!@+" }
             ];
             NOT_VALID_DATA.forEach(element => {
                 const myForm = document.forms.myForm;
@@ -181,15 +163,10 @@ describe('AddRegistrationForm', () => {
         });
     });
     describe('onCreateClicked()', () => {
-        it('should return the registration settings', () => {
-            expect.assertions(2);
-            document.body.innerHTML = "";
-            const VALID_FORM_INPUTS = 'Email: oleg9869852gmail.com; Password: Oleg98!@+; Repeat password: Oleg98!@+;';
-            const onCreateClickedSpy = jest
-                .spyOn(AddRegistrationForm.prototype, "onCreateClicked")
-                .mockImplementation(() => {
-                    return VALID_FORM_INPUTS;
-                });
+        it('should call alert() with registration parameters', () => {
+            expect.assertions(1);
+            const alertMock = jest.fn();
+            globalThis.alert = alertMock;
             const newForm = new AddRegistrationForm();
             document.body.append(newForm.dom);
             const myForm = document.forms.myForm;
@@ -198,8 +175,7 @@ describe('AddRegistrationForm', () => {
             myForm.repeatPassword = 'Oleg98!@+';
             const formParameters = `Email: ${myForm.email}; Password: ${myForm.password}; Repeat password: ${myForm.repeatPassword};`;
             newForm.onCreateClicked();
-            expect(onCreateClickedSpy).toBeCalled();
-            expect(onCreateClickedSpy()).toBe(formParameters);
+            expect(globalThis.alert).toBeCalledWith(formParameters);
         });
         it('should all form fields be cleared', () => {
             expect.assertions(3);
