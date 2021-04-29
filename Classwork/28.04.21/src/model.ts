@@ -29,8 +29,8 @@ class Task implements TaskInterface {
 
 interface RepoInterface {
     tasks: TaskInterface[];
-    changeTask: () => boolean;
     getTasks: () => TaskInterface[];
+    changeTask: (task: TaskInterface) => boolean;
     addTask: (task: TaskInterface) => boolean;
 }
 
@@ -42,7 +42,15 @@ class Repo implements RepoInterface {
     getTasks = () => {
         return this.tasks;
     }
-    changeTask = () => {
+    changeTask = (task: TaskInterface) => {
+        this.tasks.forEach(element => {
+            if (element.id === task.id) {
+                element.title = task.title;
+                element.desc = task.desc;
+                element.dedline = task.dedline;
+                element.type = task.type;
+            }
+        });
         return true;
     }
     addTask = (task: TaskInterface) => {
