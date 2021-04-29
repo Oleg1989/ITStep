@@ -1,10 +1,10 @@
-enum TaskStatus {
-    Planned,
-    InProgres,
-    Done
+export enum TaskStatus {
+    Planned = 'planned',
+    InProgres = 'in-progres',
+    Done = 'done'
 }
 
-interface TaskInterface {
+export interface TaskInterface {
     id: string;
     title: string;
     desc: string;
