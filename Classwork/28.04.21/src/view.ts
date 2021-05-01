@@ -54,8 +54,7 @@ class View implements ViewInterface {
     divPlanned: HTMLElement;
     divInProgres: HTMLElement;
     divDone: HTMLElement;
-    task: ViewTaskInterface;
-    constructor(task: ViewTaskInterface) {
+    constructor() {
         this.appRoot = document.createElement('div');
         this.appRoot.id = 'app-root';
 
@@ -95,12 +94,11 @@ class View implements ViewInterface {
         this.appRoot.append(this.mainTitle, this.divMain);
         document.body.append(this.appRoot);
 
-        this.task = task;
-
     }
     viewDivMain = (tasks: TaskInterface[]) => {
         tasks.forEach(element => {
-            this.viewTask(this.task.TaskAddContent(element));
+            const task = new VeiwTask();
+            this.viewTask(task.TaskAddContent(element));
         });
     }
     viewTask = (task: HTMLElement) => {
@@ -117,8 +115,7 @@ class View implements ViewInterface {
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {
-    const task = new VeiwTask();
-    const view = new View(task);
+    const view = new View();
     view.viewDivMain([
         {
             id: '1',
@@ -129,14 +126,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         },
         {
             id: '2',
-            title: 'hello',
+            title: 'hello2',
             desc: 'ksdksd',
             dedline: new Date(2018, 0, 1),
             type: TaskStatus.InProgres
         },
         {
             id: '3',
-            title: 'hello',
+            title: 'hello3',
             desc: 'ksdksd',
             dedline: new Date(2019, 0, 1),
             type: TaskStatus.Done
