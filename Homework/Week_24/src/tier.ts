@@ -1,13 +1,30 @@
 import { TierInterface } from "./tier.interface";
 
+export enum TierType {
+    Bike = 'bike',
+    Auto = 'auto',
+    Moto = 'moto'
+}
+
 export class Tier implements TierInterface {
-    type: string;
+    type: TierType;
     numberSeats: number;
     seats: number;
-    constructor(params: Pick<TierInterface, 'type'>) {
-        this.type = params.type;
-        this.numberSeats = 10;
-        this.seats = 10;
+    constructor(type: TierType) {
+        if (type == 'bike') {
+            this.type = type;
+            this.numberSeats = 75;
+            this.seats = 75;
+        } else if (type == 'moto') {
+            this.type = type;
+            this.numberSeats = 50;
+            this.seats = 50;
+        } else {
+            this.type = type;
+            this.numberSeats = 25;
+            this.seats = 25;
+        }
+
     }
     takePlace = () => {
         if (this.numberSeats > 0) {

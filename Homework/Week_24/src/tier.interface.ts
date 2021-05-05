@@ -1,5 +1,7 @@
+import { TierType } from "./tier";
+
 export interface TierInterface {
-    type: string;
+    type: TierType;
     numberSeats: number;
     takePlace: () => boolean;
     freeUpSpace: () => boolean;
