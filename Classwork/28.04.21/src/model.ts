@@ -1,40 +1,7 @@
-export enum TaskStatus {
-    Planned = 'planned',
-    InProgres = 'in-progres',
-    Done = 'done'
-}
+import { RepoInterface } from "./interface/repoInterface";
+import { TaskInterface } from "./interface/taskInterface";
 
-export interface TaskInterface {
-    id: string;
-    title: string;
-    desc: string;
-    dedline: Date;
-    type: TaskStatus;
-}
-
-class Task implements TaskInterface {
-    id: string;
-    title: string;
-    desc: string;
-    dedline: Date;
-    type: TaskStatus;
-    constructor(params: TaskInterface) {
-        this.id = params.id;
-        this.title = params.title;
-        this.desc = params.desc;
-        this.dedline = params.dedline;
-        this.type = TaskStatus.Planned;
-    }
-}
-
-interface RepoInterface {
-    tasks: TaskInterface[];
-    getTasks: () => TaskInterface[];
-    changeTask: (task: TaskInterface) => boolean;
-    addTask: (task: TaskInterface) => boolean;
-}
-
-class Repo implements RepoInterface {
+export class Repo implements RepoInterface {
     tasks: TaskInterface[];
     constructor() {
         this.tasks = [];
