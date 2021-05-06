@@ -6,7 +6,9 @@ import { VeiwTask } from "./viewTask";
 
 export class View implements ViewInterface {
     appRoot: HTMLElement;
+    divHeader: HTMLElement;
     mainTitle: HTMLElement;
+    buttonAddTask: HTMLElement;
     divMain: HTMLElement;
     divPlanned: HTMLElement;
     divInProgress: HTMLElement;
@@ -15,9 +17,24 @@ export class View implements ViewInterface {
         this.appRoot = document.createElement('div');
         this.appRoot.id = 'app-root';
 
+        this.divHeader = document.createElement('div');
+        this.divHeader.style.width = '90%';
+        this.divHeader.style.margin = '20px auto';
+        this.divHeader.style.display = 'flex';
+        this.divHeader.style.justifyContent = 'space-between';
+
         this.mainTitle = document.createElement('h1');
         this.mainTitle.textContent = 'To-do list';
         this.mainTitle.style.textAlign = 'center';
+        this.mainTitle.style.flexGrow = '6';
+
+        this.buttonAddTask = document.createElement('button');
+        this.buttonAddTask.id = 'btn';
+        this.buttonAddTask.textContent = 'Add task';
+        this.buttonAddTask.style.fontSize = '24px';
+        this.buttonAddTask.style.height = '50px';
+        this.buttonAddTask.style.flexGrow = '1';
+        this.buttonAddTask.style.alignSelf = 'center';
 
         this.divMain = document.createElement('div');
         this.divMain.id = 'main';
@@ -71,8 +88,11 @@ export class View implements ViewInterface {
         this.divDone.append(titleDone);
 
         this.divMain.append(this.divPlanned, this.divInProgress, this.divDone);
-        this.appRoot.append(this.mainTitle, this.divMain);
+        this.divHeader.append(this.mainTitle, this.buttonAddTask,);
+        this.appRoot.append(this.divHeader, this.divMain);
         document.body.append(this.appRoot);
+
+        document.getElementById('btn')?.addEventListener('click', this.viewModalAddTask);
 
     }
     viewDivMain = (tasks: TaskInterface[]) => {
@@ -92,38 +112,61 @@ export class View implements ViewInterface {
             this.divDone.append(task);
         }
     }
-}
+    viewModalAddTask = () => {
+        let modal = document.createElement('div');
+        modal.id = 'modal';
+        modal.style.width = '50%';
+        modal.style.border = '2px solid yellow';
+        modal.style.display = 'flex';
+        modal.style.flexDirection = "column";
+        modal.style.padding = '20px';
+        modal.style.textAlign = 'center';
+        modal.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+        modal.style.position = 'absolute';
+        modal.style.left = '25%';
+        modal.style.top = '30px';
 
-// document.addEventListener("DOMContentLoaded", function (event) {
-//     const view = new View();
-//     view.viewDivMain([
-//         {
-//             id: '1',
-//             title: 'hello',
-//             desc: 'ksdksd',
-//             dedline: new Date(2011, 0, 1),
-//             type: TaskStatus.Planned
-//         },
-//         {
-//             id: '2',
-//             title: 'hello2',
-//             desc: 'ksdksd',
-//             dedline: new Date(2018, 0, 1),
-//             type: TaskStatus.InProgress
-//         },
-//         {
-//             id: '3',
-//             title: 'hello3',
-//             desc: 'ksdksd',
-//             dedline: new Date(2019, 0, 1),
-//             type: TaskStatus.Done
-//         },
-//         {
-//             id: '4',
-//             title: 'hello3',
-//             desc: 'ksdksd',
-//             dedline: new Date(2019, 0, 1),
-//             type: TaskStatus.Planned
-//         }
-//     ]);
-// });
+        let modalTitle = document.createElement('h1');
+        modalTitle.textContent = 'Add task';
+
+        let inputTitle = document.createElement('input');
+        inputTitle.type = 'text';
+        inputTitle.setAttribute('placeholder', 'Title');
+        inputTitle.style.margin = '10px 0';
+        inputTitle.style.width = '90%';
+        inputTitle.style.fontSize = '24px';
+
+        let inputDesc = document.createElement('input');
+        inputDesc.type = 'text';
+        inputDesc.setAttribute('placeholder', 'Description');
+        inputDesc.style.margin = '10px 0';
+        inputDesc.style.width = '90%';
+        inputDesc.style.fontSize = '24px';
+
+        let inputDeadline = document.createElement('input');
+        inputDeadline.type = "date";
+        inputDeadline.id = "date";
+        inputDeadline.style.margin = '10px 0';
+        inputDeadline.style.width = '90%';
+        inputDeadline.style.fontSize = '24px';
+
+        let buttonAdd = document.createElement('button');
+        buttonAdd.id = 'btn-add';
+        buttonAdd.textContent = 'Add';
+        buttonAdd.addEventListener('click', this.closeModalAddTask);
+        buttonAdd.style.width = '30%';
+        buttonAdd.style.margin = '10px auto';
+        buttonAdd.style.fontSize = '24px';
+
+        modal.append(modalTitle, inputTitle, inputDesc, inputDeadline, buttonAdd);
+        this.appRoot.append(modal);
+    }
+    closeModalAddTask = () => {
+        let modal = document.getElementById('modal');
+        if (modal == null) {
+            return false
+        } else {
+            modal.style.display = 'none';
+        }
+    }
+}
