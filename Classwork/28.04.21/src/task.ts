@@ -5,13 +5,13 @@ export class Task implements TaskInterface {
     id: string;
     title: string;
     desc: string;
-    dedline: Date;
+    deadline: Date;
     type: TaskStatus;
     constructor(params: TaskInterface) {
         this.id = params.id;
         this.title = params.title;
         this.desc = params.desc;
-        this.dedline = params.dedline;
+        this.deadline = params.deadline;
         this.type = TaskStatus.Planned;
     }
 }

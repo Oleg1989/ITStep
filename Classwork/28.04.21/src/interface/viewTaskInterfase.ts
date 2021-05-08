@@ -5,5 +5,6 @@ export interface ViewTaskInterface {
     divTitle: HTMLElement;
     divDesk: HTMLElement;
     divDedline: HTMLElement;
+    button: HTMLElement;
     TaskAddContent: (task: TaskInterface) => HTMLElement;
 }

@@ -6,6 +6,7 @@ export class VeiwTask implements ViewTaskInterface {
     divTitle: HTMLElement;
     divDesk: HTMLElement;
     divDedline: HTMLElement;
+    button: HTMLElement;
     constructor() {
         this.divTask = document.createElement('div');
         this.divTask.style.border = '1px solid blue';
@@ -17,15 +18,16 @@ export class VeiwTask implements ViewTaskInterface {
         this.divTitle = document.createElement('div');
         this.divDesk = document.createElement('div');
         this.divDedline = document.createElement('div');
+        this.button = document.createElement('button');
 
-        this.divTask.append(this.divTitle, this.divDesk, this.divDedline);
+        this.divTask.append(this.divTitle, this.divDesk, this.divDedline, this.button);
     }
     TaskAddContent = (task: TaskInterface) => {
         this.divTask.id = task.id;
         this.divTask.className = task.type;
-        this.divTitle.textContent = task.title;
-        this.divDesk.textContent = task.desc;
-        this.divDedline.textContent = `${task.dedline}`;
+        this.divTitle.textContent = `Title: ${task.title}`;
+        this.divDesk.textContent = `Description: ${task.desc}`;
+        this.divDedline.textContent = `Deadline: ${task.deadline}`;
 
         return this.divTask;
     }

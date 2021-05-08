@@ -10,8 +10,13 @@ export class Controller implements ControllerInterface {
         this.view = view;
         this.repo = repo;
         this.onTasksListChanged(this.repo.tasks);
+        this.view.bindAddTask(this.handleAddTask);
+        this.repo.bindTasksListChanged(this.onTasksListChanged);
     }
     onTasksListChanged = (tasks: TaskInterface[]) => {
         this.view.viewDivMain(tasks);
     }
+    handleAddTask = (task: TaskInterface) => {
+        this.repo.addTask(task);
+    };
 }

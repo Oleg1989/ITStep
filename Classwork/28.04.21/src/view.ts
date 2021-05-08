@@ -1,7 +1,9 @@
 import { ViewInterface } from "./interface/viewInterface";
 import { TaskInterface } from "./interface/taskInterface";
+import { ControllerInterface } from "./interface/controllerInterface";
 import { TaskStatus } from "./enum/taskStatus";
 import { VeiwTask } from "./viewTask";
+import cuid from "cuid";
 
 
 export class View implements ViewInterface {
@@ -13,9 +15,69 @@ export class View implements ViewInterface {
     divPlanned: HTMLElement;
     divInProgress: HTMLElement;
     divDone: HTMLElement;
+    form: HTMLElement;
     constructor() {
         this.appRoot = document.createElement('div');
         this.appRoot.id = 'app-root';
+
+        this.form = document.createElement('form');
+        this.form.id = 'form-modal';
+        this.form.setAttribute('name', 'modal');
+        this.form.style.display = 'none';
+
+        let modal = document.createElement('div');
+        modal.id = 'modal';
+        modal.style.width = '50%';
+        modal.style.border = '2px solid yellow';
+        modal.style.display = 'flex';
+        modal.style.flexDirection = "column";
+        modal.style.padding = '20px';
+        modal.style.textAlign = 'center';
+        modal.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+        modal.style.position = 'absolute';
+        modal.style.left = '25%';
+        modal.style.top = '30px';
+
+        let modalTitle = document.createElement('h1');
+        modalTitle.textContent = 'Add task';
+
+        let inputTitle = document.createElement('input');
+        inputTitle.type = 'text';
+        inputTitle.setAttribute('name', 'title');
+        inputTitle.setAttribute('placeholder', 'Title');
+        inputTitle.style.margin = '10px 0';
+        inputTitle.style.width = '90%';
+        inputTitle.style.fontSize = '24px';
+
+        let inputDesc = document.createElement('input');
+        inputDesc.type = 'text';
+        inputDesc.setAttribute('placeholder', 'Description');
+        inputDesc.setAttribute('name', 'desc');
+        inputDesc.style.margin = '10px 0';
+        inputDesc.style.width = '90%';
+        inputDesc.style.fontSize = '24px';
+
+        let inputDeadline = document.createElement('input');
+        inputDeadline.type = "date";
+        inputDeadline.setAttribute('name', 'deadline');
+        inputDeadline.id = "date";
+        inputDeadline.style.margin = '10px 0';
+        inputDeadline.style.width = '90%';
+        inputDeadline.style.fontSize = '24px';
+
+        let buttonAdd = document.createElement('input');
+        buttonAdd.type = 'submit';
+        buttonAdd.setAttribute('name', 'btnAdd');
+        buttonAdd.id = 'btn-add';
+        buttonAdd.value = 'Add';
+        buttonAdd.style.width = '30%';
+        buttonAdd.style.margin = '10px auto';
+        buttonAdd.style.fontSize = '24px';
+        buttonAdd.addEventListener('click', this.closeModalAddTask);
+
+        modal.append(modalTitle, inputTitle, inputDesc, inputDeadline, buttonAdd);
+        this.form.append(modal);
+        this.appRoot.append(this.form);
 
         this.divHeader = document.createElement('div');
         this.divHeader.style.width = '90%';
@@ -35,6 +97,7 @@ export class View implements ViewInterface {
         this.buttonAddTask.style.height = '50px';
         this.buttonAddTask.style.flexGrow = '1';
         this.buttonAddTask.style.alignSelf = 'center';
+        this.buttonAddTask.addEventListener('click', this.viewModalAddTask);
 
         this.divMain = document.createElement('div');
         this.divMain.id = 'main';
@@ -42,7 +105,16 @@ export class View implements ViewInterface {
         this.divMain.style.margin = '20px auto';
         this.divMain.style.border = '4px solid black';
         this.divMain.style.display = 'flex';
+        this.divMain.style.flexDirection = 'column';
         this.divMain.style.backgroundColor = 'rgb(0,0,0, 0.1)';
+
+        let divTitle = document.createElement('div');
+        divTitle.style.display = 'flex';
+        divTitle.style.justifyContent = 'space-around';
+
+        let divContent = document.createElement('div');
+        divContent.style.display = 'flex';
+        divContent.style.justifyContent = 'space-around';
 
         this.divPlanned = document.createElement('div');
         this.divPlanned.id = 'planned';
@@ -56,7 +128,7 @@ export class View implements ViewInterface {
         titlePlanned.textContent = 'Planned';
         titlePlanned.style.textAlign = 'center';
         titlePlanned.style.color = 'red';
-        this.divPlanned.append(titlePlanned);
+        divTitle.append(titlePlanned);
 
 
         this.divInProgress = document.createElement('div');
@@ -71,7 +143,7 @@ export class View implements ViewInterface {
         titleInProgress.textContent = 'In progress';
         titleInProgress.style.textAlign = 'center';
         titleInProgress.style.color = 'orange';
-        this.divInProgress.append(titleInProgress);
+        divTitle.append(titleInProgress);
 
         this.divDone = document.createElement('div');
         this.divDone.id = 'done';
@@ -85,14 +157,13 @@ export class View implements ViewInterface {
         titleDone.textContent = 'Done';
         titleDone.style.textAlign = 'center';
         titleDone.style.color = 'green';
-        this.divDone.append(titleDone);
+        divTitle.append(titleDone);
 
-        this.divMain.append(this.divPlanned, this.divInProgress, this.divDone);
+        divContent.append(this.divPlanned, this.divInProgress, this.divDone);
+        this.divMain.append(divTitle, divContent);
         this.divHeader.append(this.mainTitle, this.buttonAddTask,);
         this.appRoot.append(this.divHeader, this.divMain);
         document.body.append(this.appRoot);
-
-        document.getElementById('btn')?.addEventListener('click', this.viewModalAddTask);
 
     }
     viewDivMain = (tasks: TaskInterface[]) => {
@@ -103,70 +174,69 @@ export class View implements ViewInterface {
     }
     viewTask = (task: HTMLElement) => {
         if (task.className === 'planned') {
-            this.divPlanned.append(task);
+            let button = task.querySelector('button');
+            if (button == null) {
+                return false;
+            } else {
+                button.id = 'planned';
+                button.textContent = 'In progress';
+                this.divPlanned.append(task);
+            }
         }
         if (task.className === 'in-progress') {
-            this.divInProgress.append(task);
+            let button = task.querySelector('button');
+            if (button == null) {
+                return false;
+            } else {
+                button.id = 'in-progress';
+                button.textContent = 'Done';
+                this.divInProgress.append(task);
+            }
         }
         if (task.className === 'done') {
-            this.divDone.append(task);
+            let button = task.querySelector('button');
+            if (button == null) {
+                return false;
+            } else {
+                button.id = 'done';
+                button.textContent = 'Delete';
+                this.divDone.append(task);
+            }
         }
     }
     viewModalAddTask = () => {
-        let modal = document.createElement('div');
-        modal.id = 'modal';
-        modal.style.width = '50%';
-        modal.style.border = '2px solid yellow';
-        modal.style.display = 'flex';
-        modal.style.flexDirection = "column";
-        modal.style.padding = '20px';
-        modal.style.textAlign = 'center';
-        modal.style.backgroundColor = 'rgb(0,128,128, 0.9)';
-        modal.style.position = 'absolute';
-        modal.style.left = '25%';
-        modal.style.top = '30px';
-
-        let modalTitle = document.createElement('h1');
-        modalTitle.textContent = 'Add task';
-
-        let inputTitle = document.createElement('input');
-        inputTitle.type = 'text';
-        inputTitle.setAttribute('placeholder', 'Title');
-        inputTitle.style.margin = '10px 0';
-        inputTitle.style.width = '90%';
-        inputTitle.style.fontSize = '24px';
-
-        let inputDesc = document.createElement('input');
-        inputDesc.type = 'text';
-        inputDesc.setAttribute('placeholder', 'Description');
-        inputDesc.style.margin = '10px 0';
-        inputDesc.style.width = '90%';
-        inputDesc.style.fontSize = '24px';
-
-        let inputDeadline = document.createElement('input');
-        inputDeadline.type = "date";
-        inputDeadline.id = "date";
-        inputDeadline.style.margin = '10px 0';
-        inputDeadline.style.width = '90%';
-        inputDeadline.style.fontSize = '24px';
-
-        let buttonAdd = document.createElement('button');
-        buttonAdd.id = 'btn-add';
-        buttonAdd.textContent = 'Add';
-        buttonAdd.addEventListener('click', this.closeModalAddTask);
-        buttonAdd.style.width = '30%';
-        buttonAdd.style.margin = '10px auto';
-        buttonAdd.style.fontSize = '24px';
-
-        modal.append(modalTitle, inputTitle, inputDesc, inputDeadline, buttonAdd);
-        this.appRoot.append(modal);
+        this.form.style.display = 'block';
+        this.resetToDolist();
+        let form = document.forms[0];
+        form.elements.title.value = '';
+        form.elements.desc.value = '';
     }
     closeModalAddTask = () => {
-        let modal = document.getElementById('modal');
-        if (modal == null) {
-            return false
-        } else {
-            modal.style.display = 'none';
+        this.form.style.display = 'none';
+    }
+    bindAddTask(handler: (task: TaskInterface) => void) {
+        this.form.addEventListener('submit', (event) => {
+            console.log(event);
+            event.preventDefault();
+            let form = document.forms[0];
+            handler({
+                id: cuid(),
+                title: form.elements.title.value,
+                desc: form.elements.desc.value,
+                deadline: form.elements.deadline.value,
+                type: TaskStatus.Planned,
+            });
+        })
+    }
+    resetToDolist() {
+        while (this.divPlanned.firstChild) {
+            this.divPlanned.removeChild(this.divPlanned.firstChild);
+        }
+        while (this.divInProgress.firstChild) {
+            this.divInProgress.removeChild(this.divInProgress.firstChild);
+        }
+        while (this.divDone.firstChild) {
+            this.divDone.removeChild(this.divDone.firstChild);
         }
     }
 }

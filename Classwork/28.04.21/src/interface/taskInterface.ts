@@ -4,6 +4,6 @@ export interface TaskInterface {
     id: string;
     title: string;
     desc: string;
-    dedline: Date;
+    deadline: Date;
     type: TaskStatus;
 }
