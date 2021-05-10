@@ -11,6 +11,9 @@ export class Controller implements ControllerInterface {
         this.repo = repo;
         this.onTasksListChanged(this.repo.tasks);
         this.view.bindAddTask(this.handleAddTask);
+        this.view.bindMoveToFieldInProgress(this.handleMoveToFieldInProgress);
+        this.view.bindMoveToFieldDone(this.handleMoveToFieldDone);
+        this.view.bindRemoveTask(this.handleRemoveTask);
         this.repo.bindTasksListChanged(this.onTasksListChanged);
     }
     onTasksListChanged = (tasks: TaskInterface[]) => {
@@ -19,4 +22,13 @@ export class Controller implements ControllerInterface {
     handleAddTask = (task: TaskInterface) => {
         this.repo.addTask(task);
     };
+    handleMoveToFieldInProgress = (id: string) => {
+        this.repo.moveToFieldInProgress(id);
+    }
+    handleMoveToFieldDone = (id: string) => {
+        this.repo.moveToFieldDone(id);
+    }
+    handleRemoveTask = (id: string) => {
+        this.repo.removeTask(id);
+    }
 }

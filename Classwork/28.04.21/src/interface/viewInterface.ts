@@ -14,5 +14,8 @@ export interface ViewInterface {
     viewDivMain: (tasks: TaskInterface[]) => void;
     viewTask: (task: HTMLElement) => void;
     bindAddTask: (handler: (task: TaskInterface) => void) => void;
+    bindMoveToFieldInProgress: (handler: (id: string) => void) => void;
+    bindMoveToFieldDone: (handler: (id: string) => void) => void;
+    bindRemoveTask: (handler: (id: string) => void) => void;
     resetToDolist: () => void;
 }

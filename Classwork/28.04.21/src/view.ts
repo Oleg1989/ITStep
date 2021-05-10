@@ -132,7 +132,7 @@ export class View implements ViewInterface {
 
 
         this.divInProgress = document.createElement('div');
-        this.divInProgress.id = 'in-progres';
+        this.divInProgress.id = 'in-progress';
         this.divInProgress.style.width = '30%';
         this.divInProgress.style.margin = '20px';
         this.divInProgress.style.padding = '10px';
@@ -167,6 +167,7 @@ export class View implements ViewInterface {
 
     }
     viewDivMain = (tasks: TaskInterface[]) => {
+        this.resetToDolist();
         tasks.forEach(element => {
             const task = new VeiwTask();
             this.viewTask(task.TaskAddContent(element));
@@ -216,7 +217,6 @@ export class View implements ViewInterface {
     }
     bindAddTask(handler: (task: TaskInterface) => void) {
         this.form.addEventListener('submit', (event) => {
-            console.log(event);
             event.preventDefault();
             let form = document.forms[0];
             handler({
@@ -237,6 +237,48 @@ export class View implements ViewInterface {
         }
         while (this.divDone.firstChild) {
             this.divDone.removeChild(this.divDone.firstChild);
+        }
+    }
+    bindMoveToFieldInProgress(handler: (id: string) => void) {
+        let taskStatus = document.getElementById('planned');
+        if (taskStatus == null) {
+            return false;
+        } else {
+            taskStatus.addEventListener('click', (event) => {
+                if (event.target == null) {
+                    return false;
+                } else {
+                    handler(event.target.parentElement.id);
+                }
+            });
+        }
+    }
+    bindMoveToFieldDone(handler: (id: string) => void) {
+        let taskStatus = document.getElementById('in-progress');
+        if (taskStatus == null) {
+            return false;
+        } else {
+            taskStatus.addEventListener('click', (event) => {
+                if (event.target == null) {
+                    return false;
+                } else {
+                    handler(event.target.parentElement.id);
+                }
+            });
+        }
+    }
+    bindRemoveTask(handler: (id: string) => void) {
+        let taskStatus = document.getElementById('done');
+        if (taskStatus == null) {
+            return false;
+        } else {
+            taskStatus.addEventListener('click', (event) => {
+                if (event.target == null) {
+                    return false;
+                } else {
+                    handler(event.target.parentElement.id);
+                }
+            });
         }
     }
 }
