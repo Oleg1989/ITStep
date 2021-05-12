@@ -9,7 +9,7 @@ export class VeiwTask implements ViewTaskInterface {
     button: HTMLElement;
     constructor() {
         this.divTask = document.createElement('div');
-        this.divTask.style.border = '1px solid blue';
+        this.divTask.style.border = '1px solid red';
         this.divTask.style.margin = '10px';
         this.divTask.style.padding = '10px';
         this.divTask.style.borderRadius = '5px';

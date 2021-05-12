@@ -1,6 +1,5 @@
 import { ViewInterface } from "./interface/viewInterface";
 import { TaskInterface } from "./interface/taskInterface";
-import { ControllerInterface } from "./interface/controllerInterface";
 import { TaskStatus } from "./enum/taskStatus";
 import { VeiwTask } from "./viewTask";
 import cuid from "cuid";
@@ -29,6 +28,7 @@ export class View implements ViewInterface {
         modal.id = 'modal';
         modal.style.width = '50%';
         modal.style.border = '2px solid yellow';
+        modal.style.borderRadius = '10px';
         modal.style.display = 'flex';
         modal.style.flexDirection = "column";
         modal.style.padding = '20px';
@@ -46,7 +46,7 @@ export class View implements ViewInterface {
         inputTitle.setAttribute('name', 'title');
         inputTitle.setAttribute('placeholder', 'Title');
         inputTitle.style.margin = '10px 0';
-        inputTitle.style.width = '90%';
+        inputTitle.style.width = '100%';
         inputTitle.style.fontSize = '24px';
 
         let inputDesc = document.createElement('input');
@@ -54,7 +54,7 @@ export class View implements ViewInterface {
         inputDesc.setAttribute('placeholder', 'Description');
         inputDesc.setAttribute('name', 'desc');
         inputDesc.style.margin = '10px 0';
-        inputDesc.style.width = '90%';
+        inputDesc.style.width = '100%';
         inputDesc.style.fontSize = '24px';
 
         let inputDeadline = document.createElement('input');
@@ -62,7 +62,7 @@ export class View implements ViewInterface {
         inputDeadline.setAttribute('name', 'deadline');
         inputDeadline.id = "date";
         inputDeadline.style.margin = '10px 0';
-        inputDeadline.style.width = '90%';
+        inputDeadline.style.width = '100%';
         inputDeadline.style.fontSize = '24px';
 
         let buttonAdd = document.createElement('input');
@@ -97,6 +97,7 @@ export class View implements ViewInterface {
         this.buttonAddTask.style.height = '50px';
         this.buttonAddTask.style.flexGrow = '1';
         this.buttonAddTask.style.alignSelf = 'center';
+        this.buttonAddTask.style.borderRadius = '10px';
         this.buttonAddTask.addEventListener('click', this.viewModalAddTask);
 
         this.divMain = document.createElement('div');
@@ -104,6 +105,7 @@ export class View implements ViewInterface {
         this.divMain.style.width = '90%';
         this.divMain.style.margin = '20px auto';
         this.divMain.style.border = '4px solid black';
+        this.divMain.style.borderRadius = '10px';
         this.divMain.style.display = 'flex';
         this.divMain.style.flexDirection = 'column';
         this.divMain.style.backgroundColor = 'rgb(0,0,0, 0.1)';
@@ -122,6 +124,7 @@ export class View implements ViewInterface {
         this.divPlanned.style.margin = '20px';
         this.divPlanned.style.padding = '10px';
         this.divPlanned.style.border = '2px solid red';
+        this.divPlanned.style.borderRadius = '5px';
         this.divPlanned.style.backgroundColor = 'rgb(255,0,0,0.1)';
 
         let titlePlanned = document.createElement('h2');
@@ -137,6 +140,7 @@ export class View implements ViewInterface {
         this.divInProgress.style.margin = '20px';
         this.divInProgress.style.padding = '10px';
         this.divInProgress.style.border = '2px solid orange';
+        this.divInProgress.style.borderRadius = '5px';
         this.divInProgress.style.backgroundColor = '	rgb(255,165,0, 0.1)';
 
         let titleInProgress = document.createElement('h2');
@@ -151,6 +155,7 @@ export class View implements ViewInterface {
         this.divDone.style.margin = '20px';
         this.divDone.style.padding = '10px';
         this.divDone.style.border = '2px solid green';
+        this.divDone.style.borderRadius = '5px';
         this.divDone.style.backgroundColor = 'rgb(0,128,0, 0.1)';
 
         let titleDone = document.createElement('h2');
@@ -176,32 +181,49 @@ export class View implements ViewInterface {
     viewTask = (task: HTMLElement) => {
         if (task.className === 'planned') {
             let button = task.querySelector('button');
-            if (button == null) {
-                return false;
-            } else {
+            if (button) {
                 button.id = 'planned';
                 button.textContent = 'In progress';
+                button.style.backgroundColor = 'red';
+                button.style.width = '50%';
+                button.style.margin = '5px';
+                button.style.borderRadius = '5px';
+                button.style.fontSize = '16px';
                 this.divPlanned.append(task);
+            } else {
+                throw new Error('No found className!');
             }
         }
         if (task.className === 'in-progress') {
+            task.style.border = '1px solid orange';
             let button = task.querySelector('button');
-            if (button == null) {
-                return false;
-            } else {
+            if (button) {
                 button.id = 'in-progress';
                 button.textContent = 'Done';
+                button.style.backgroundColor = 'orange';
+                button.style.width = '50%';
+                button.style.margin = '5px';
+                button.style.borderRadius = '5px';
+                button.style.fontSize = '16px';
                 this.divInProgress.append(task);
+            } else {
+                throw new Error('No found className!');
             }
         }
         if (task.className === 'done') {
+            task.style.border = '1px solid green';
             let button = task.querySelector('button');
-            if (button == null) {
-                return false;
-            } else {
+            if (button) {
                 button.id = 'done';
                 button.textContent = 'Delete';
+                button.style.backgroundColor = 'green';
+                button.style.width = '50%';
+                button.style.margin = '5px';
+                button.style.borderRadius = '5px';
+                button.style.fontSize = '16px';
                 this.divDone.append(task);
+            } else {
+                throw new Error('No found className!');
             }
         }
     }
@@ -216,7 +238,7 @@ export class View implements ViewInterface {
         this.form.style.display = 'none';
     }
     bindAddTask(handler: (task: TaskInterface) => void) {
-        this.form.addEventListener('submit', (event) => {
+        this.form.addEventListener('submit', (event: Event) => {
             event.preventDefault();
             let form = document.forms[0];
             handler({
@@ -241,44 +263,44 @@ export class View implements ViewInterface {
     }
     bindMoveToFieldInProgress(handler: (id: string) => void) {
         let taskStatus = document.getElementById('planned');
-        if (taskStatus == null) {
-            return false;
-        } else {
-            taskStatus.addEventListener('click', (event) => {
+        if (taskStatus) {
+            taskStatus.addEventListener('click', (event: Event) => {
                 if (event.target == null) {
                     return false;
                 } else {
                     handler(event.target.parentElement.id);
                 }
             });
+        } else {
+            throw new Error('No fpund id in-progres');
         }
     }
     bindMoveToFieldDone(handler: (id: string) => void) {
         let taskStatus = document.getElementById('in-progress');
-        if (taskStatus == null) {
-            return false;
-        } else {
-            taskStatus.addEventListener('click', (event) => {
+        if (taskStatus) {
+            taskStatus.addEventListener('click', (event: Event) => {
                 if (event.target == null) {
                     return false;
                 } else {
                     handler(event.target.parentElement.id);
                 }
             });
+        } else {
+            throw new Error('No fpund id in-progres');
         }
     }
     bindRemoveTask(handler: (id: string) => void) {
         let taskStatus = document.getElementById('done');
-        if (taskStatus == null) {
-            return false;
-        } else {
-            taskStatus.addEventListener('click', (event) => {
+        if (taskStatus) {
+            taskStatus.addEventListener('click', (event: Event) => {
                 if (event.target == null) {
                     return false;
                 } else {
                     handler(event.target.parentElement.id);
                 }
             });
+        } else {
+            throw new Error('No fpund id done');
         }
     }
 }

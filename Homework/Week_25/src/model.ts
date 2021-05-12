@@ -6,11 +6,16 @@ export class Repo implements RepoInterface {
     tasks: TaskInterface[];
     onTasksListChanged!: (tasks: TaskInterface[]) => void;
     constructor() {
-        this.tasks = [];
+        let arrTasks = localStorage.getItem("tasks");
+        if (arrTasks) {
+            this.tasks = JSON.parse(arrTasks);
+        } else {
+            this.tasks = [];
+        }
     }
     addTask = (task: TaskInterface) => {
         this.tasks.push(task);
-        this.onTasksListChanged(this.tasks);
+        this._commit(this.tasks);
         return true;
     }
     changeTask = (task: TaskInterface) => {
@@ -22,7 +27,7 @@ export class Repo implements RepoInterface {
                 element.type = task.type;
             }
         });
-        this.onTasksListChanged(this.tasks);
+        this._commit(this.tasks);
         return true;
     }
     moveToFieldInProgress = (id: string) => {
@@ -31,7 +36,7 @@ export class Repo implements RepoInterface {
                 element.type = TaskStatus.InProgress;
             }
         });
-        this.onTasksListChanged(this.tasks);
+        this._commit(this.tasks);
     }
     moveToFieldDone = (id: string) => {
         this.tasks.forEach(element => {
@@ -39,16 +44,20 @@ export class Repo implements RepoInterface {
                 element.type = TaskStatus.Done;
             }
         });
-        this.onTasksListChanged(this.tasks);
+        this._commit(this.tasks);
     }
     removeTask = (id: string) => {
         //this.tasks.filter(element => element.id !== id);
         this.tasks.forEach((element, index) => {
             if (element.id === id) this.tasks.splice(index, 1);
         });
-        this.onTasksListChanged(this.tasks);
+        this._commit(this.tasks);
     }
     bindTasksListChanged(callback: (tasks: TaskInterface[]) => void) {
         this.onTasksListChanged = callback;
+    }
+    _commit(tasks: TaskInterface[]) {
+        this.onTasksListChanged(tasks);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 }
