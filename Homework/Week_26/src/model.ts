@@ -18,17 +18,25 @@ export class Repo implements RepoInterface {
         this._commit(this.tasks);
         return true;
     }
-    changeTask = (task: TaskInterface) => {
+    // changeTask = (task: TaskInterface) => {
+    //     this.tasks.forEach(element => {
+    //         if (element.id === task.id) {
+    //             element.title = task.title;
+    //             element.desc = task.desc;
+    //             element.deadline = task.deadline;
+    //             element.type = task.type;
+    //         }
+    //     });
+    //     this._commit(this.tasks);
+    //     return true;
+    // }
+    changeType = (id: string, type: TaskStatus) => {
         this.tasks.forEach(element => {
-            if (element.id === task.id) {
-                element.title = task.title;
-                element.desc = task.desc;
-                element.deadline = task.deadline;
-                element.type = task.type;
+            if (element.id == id) {
+                element.type = type;
             }
         });
         this._commit(this.tasks);
-        return true;
     }
     moveToFieldInProgress = (id: string) => {
         this.tasks.forEach(element => {

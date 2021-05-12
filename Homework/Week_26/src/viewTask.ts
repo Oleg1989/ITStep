@@ -24,6 +24,7 @@ export class VeiwTask implements ViewTaskInterface {
     }
     TaskAddContent = (task: TaskInterface) => {
         this.divTask.id = task.id;
+        this.divTask.setAttribute('draggable', 'true');
         this.divTask.className = task.type;
         this.divTitle.textContent = `Title: ${task.title}`;
         this.divDesk.textContent = `Description: ${task.desc}`;

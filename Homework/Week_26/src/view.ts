@@ -179,16 +179,17 @@ export class View implements ViewInterface {
         });
     }
     viewTask = (task: HTMLElement) => {
+        task.addEventListener('dragstart', this.onDragStartAdd);
         if (task.className === 'planned') {
             let button = task.querySelector('button');
             if (button) {
-                button.id = 'planned';
                 button.textContent = 'In progress';
                 button.style.backgroundColor = 'red';
                 button.style.width = '50%';
                 button.style.margin = '5px';
                 button.style.borderRadius = '5px';
                 button.style.fontSize = '16px';
+                button.setAttribute('data-type', 'planned');
                 this.divPlanned.append(task);
             } else {
                 throw new Error('No found className!');
@@ -198,13 +199,13 @@ export class View implements ViewInterface {
             task.style.border = '1px solid orange';
             let button = task.querySelector('button');
             if (button) {
-                button.id = 'in-progress';
                 button.textContent = 'Done';
                 button.style.backgroundColor = 'orange';
                 button.style.width = '50%';
                 button.style.margin = '5px';
                 button.style.borderRadius = '5px';
                 button.style.fontSize = '16px';
+                button.setAttribute('data-type', 'in-progress');
                 this.divInProgress.append(task);
             } else {
                 throw new Error('No found className!');
@@ -214,13 +215,13 @@ export class View implements ViewInterface {
             task.style.border = '1px solid green';
             let button = task.querySelector('button');
             if (button) {
-                button.id = 'done';
                 button.textContent = 'Delete';
                 button.style.backgroundColor = 'green';
                 button.style.width = '50%';
                 button.style.margin = '5px';
                 button.style.borderRadius = '5px';
                 button.style.fontSize = '16px';
+                button.setAttribute('data-type', 'done');
                 this.divDone.append(task);
             } else {
                 throw new Error('No found className!');
@@ -265,42 +266,71 @@ export class View implements ViewInterface {
         let taskStatus = document.getElementById('planned');
         if (taskStatus) {
             taskStatus.addEventListener('click', (event: Event) => {
-                if (event.target == null) {
-                    return false;
-                } else {
-                    handler(event.target.parentElement.id);
+                if ((event.target as HTMLElement).dataset.type == 'planned') {
+                    if (event.target) {
+                        handler(event.target.parentElement.id);
+                    }
                 }
             });
         } else {
-            throw new Error('No fpund id in-progres');
+            throw new Error('ID planned not found!');
         }
     }
     bindMoveToFieldDone(handler: (id: string) => void) {
         let taskStatus = document.getElementById('in-progress');
         if (taskStatus) {
             taskStatus.addEventListener('click', (event: Event) => {
-                if (event.target == null) {
-                    return false;
-                } else {
-                    handler(event.target.parentElement.id);
+                if ((event.target as HTMLElement).dataset.type == 'in-progress') {
+                    if (event.target) {
+                        handler(event.target.parentElement.id);
+                    }
                 }
             });
         } else {
-            throw new Error('No fpund id in-progres');
+            throw new Error('ID in-progress not found!');
         }
     }
     bindRemoveTask(handler: (id: string) => void) {
         let taskStatus = document.getElementById('done');
         if (taskStatus) {
             taskStatus.addEventListener('click', (event: Event) => {
-                if (event.target == null) {
-                    return false;
-                } else {
-                    handler(event.target.parentElement.id);
+                if ((event.target as HTMLElement).dataset.type == 'done') {
+                    if (event.target) {
+                        handler(event.target.parentElement.id);
+                    }
                 }
             });
         } else {
-            throw new Error('No fpund id done');
+            throw new Error('ID done not found!');
+        }
+    }
+    onDragStartAdd = (event: DragEvent) => {
+        event.dataTransfer?.setData("text/plain", `${(event.target as Element).id}, ${(event.target as Element).classList[0]}`);
+    };
+    onDragOver = (event: Event) => {
+        event.preventDefault();
+    };
+    bindChangeType(handler: (id: string, type: TaskStatus) => void) {
+        const main = document.getElementById('main');
+        if (main) {
+            main.addEventListener('dragover', this.onDragOver);
+            main.addEventListener('drop', (event: DragEvent) => {
+                const dropzone = event.target as HTMLElement;
+                if (dropzone.id === TaskStatus.Planned || dropzone.id === TaskStatus.InProgress || dropzone.id === TaskStatus.Done) {
+                    const data = event.dataTransfer?.getData("text/plain");
+                    if (data) {
+                        const newData = data.split(', ');
+                        if (dropzone.id === TaskStatus.Done && newData[1] === TaskStatus.Planned) {
+                            throw new Error('Error!');
+                        } else {
+                            handler(newData[0], dropzone.id as TaskStatus);
+                            event.dataTransfer?.clearData();
+                        }
+                    }
+                }
+            });
+        } else {
+            throw new Error('ID main not found!')
         }
     }
 }

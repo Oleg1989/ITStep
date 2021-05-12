@@ -1,5 +1,5 @@
-import { ControllerInterface } from "./controllerInterface";
 import { TaskInterface } from "./taskInterface";
+import { TaskStatus } from "../enum/taskStatus";
 
 export interface ViewInterface {
     appRoot: HTMLElement;
@@ -17,5 +17,6 @@ export interface ViewInterface {
     bindMoveToFieldInProgress: (handler: (id: string) => void) => void;
     bindMoveToFieldDone: (handler: (id: string) => void) => void;
     bindRemoveTask: (handler: (id: string) => void) => void;
+    bindChangeType: (handler: (id: string, type: TaskStatus) => void) => void;
     resetToDolist: () => void;
 }
