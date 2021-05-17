@@ -1,7 +1,7 @@
 import { ControllerInterface } from "./interface/controller.interface";
 import { ViewInterface } from "./interface/viewInterface";
 import { DataItemsArray } from "./ItemsMas";
-import { DataItemInterface } from "./interface/itemInterface";
+import { BasicItem } from "./interface/basicItemInterface";
 import { DataItemType } from "./enum/typeEnum";
 
 export class Controller implements ControllerInterface {
@@ -13,10 +13,10 @@ export class Controller implements ControllerInterface {
         this.view.bindGetItemsByType(this.handlerGetItemsByType);
         this.view.bindGetItemsById(this.handlerGetItemsById);
     }
-    onItemsListChanged = (items: DataItemInterface[]) => {
+    onItemsListChanged = (items: BasicItem[]) => {
         this.view.viewItems(items);
     }
-    onDescListChanged = (item: DataItemInterface) => {
+    onDescListChanged = (item: BasicItem) => {
         this.view.viewItemDsc(item);
     }
     handlerGetItemsByType = (type: DataItemType) => {

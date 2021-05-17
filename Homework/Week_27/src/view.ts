@@ -2,7 +2,6 @@ import { ViewInterface } from "./interface/viewInterface";
 import { ViewItem } from "./viewItem";
 import { BasicItem } from "./interface/basicItemInterface";
 import { DataItemType } from "./enum/typeEnum";
-import { Book } from "./classItems/book";
 
 export class View implements ViewInterface {
     divApp: HTMLElement;
