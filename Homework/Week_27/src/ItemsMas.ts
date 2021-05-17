@@ -1,13 +1,13 @@
 import cuid from "cuid";
-import { DataItemInterface } from "./interface/itemInterface"
+import { BasicItem } from "./interface/basicItemInterface"
 import { DataItemType } from "./enum/typeEnum"
 
 export class DataItemsArray {
-    private items: DataItemInterface[];
-    constructor(arrItems: DataItemInterface[]) {
+    private items: BasicItem[];
+    constructor(arrItems: BasicItem[]) {
         this.items = arrItems;
     }
-    addItem(item: DataItemInterface): void {
+    addItem(item: BasicItem): void {
         if (!this.items.find(x => x == item)) {
             this.items.push(item);
         }
@@ -16,15 +16,15 @@ export class DataItemsArray {
         }
     }
 
-    get Items(): DataItemInterface[] {
+    get Items(): BasicItem[] {
         return this.items;
     }
 
-    getItemsByType(type: DataItemType): DataItemInterface[] {
+    getItemsByType(type: DataItemType): BasicItem[] {
         return this.items.filter(x => x.type == type);
     }
 
-    getItemById(id: string): DataItemInterface | undefined {
+    getItemById(id: string): BasicItem | undefined {
         const item = this.items.find(x => x.id == id);
         if (item) {
             return item;

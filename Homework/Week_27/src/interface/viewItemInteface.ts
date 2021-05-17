@@ -1,4 +1,4 @@
-import { DataItemInterface } from "";
+import { DataItemInterface } from "./itemInterface";
 
 export interface VeiwItemInterface {
     divMain: HTMLElement;

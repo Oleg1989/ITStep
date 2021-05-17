@@ -1,8 +1,8 @@
 import { ViewInterface } from "./interface/viewInterface";
 import { ViewItem } from "./viewItem";
-import { DataItemInterface } from "./interface/itemInterface";
+import { BasicItem } from "./interface/basicItemInterface";
 import { DataItemType } from "./enum/typeEnum";
-import { DataBookItem } from "./BookItem";
+import { Book } from "./classItems/book";
 
 export class View implements ViewInterface {
     divApp: HTMLElement;
@@ -22,65 +22,79 @@ export class View implements ViewInterface {
         this.divType = document.createElement('div');
         this.divType.style.width = '30%';
         this.divType.style.margin = '5px';
-        this.divType.style.border = '2px solid red';
+        this.divType.style.border = '4px solid red';
 
         this.divItem = document.createElement('div');
         this.divItem.style.width = '30%';
         this.divItem.style.margin = '5px';
-        this.divItem.style.border = '2px solid blue';
+        this.divItem.style.border = '4px solid blue';
 
         this.divDesc = document.createElement('div');
         this.divDesc.style.width = '30%';
         this.divDesc.style.margin = '5px';
-        this.divDesc.style.border = '2px solid green';
+        this.divDesc.style.border = '4px solid green';
 
         let divGame = document.createElement('div');
         divGame.setAttribute('data-type', 'Game');
         divGame.style.margin = '5px';
-        divGame.style.background = 'red';
+        divGame.style.padding = '5px';
+        divGame.style.background = 'rgb(255,0,0,0.3)';
+        divGame.style.textAlign = 'center';
         divGame.textContent = DataItemType.Game;
 
         let divMusic = document.createElement('div');
         divMusic.setAttribute('data-type', 'Music');
         divMusic.style.margin = '5px';
-        divMusic.style.background = 'red';
+        divMusic.style.padding = '5px';
+        divMusic.style.background = 'rgb(255,0,0,0.3)';
+        divMusic.style.textAlign = 'center';
         divMusic.textContent = DataItemType.Music;
 
         let divMovie = document.createElement('div');
         divMovie.setAttribute('data-type', 'Movie');
         divMovie.style.margin = '5px';
-        divMovie.style.background = 'red';
+        divMovie.style.padding = '5px';
+        divMovie.style.background = 'rgb(255,0,0,0.3)';
+        divMovie.style.textAlign = 'center';
         divMovie.textContent = DataItemType.Movie;
 
         let divBook = document.createElement('div');
         divBook.setAttribute('data-type', 'Book');
         divBook.style.margin = '5px';
-        divBook.style.background = 'red';
+        divBook.style.padding = '5px';
+        divBook.style.background = 'rgb(255,0,0,0.3)';
+        divBook.style.textAlign = 'center';
         divBook.textContent = DataItemType.Book;
 
-        let divSportEvent = document.createElement('div');
-        divSportEvent.setAttribute('data-type', 'Sport event');
-        divSportEvent.style.margin = '5px';
-        divSportEvent.style.background = 'red';
-        divSportEvent.textContent = DataItemType.SportEvent;
-
-        this.divType.append(divGame, divMusic, divMovie, divBook, divSportEvent);
+        this.divType.append(divGame, divMusic, divMovie, divBook);
         this.divMain.append(this.divType, this.divItem, this.divDesc);
         this.divApp.append(this.divMain);
         document.body.append(this.divApp);
     }
-    viewItems = (items: DataItemInterface[]) => {
+    viewItems = (items: BasicItem[]) => {
         this.resetItemslist();
         items.forEach(element => {
             const item = new ViewItem();
             this.divItem.append(item.addItemContent(element));
         })
     }
-    viewItemDsc = (item: DataItemInterface) => {
+    viewItemDsc = (item: BasicItem) => {
         this.resetDesclist();
         if (item.type === DataItemType.Book) {
             const book = new ViewItem()
             this.divDesc.append(book.addItemDescBook(item));
+        }
+        if (item.type === DataItemType.Game) {
+            const game = new ViewItem()
+            this.divDesc.append(game.addItemDescGame(item));
+        }
+        if (item.type === DataItemType.Movie) {
+            const movie = new ViewItem()
+            this.divDesc.append(movie.addItemDescMovie(item));
+        }
+        if (item.type === DataItemType.Music) {
+            const music = new ViewItem()
+            this.divDesc.append(music.addItemDescMusic(item));
         }
 
     }
