@@ -268,7 +268,10 @@ export class View implements ViewInterface {
             taskStatus.addEventListener('click', (event: Event) => {
                 if ((event.target as HTMLElement).dataset.type == 'planned') {
                     if (event.target) {
-                        handler(event.target.parentElement.id);
+                        let result = (event.target as HTMLElement).parentElement?.id;
+                        if (result) {
+                            handler(result);
+                        }
                     }
                 }
             });
@@ -282,7 +285,10 @@ export class View implements ViewInterface {
             taskStatus.addEventListener('click', (event: Event) => {
                 if ((event.target as HTMLElement).dataset.type == 'in-progress') {
                     if (event.target) {
-                        handler(event.target.parentElement.id);
+                        let result = (event.target as HTMLElement).parentElement?.id;
+                        if (result) {
+                            handler(result);
+                        }
                     }
                 }
             });
@@ -296,7 +302,10 @@ export class View implements ViewInterface {
             taskStatus.addEventListener('click', (event: Event) => {
                 if ((event.target as HTMLElement).dataset.type == 'done') {
                     if (event.target) {
-                        handler(event.target.parentElement.id);
+                        let result = (event.target as HTMLElement).parentElement?.id;
+                        if (result) {
+                            handler(result);
+                        }
                     }
                 }
             });
