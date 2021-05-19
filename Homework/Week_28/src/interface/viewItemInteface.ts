@@ -1,7 +1,6 @@
-import { DataItemInterface } from "./itemInterface";
+import { BasicItem } from "./basicItemInterface";
 
 export interface VeiwItemInterface {
-    divMain: HTMLElement;
     divItem: HTMLElement;
-    addItemContent: (item: DataItemInterface) => void;
+    addItemContent: (item: BasicItem) => void;
 }

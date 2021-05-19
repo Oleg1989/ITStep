@@ -6,28 +6,26 @@ import { Movie } from "./classItems/movie";
 import { Music } from "./classItems/music";
 
 export class ViewItem implements VeiwItemInterface {
-    divMain: HTMLElement;
     divItem: HTMLElement;
     constructor() {
-        this.divMain = document.createElement('div');
         this.divItem = document.createElement('div');
-
-        this.divMain.append(this.divItem);
     }
     addItemContent = (item: BasicItem) => {
-        this.divItem.id = item.id;
         this.divItem.style.backgroundColor = 'rgb(0,0,128,0.5)';
+        this.divItem.id = item.id;
         this.divItem.style.color = 'white';
         this.divItem.style.margin = '5px';
         this.divItem.style.padding = '5px';
+        this.divItem.style.cursor = 'pointer';
         this.divItem.textContent = `Type: ${item.type}; Title: ${item.title}`;
 
-        return this.divMain;
+        return this.divItem;
     }
     addItemDescBook = (item: BasicItem) => {
         let divMain = document.createElement('div');
         divMain.style.margin = '5px';
-        divMain.style.backgroundColor = '	rgb(0,128,0, 0.3)';
+        divMain.setAttribute('data-id', `${item.id}`);
+        divMain.style.backgroundColor = 'rgb(0,128,0, 0.3)';
 
         let divTitle = document.createElement('div');
         divTitle.textContent = `Title: ${(item as Book).title}`;
@@ -45,15 +43,28 @@ export class ViewItem implements VeiwItemInterface {
         divAuthors.textContent = `Authors: ${(item as Book).authors}`;
         divAuthors.style.margin = '5px';
 
-        divMain.append(divTitle, divDesc, divGenre, divAuthors);
-        this.divItem.append(divMain);
+        let buttonEdit = document.createElement('button');
+        buttonEdit.id = 'edit';
+        buttonEdit.textContent = 'Edit';
+        buttonEdit.style.backgroundColor = 'orange';
+        buttonEdit.style.width = '60px';
+        buttonEdit.style.margin = '5px';
 
-        return this.divItem;
+        let buttonDelete = document.createElement('button');
+        buttonDelete.id = 'edit';
+        buttonDelete.textContent = 'Delete';
+        buttonDelete.style.backgroundColor = 'red';
+        buttonDelete.style.width = '60px';
+        buttonDelete.style.margin = '5px';
+
+        divMain.append(divTitle, divDesc, divGenre, divAuthors, buttonEdit, buttonDelete);
+        return divMain;
     }
     addItemDescGame = (item: BasicItem) => {
         let divMain = document.createElement('div');
         divMain.style.margin = '5px';
-        divMain.style.backgroundColor = '	rgb(0,128,0, 0.3)';
+        divMain.setAttribute('data-id', `${item.id}`);
+        divMain.style.backgroundColor = 'rgb(0,128,0, 0.3)';
 
         let divTitle = document.createElement('div');
         divTitle.textContent = `Title: ${(item as Game).title}`;
@@ -71,15 +82,28 @@ export class ViewItem implements VeiwItemInterface {
         divPlatform.textContent = `Platform: ${(item as Game).platform}`;
         divPlatform.style.margin = '5px';
 
-        divMain.append(divTitle, divDesc, divGenre, divPlatform);
-        this.divItem.append(divMain);
+        let buttonEdit = document.createElement('button');
+        buttonEdit.id = 'edit';
+        buttonEdit.textContent = 'Edit';
+        buttonEdit.style.backgroundColor = 'orange';
+        buttonEdit.style.width = '60px';
+        buttonEdit.style.margin = '5px';
 
-        return this.divItem;
+        let buttonDelete = document.createElement('button');
+        buttonDelete.id = 'edit';
+        buttonDelete.textContent = 'Delete';
+        buttonDelete.style.backgroundColor = 'red';
+        buttonDelete.style.width = '60px';
+        buttonDelete.style.margin = '5px';
+
+        divMain.append(divTitle, divDesc, divGenre, divPlatform, buttonEdit, buttonDelete);
+        return divMain;
     }
     addItemDescMovie = (item: BasicItem) => {
         let divMain = document.createElement('div');
         divMain.style.margin = '5px';
-        divMain.style.backgroundColor = '	rgb(0,128,0, 0.3)';
+        divMain.setAttribute('data-id', `${item.id}`);
+        divMain.style.backgroundColor = 'rgb(0,128,0, 0.3)';
 
         let divTitle = document.createElement('div');
         divTitle.textContent = `Title: ${(item as Movie).title}`;
@@ -101,15 +125,28 @@ export class ViewItem implements VeiwItemInterface {
         divActors.textContent = `Actors: ${(item as Movie).actors}`;
         divActors.style.margin = '5px';
 
-        divMain.append(divTitle, divDesc, divGenre, divActors);
-        this.divItem.append(divMain);
+        let buttonEdit = document.createElement('button');
+        buttonEdit.id = 'edit';
+        buttonEdit.textContent = 'Edit';
+        buttonEdit.style.backgroundColor = 'orange';
+        buttonEdit.style.width = '60px';
+        buttonEdit.style.margin = '5px';
 
-        return this.divItem;
+        let buttonDelete = document.createElement('button');
+        buttonDelete.id = 'edit';
+        buttonDelete.textContent = 'Delete';
+        buttonDelete.style.backgroundColor = 'red';
+        buttonDelete.style.width = '60px';
+        buttonDelete.style.margin = '5px';
+
+        divMain.append(divTitle, divDesc, divGenre, divActors, buttonEdit, buttonDelete);
+        return divMain;
     }
     addItemDescMusic = (item: BasicItem) => {
         let divMain = document.createElement('div');
         divMain.style.margin = '5px';
-        divMain.style.backgroundColor = '	rgb(0,128,0, 0.3)';
+        divMain.setAttribute('data-id', `${item.id}`);
+        divMain.style.backgroundColor = 'rgb(0,128,0, 0.3)';
 
         let divTitle = document.createElement('div');
         divTitle.textContent = `Title: ${(item as Music).title}`;
@@ -131,9 +168,21 @@ export class ViewItem implements VeiwItemInterface {
         divAlbum.textContent = `Album: ${(item as Music).album}`;
         divAlbum.style.margin = '5px';
 
-        divMain.append(divTitle, divDesc, divGenre, divPerformer, divAlbum);
-        this.divItem.append(divMain);
+        let buttonEdit = document.createElement('button');
+        buttonEdit.id = 'edit';
+        buttonEdit.textContent = 'Edit';
+        buttonEdit.style.backgroundColor = 'orange';
+        buttonEdit.style.width = '60px';
+        buttonEdit.style.margin = '5px';
 
-        return this.divItem;
+        let buttonDelete = document.createElement('button');
+        buttonDelete.id = 'edit';
+        buttonDelete.textContent = 'Delete';
+        buttonDelete.style.backgroundColor = 'red';
+        buttonDelete.style.width = '60px';
+        buttonDelete.style.margin = '5px';
+
+        divMain.append(divTitle, divDesc, divGenre, divPerformer, divAlbum, buttonEdit, buttonDelete);
+        return divMain;
     }
 }

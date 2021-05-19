@@ -3,15 +3,21 @@ import { DataItemType } from "./enum/typeEnum"
 
 export class DataItemsArray {
     private items: BasicItem[];
-    constructor(arrItems: BasicItem[]) {
-        this.items = arrItems;
+    constructor() {
+        let arrItems = localStorage.getItem("items");
+        if (arrItems) {
+            this.items = JSON.parse(arrItems);
+        } else {
+            this.items = [];
+        }
     }
     addItem(item: BasicItem): void {
         if (!this.items.find(x => x == item)) {
             this.items.push(item);
+            this._commit(this.items);
         }
         else {
-            throw new Error("Element is exist!!!");
+            throw new Error("Element is not exist!!!");
         }
     }
 
@@ -28,5 +34,8 @@ export class DataItemsArray {
         if (item) {
             return item;
         }
+    }
+    _commit(items: BasicItem[]) {
+        localStorage.setItem("items", JSON.stringify(items));
     }
 }

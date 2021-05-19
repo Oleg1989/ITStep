@@ -2,6 +2,10 @@ import { ViewInterface } from "./interface/viewInterface";
 import { ViewItem } from "./viewItem";
 import { BasicItem } from "./interface/basicItemInterface";
 import { DataItemType } from "./enum/typeEnum";
+import { Book } from "./classItems/book";
+import { Game } from "./classItems/game";
+import { Movie } from "./classItems/movie";
+import { Music } from "./classItems/music";
 
 export class View implements ViewInterface {
     divApp: HTMLElement;
@@ -16,18 +20,17 @@ export class View implements ViewInterface {
 
         this.formAdd = document.createElement('form');
         this.formAdd.id = 'form-modal';
-        this.formAdd.setAttribute('name', 'modal');
         this.formAdd.style.display = 'none';
         this.formAdd.addEventListener('click', this.closeModalAddItem);
 
-        this.divApp.append(this.formAdd);
-
         this.divMain = document.createElement('div');
+        this.divMain.id = 'main';
         this.divMain.style.width = '100%';
         this.divMain.style.display = 'flex';
         this.divMain.style.justifyContent = 'space-between';
 
         this.divType = document.createElement('div');
+        this.divType.id = 'type';
         this.divType.style.width = '30%';
         this.divType.style.margin = '5px';
         this.divType.style.border = '4px solid red';
@@ -37,11 +40,13 @@ export class View implements ViewInterface {
         this.divType.addEventListener('click', this.viewModalAddItem);
 
         this.divItem = document.createElement('div');
+        this.divItem.id = 'item';
         this.divItem.style.width = '30%';
         this.divItem.style.margin = '5px';
         this.divItem.style.border = '4px solid blue';
 
         this.divDesc = document.createElement('div');
+        this.divDesc.id = 'desc';
         this.divDesc.style.width = '30%';
         this.divDesc.style.margin = '5px';
         this.divDesc.style.border = '4px solid green';
@@ -53,6 +58,7 @@ export class View implements ViewInterface {
         divGame.style.width = '90%';
         divGame.style.background = 'rgb(255,0,0,0.3)';
         divGame.style.textAlign = 'right';
+        divGame.style.cursor = 'pointer';
         divGame.textContent = DataItemType.Game;
 
         let addGame = document.createElement('button');
@@ -62,6 +68,7 @@ export class View implements ViewInterface {
         addGame.style.width = '80px';
         addGame.style.marginLeft = '115px';
         addGame.style.backgroundColor = 'green';
+        addGame.style.cursor = 'pointer';
 
         divGame.append(addGame);
 
@@ -72,6 +79,7 @@ export class View implements ViewInterface {
         divMusic.style.width = '90%';
         divMusic.style.background = 'rgb(255,0,0,0.3)';
         divMusic.style.textAlign = 'right';
+        divMusic.style.cursor = 'pointer';
         divMusic.textContent = DataItemType.Music;
 
         let addMusic = document.createElement('button');
@@ -81,6 +89,7 @@ export class View implements ViewInterface {
         addMusic.style.width = '80px';
         addMusic.style.marginLeft = '115px';
         addMusic.style.backgroundColor = 'green';
+        addMusic.style.cursor = 'pointer';
 
         divMusic.append(addMusic);
 
@@ -91,6 +100,7 @@ export class View implements ViewInterface {
         divMovie.style.width = '90%';
         divMovie.style.background = 'rgb(255,0,0,0.3)';
         divMovie.style.textAlign = 'right';
+        divMovie.style.cursor = 'pointer';
         divMovie.textContent = DataItemType.Movie;
 
         let addMovie = document.createElement('button');
@@ -100,6 +110,7 @@ export class View implements ViewInterface {
         addMovie.style.width = '80px';
         addMovie.style.marginLeft = '115px';
         addMovie.style.backgroundColor = 'green';
+        addMovie.style.cursor = 'pointer';
 
         divMovie.append(addMovie);
 
@@ -110,6 +121,7 @@ export class View implements ViewInterface {
         divBook.style.width = '90%';
         divBook.style.background = 'rgb(255,0,0,0.3)';
         divBook.style.textAlign = 'right';
+        divBook.style.cursor = 'pointer';
         divBook.textContent = DataItemType.Book;
 
         let addBook = document.createElement('button');
@@ -119,12 +131,13 @@ export class View implements ViewInterface {
         addBook.style.height = '30px';
         addBook.style.marginLeft = '115px';
         addBook.style.backgroundColor = 'green';
+        addBook.style.cursor = 'pointer';
 
         divBook.append(addBook);
 
         this.divType.append(divGame, divMusic, divMovie, divBook);
         this.divMain.append(this.divType, this.divItem, this.divDesc);
-        this.divApp.append(this.divMain);
+        this.divApp.append(this.formAdd, this.divMain);
         document.body.append(this.divApp);
     }
     viewItems = (items: BasicItem[]) => {
@@ -155,35 +168,29 @@ export class View implements ViewInterface {
 
     }
     viewModalAddItem = (event: Event) => {
-        // if ((event.target as HTMLElement)?.id === 'add-game') {
-        //     this.formAdd.style.display = 'block';
-        //     let formAdd = document.forms[0];
-        //     formAdd.elements.title.value = '';
-        //     formAdd.elements.desc.value = '';
-        // }
+        this.resentFormAdd();
         switch ((event.target as HTMLElement)?.id) {
             case 'add-game':
                 this.formAdd.style.display = 'block';
-
-                let modalGame = document.createElement('div');
-                modalGame.id = 'modal';
-                modalGame.style.width = '50%';
-                modalGame.style.border = '2px solid yellow';
-                modalGame.style.borderRadius = '10px';
-                modalGame.style.display = 'flex';
-                modalGame.style.flexDirection = "column";
-                modalGame.style.padding = '20px';
-                modalGame.style.textAlign = 'center';
-                modalGame.style.backgroundColor = 'rgb(0,128,128, 0.9)';
-                modalGame.style.position = 'absolute';
-                modalGame.style.left = '25%';
-                modalGame.style.top = '30px';
+                this.formAdd.setAttribute('name', 'Game');
+                this.formAdd.style.width = '50%';
+                this.formAdd.style.border = '2px solid yellow';
+                this.formAdd.style.borderRadius = '10px';
+                this.formAdd.style.display = 'flex';
+                this.formAdd.style.flexDirection = "column";
+                this.formAdd.style.padding = '20px';
+                this.formAdd.style.textAlign = 'center';
+                this.formAdd.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+                this.formAdd.style.position = 'absolute';
+                this.formAdd.style.left = '25%';
+                this.formAdd.style.top = '30px';
 
                 let modalGameTitle = document.createElement('h1');
                 modalGameTitle.textContent = 'Game';
 
                 let inputGameTitle = document.createElement('input');
                 inputGameTitle.type = 'text';
+                inputGameTitle.id = 'title';
                 inputGameTitle.setAttribute('name', 'title');
                 inputGameTitle.setAttribute('placeholder', 'Title');
                 inputGameTitle.style.margin = '10px 0';
@@ -192,6 +199,7 @@ export class View implements ViewInterface {
 
                 let inputGameDesc = document.createElement('input');
                 inputGameDesc.type = 'text';
+                inputGameDesc.id = 'desc';
                 inputGameDesc.setAttribute('placeholder', 'Description');
                 inputGameDesc.setAttribute('name', 'desc');
                 inputGameDesc.style.margin = '10px 0';
@@ -216,34 +224,31 @@ export class View implements ViewInterface {
                 inputGamePlatform.style.width = '100%';
                 inputGamePlatform.style.fontSize = '24px';
 
-                let addGame = document.createElement('button');
+                let addGame = document.createElement('input');
+                addGame.type = 'submit';
+                addGame.value = 'Add game';
                 addGame.setAttribute('name', 'btnAdd');
                 addGame.id = 'btn-add';
-                addGame.textContent = 'Add';
                 addGame.style.width = '30%';
                 addGame.style.margin = '10px auto';
                 addGame.style.fontSize = '24px';
-                addGame.addEventListener('click', this.closeModalAddItem);
 
-                modalGame.append(modalGameTitle, inputGameTitle, inputGameDesc, inputGameGente, inputGamePlatform, addGame);
-                this.formAdd.append(modalGame);
+                this.formAdd.append(modalGameTitle, inputGameTitle, inputGameDesc, inputGameGente, inputGamePlatform, addGame);
                 break;
             case 'add-music':
                 this.formAdd.style.display = 'block';
-
-                let modalMusic = document.createElement('div');
-                modalMusic.id = 'modal';
-                modalMusic.style.width = '50%';
-                modalMusic.style.border = '2px solid yellow';
-                modalMusic.style.borderRadius = '10px';
-                modalMusic.style.display = 'flex';
-                modalMusic.style.flexDirection = "column";
-                modalMusic.style.padding = '20px';
-                modalMusic.style.textAlign = 'center';
-                modalMusic.style.backgroundColor = 'rgb(0,128,128, 0.9)';
-                modalMusic.style.position = 'absolute';
-                modalMusic.style.left = '25%';
-                modalMusic.style.top = '30px';
+                this.formAdd.setAttribute('name', 'Music');
+                this.formAdd.style.width = '50%';
+                this.formAdd.style.border = '2px solid yellow';
+                this.formAdd.style.borderRadius = '10px';
+                this.formAdd.style.display = 'flex';
+                this.formAdd.style.flexDirection = "column";
+                this.formAdd.style.padding = '20px';
+                this.formAdd.style.textAlign = 'center';
+                this.formAdd.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+                this.formAdd.style.position = 'absolute';
+                this.formAdd.style.left = '25%';
+                this.formAdd.style.top = '30px';
 
                 let modalMusicTitle = document.createElement('h1');
                 modalMusicTitle.textContent = 'Music';
@@ -291,33 +296,31 @@ export class View implements ViewInterface {
                 inputMusicAlbum.style.width = '100%';
                 inputMusicAlbum.style.fontSize = '24px';
 
-                let addMusic = document.createElement('button');
+                let addMusic = document.createElement('input');
+                addMusic.type = 'submit';
+                addMusic.value = 'Add music';
                 addMusic.setAttribute('name', 'btnAdd');
                 addMusic.id = 'btn-add';
-                addMusic.textContent = 'Add';
                 addMusic.style.width = '30%';
                 addMusic.style.margin = '10px auto';
                 addMusic.style.fontSize = '24px';
 
-                modalMusic.append(modalMusicTitle, inputMusicTitle, inputMusicDesc, inputMusicGente, inputMusicPerformer, inputMusicAlbum, addMusic);
-                this.formAdd.append(modalMusic);
+                this.formAdd.append(modalMusicTitle, inputMusicTitle, inputMusicDesc, inputMusicGente, inputMusicPerformer, inputMusicAlbum, addMusic);
                 break;
             case 'add-movie':
                 this.formAdd.style.display = 'block';
-
-                let modalMovie = document.createElement('div');
-                modalMovie.id = 'modal';
-                modalMovie.style.width = '50%';
-                modalMovie.style.border = '2px solid yellow';
-                modalMovie.style.borderRadius = '10px';
-                modalMovie.style.display = 'flex';
-                modalMovie.style.flexDirection = "column";
-                modalMovie.style.padding = '20px';
-                modalMovie.style.textAlign = 'center';
-                modalMovie.style.backgroundColor = 'rgb(0,128,128, 0.9)';
-                modalMovie.style.position = 'absolute';
-                modalMovie.style.left = '25%';
-                modalMovie.style.top = '30px';
+                this.formAdd.setAttribute('name', 'Movie');
+                this.formAdd.style.width = '50%';
+                this.formAdd.style.border = '2px solid yellow';
+                this.formAdd.style.borderRadius = '10px';
+                this.formAdd.style.display = 'flex';
+                this.formAdd.style.flexDirection = "column";
+                this.formAdd.style.padding = '20px';
+                this.formAdd.style.textAlign = 'center';
+                this.formAdd.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+                this.formAdd.style.position = 'absolute';
+                this.formAdd.style.left = '25%';
+                this.formAdd.style.top = '30px';
 
                 let modalMovieTitle = document.createElement('h1');
                 modalMovieTitle.textContent = 'Movie';
@@ -347,6 +350,15 @@ export class View implements ViewInterface {
                 inputMovieGente.style.width = '100%';
                 inputMovieGente.style.fontSize = '24px';
 
+                let inputMovieDirector = document.createElement('input');
+                inputMovieDirector.type = "text";
+                inputMovieDirector.setAttribute('placeholder', 'Director');
+                inputMovieDirector.setAttribute('name', 'director');
+                inputMovieDirector.id = "actors";
+                inputMovieDirector.style.margin = '10px 0';
+                inputMovieDirector.style.width = '100%';
+                inputMovieDirector.style.fontSize = '24px';
+
                 let inputMovieActors = document.createElement('input');
                 inputMovieActors.type = "text";
                 inputMovieActors.setAttribute('placeholder', 'Actors');
@@ -356,34 +368,31 @@ export class View implements ViewInterface {
                 inputMovieActors.style.width = '100%';
                 inputMovieActors.style.fontSize = '24px';
 
-                let addMovie = document.createElement('button');
+                let addMovie = document.createElement('input');
+                addMovie.type = 'submit';
+                addMovie.value = 'Add movie';
                 addMovie.setAttribute('name', 'btnAdd');
                 addMovie.id = 'btn-add';
-                addMovie.textContent = 'Add';
                 addMovie.style.width = '30%';
                 addMovie.style.margin = '10px auto';
                 addMovie.style.fontSize = '24px';
-                addMovie.addEventListener('click', this.closeModalAddItem);
 
-                modalMovie.append(modalMovieTitle, inputMovieTitle, inputMovieDesc, inputMovieGente, inputMovieActors, addMovie);
-                this.formAdd.append(modalMovie);
+                this.formAdd.append(modalMovieTitle, inputMovieTitle, inputMovieDesc, inputMovieGente, inputMovieDirector, inputMovieActors, addMovie);
                 break;
             case 'add-book':
                 this.formAdd.style.display = 'block';
-
-                let modalBook = document.createElement('div');
-                modalBook.id = 'modal';
-                modalBook.style.width = '50%';
-                modalBook.style.border = '2px solid yellow';
-                modalBook.style.borderRadius = '10px';
-                modalBook.style.display = 'flex';
-                modalBook.style.flexDirection = "column";
-                modalBook.style.padding = '20px';
-                modalBook.style.textAlign = 'center';
-                modalBook.style.backgroundColor = 'rgb(0,128,128, 0.9)';
-                modalBook.style.position = 'absolute';
-                modalBook.style.left = '25%';
-                modalBook.style.top = '30px';
+                this.formAdd.setAttribute('name', 'Book');
+                this.formAdd.style.width = '50%';
+                this.formAdd.style.border = '2px solid yellow';
+                this.formAdd.style.borderRadius = '10px';
+                this.formAdd.style.display = 'flex';
+                this.formAdd.style.flexDirection = "column";
+                this.formAdd.style.padding = '20px';
+                this.formAdd.style.textAlign = 'center';
+                this.formAdd.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+                this.formAdd.style.position = 'absolute';
+                this.formAdd.style.left = '25%';
+                this.formAdd.style.top = '30px';
 
                 let modalBookTitle = document.createElement('h1');
                 modalBookTitle.textContent = 'Book';
@@ -422,17 +431,16 @@ export class View implements ViewInterface {
                 inputBookAuthors.style.width = '100%';
                 inputBookAuthors.style.fontSize = '24px';
 
-                let addBook = document.createElement('button');
+                let addBook = document.createElement('input');
+                addBook.type = 'submit';
+                addBook.value = 'Add book';
                 addBook.setAttribute('name', 'btnAdd');
                 addBook.id = 'btn-add';
-                addBook.textContent = 'Add';
                 addBook.style.width = '30%';
                 addBook.style.margin = '10px auto';
                 addBook.style.fontSize = '24px';
-                addBook.addEventListener('click', this.closeModalAddItem);
 
-                modalBook.append(modalBookTitle, inputBookTitle, inputBookDesc, inputBookGente, inputBookAuthors, addBook);
-                this.formAdd.append(modalBook);
+                this.formAdd.append(modalBookTitle, inputBookTitle, inputBookDesc, inputBookGente, inputBookAuthors, addBook);
                 break;
         }
     }
@@ -457,16 +465,34 @@ export class View implements ViewInterface {
             }
         })
     }
-    bindShowModalAdd = () => {
-
-    }
-    bindAddItem(hendler: (id: string) => void) {
-        this.divType.addEventListener('click', (event: Event) => {
+    bindAddItem(hendler: (item: BasicItem) => void) {
+        this.formAdd.addEventListener('click', (event: Event) => {
+            event.preventDefault();
             let id = (event.target as Element).id;
+            let form = document.forms[0];
             if (id) {
                 if (id === 'btn-add') {
-                    //handler(id);
-                    console.log(id);
+                    switch (form.name) {
+                        case 'Game':
+                            const itemGame = new Game(form.elements.title.value, form.elements.desc.value, form.elements.platform.value, form.elements.gente.value);
+                            hendler(itemGame);
+                            break;
+                        case 'Music':
+                            const itemMusic = new Music(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.performer.value, form.elements.album.value);
+                            hendler(itemMusic);
+                            break;
+                        case 'Movie':
+                            const itemMovie = new Movie(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.director.value, form.elements.actors.value);
+                            hendler(itemMovie);
+                            break;
+                        case 'Book':
+                            const itemBook = new Book(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.authors.value);
+                            hendler(itemBook);
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
             }
         })
@@ -479,6 +505,11 @@ export class View implements ViewInterface {
     resetDesclist() {
         while (this.divDesc.firstChild) {
             this.divDesc.removeChild(this.divDesc.firstChild);
+        }
+    }
+    resentFormAdd() {
+        while (this.formAdd.firstChild) {
+            this.formAdd.removeChild(this.formAdd.firstChild);
         }
     }
 }

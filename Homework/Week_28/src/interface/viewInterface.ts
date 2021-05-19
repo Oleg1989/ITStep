@@ -12,4 +12,5 @@ export interface ViewInterface {
     viewItemDsc: (item: BasicItem) => void;
     bindGetItemsByType: (handler: (type: DataItemType) => void) => void;
     bindGetItemsById: (handler: (id: string) => void) => void;
+    bindAddItem: (handler: (item: BasicItem) => void) => void;
 }

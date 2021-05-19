@@ -12,6 +12,7 @@ export class Controller implements ControllerInterface {
         this.repo = repo;
         this.view.bindGetItemsByType(this.handlerGetItemsByType);
         this.view.bindGetItemsById(this.handlerGetItemsById);
+        this.view.bindAddItem(this.handlerAddItem);
     }
     onItemsListChanged = (items: BasicItem[]) => {
         this.view.viewItems(items);
@@ -27,9 +28,6 @@ export class Controller implements ControllerInterface {
         if (itemId) {
             this.view.viewItemDsc(itemId);
         }
-    }
-    handlerShowModelAdd = () => {
-
     }
     handlerAddItem = (item: BasicItem) => {
         this.repo.addItem(item);
