@@ -1,4 +1,4 @@
-import { DataItemInterface } from "./itemInterface";
+import { BasicItem } from "./basicItemInterface";
 import { DataItemType } from "../enum/typeEnum";
 
 export interface ViewInterface {
@@ -7,8 +7,8 @@ export interface ViewInterface {
     divType: HTMLElement;
     divItem: HTMLElement;
     divDesc: HTMLElement;
-    viewItems: (items: DataItemInterface[]) => void;
-    viewItemDsc: (item: DataItemInterface) => void;
+    viewItems: (items: BasicItem[]) => void;
+    viewItemDsc: (item: BasicItem) => void;
     bindGetItemsByType: (handler: (type: DataItemType) => void) => void;
     bindGetItemsById: (handler: (id: string) => void) => void;
 }
