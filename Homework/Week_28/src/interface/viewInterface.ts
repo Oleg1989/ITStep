@@ -13,4 +13,5 @@ export interface ViewInterface {
     bindGetItemsByType: (handler: (type: DataItemType) => void) => void;
     bindGetItemsById: (handler: (id: string) => void) => void;
     bindAddItem: (handler: (item: BasicItem) => void) => void;
+    bindDeleteItem: (handler: (id: string, type: DataItemType) => void) => void;
 }

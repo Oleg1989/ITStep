@@ -7,7 +7,7 @@ export class Movie implements MovieItem {
     title: string;
     desc: string;
     readonly type: DataItemType.Movie;
-    genre: string;
+    gente: string;
     director: string;
     actors: string;
 
@@ -16,7 +16,7 @@ export class Movie implements MovieItem {
         this.title = Title;
         this.desc = Desc;
         this.type = DataItemType.Movie;
-        this.genre = Genre;
+        this.gente = Genre;
         this.director = Director;
         this.actors = Actors;
     }

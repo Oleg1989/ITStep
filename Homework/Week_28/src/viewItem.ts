@@ -25,6 +25,7 @@ export class ViewItem implements VeiwItemInterface {
         let divMain = document.createElement('div');
         divMain.style.margin = '5px';
         divMain.setAttribute('data-id', `${item.id}`);
+        divMain.setAttribute('data-type', `${item.type}`);
         divMain.style.backgroundColor = 'rgb(0,128,0, 0.3)';
 
         let divTitle = document.createElement('div');
@@ -36,7 +37,7 @@ export class ViewItem implements VeiwItemInterface {
         divDesc.style.margin = '5px';
 
         let divGenre = document.createElement('div');
-        divGenre.textContent = ` Gente: ${(item as Book).genre}`;
+        divGenre.textContent = ` Gente: ${(item as Book).gente}`;
         divGenre.style.margin = '5px';
 
         let divAuthors = document.createElement('div');
@@ -44,18 +45,20 @@ export class ViewItem implements VeiwItemInterface {
         divAuthors.style.margin = '5px';
 
         let buttonEdit = document.createElement('button');
-        buttonEdit.id = 'edit';
+        buttonEdit.id = 'edit-book';
         buttonEdit.textContent = 'Edit';
         buttonEdit.style.backgroundColor = 'orange';
         buttonEdit.style.width = '60px';
         buttonEdit.style.margin = '5px';
+        buttonEdit.style.cursor = 'pointer';
 
         let buttonDelete = document.createElement('button');
-        buttonDelete.id = 'edit';
+        buttonDelete.id = 'delete';
         buttonDelete.textContent = 'Delete';
         buttonDelete.style.backgroundColor = 'red';
         buttonDelete.style.width = '60px';
         buttonDelete.style.margin = '5px';
+        buttonDelete.style.cursor = 'pointer';
 
         divMain.append(divTitle, divDesc, divGenre, divAuthors, buttonEdit, buttonDelete);
         return divMain;
@@ -64,6 +67,7 @@ export class ViewItem implements VeiwItemInterface {
         let divMain = document.createElement('div');
         divMain.style.margin = '5px';
         divMain.setAttribute('data-id', `${item.id}`);
+        divMain.setAttribute('data-type', `${item.type}`);
         divMain.style.backgroundColor = 'rgb(0,128,0, 0.3)';
 
         let divTitle = document.createElement('div');
@@ -75,7 +79,7 @@ export class ViewItem implements VeiwItemInterface {
         divDesc.style.margin = '5px';
 
         let divGenre = document.createElement('div');
-        divGenre.textContent = ` Gente: ${(item as Game).genre}`;
+        divGenre.textContent = ` Gente: ${(item as Game).gente}`;
         divGenre.style.margin = '5px';
 
         let divPlatform = document.createElement('div');
@@ -83,18 +87,20 @@ export class ViewItem implements VeiwItemInterface {
         divPlatform.style.margin = '5px';
 
         let buttonEdit = document.createElement('button');
-        buttonEdit.id = 'edit';
+        buttonEdit.id = 'edit-game';
         buttonEdit.textContent = 'Edit';
         buttonEdit.style.backgroundColor = 'orange';
         buttonEdit.style.width = '60px';
         buttonEdit.style.margin = '5px';
+        buttonEdit.style.cursor = 'pointer';
 
         let buttonDelete = document.createElement('button');
-        buttonDelete.id = 'edit';
+        buttonDelete.id = 'delete';
         buttonDelete.textContent = 'Delete';
         buttonDelete.style.backgroundColor = 'red';
         buttonDelete.style.width = '60px';
         buttonDelete.style.margin = '5px';
+        buttonDelete.style.cursor = 'pointer';
 
         divMain.append(divTitle, divDesc, divGenre, divPlatform, buttonEdit, buttonDelete);
         return divMain;
@@ -103,6 +109,7 @@ export class ViewItem implements VeiwItemInterface {
         let divMain = document.createElement('div');
         divMain.style.margin = '5px';
         divMain.setAttribute('data-id', `${item.id}`);
+        divMain.setAttribute('data-type', `${item.type}`);
         divMain.style.backgroundColor = 'rgb(0,128,0, 0.3)';
 
         let divTitle = document.createElement('div');
@@ -114,7 +121,7 @@ export class ViewItem implements VeiwItemInterface {
         divDesc.style.margin = '5px';
 
         let divGenre = document.createElement('div');
-        divGenre.textContent = ` Gente: ${(item as Movie).genre}`;
+        divGenre.textContent = ` Gente: ${(item as Movie).gente}`;
         divGenre.style.margin = '5px';
 
         let divDirector = document.createElement('div');
@@ -126,18 +133,20 @@ export class ViewItem implements VeiwItemInterface {
         divActors.style.margin = '5px';
 
         let buttonEdit = document.createElement('button');
-        buttonEdit.id = 'edit';
+        buttonEdit.id = 'edit-movie';
         buttonEdit.textContent = 'Edit';
         buttonEdit.style.backgroundColor = 'orange';
         buttonEdit.style.width = '60px';
         buttonEdit.style.margin = '5px';
+        buttonEdit.style.cursor = 'pointer';
 
         let buttonDelete = document.createElement('button');
-        buttonDelete.id = 'edit';
+        buttonDelete.id = 'delete';
         buttonDelete.textContent = 'Delete';
         buttonDelete.style.backgroundColor = 'red';
         buttonDelete.style.width = '60px';
         buttonDelete.style.margin = '5px';
+        buttonDelete.style.cursor = 'pointer';
 
         divMain.append(divTitle, divDesc, divGenre, divActors, buttonEdit, buttonDelete);
         return divMain;
@@ -146,6 +155,7 @@ export class ViewItem implements VeiwItemInterface {
         let divMain = document.createElement('div');
         divMain.style.margin = '5px';
         divMain.setAttribute('data-id', `${item.id}`);
+        divMain.setAttribute('data-type', `${item.type}`);
         divMain.style.backgroundColor = 'rgb(0,128,0, 0.3)';
 
         let divTitle = document.createElement('div');
@@ -157,7 +167,7 @@ export class ViewItem implements VeiwItemInterface {
         divDesc.style.margin = '5px';
 
         let divGenre = document.createElement('div');
-        divGenre.textContent = ` Gente: ${(item as Music).genre}`;
+        divGenre.textContent = ` Gente: ${(item as Music).gente}`;
         divGenre.style.margin = '5px';
 
         let divPerformer = document.createElement('div');
@@ -169,18 +179,20 @@ export class ViewItem implements VeiwItemInterface {
         divAlbum.style.margin = '5px';
 
         let buttonEdit = document.createElement('button');
-        buttonEdit.id = 'edit';
+        buttonEdit.id = 'edit-music';
         buttonEdit.textContent = 'Edit';
         buttonEdit.style.backgroundColor = 'orange';
         buttonEdit.style.width = '60px';
         buttonEdit.style.margin = '5px';
+        buttonEdit.style.cursor = 'pointer';
 
         let buttonDelete = document.createElement('button');
-        buttonDelete.id = 'edit';
+        buttonDelete.id = 'delete';
         buttonDelete.textContent = 'Delete';
         buttonDelete.style.backgroundColor = 'red';
         buttonDelete.style.width = '60px';
         buttonDelete.style.margin = '5px';
+        buttonDelete.style.cursor = 'pointer';
 
         divMain.append(divTitle, divDesc, divGenre, divPerformer, divAlbum, buttonEdit, buttonDelete);
         return divMain;

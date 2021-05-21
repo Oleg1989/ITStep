@@ -7,7 +7,7 @@ export class Music implements MusicItem {
     title: string;
     desc: string;
     readonly type: DataItemType.Music;
-    genre: string;
+    gente: string;
     performer: string;
     album: string;
 
@@ -16,7 +16,7 @@ export class Music implements MusicItem {
         this.title = Title;
         this.desc = Desc;
         this.type = DataItemType.Music;
-        this.genre = Genre;
+        this.gente = Genre;
         this.performer = Performer;
         this.album = Album;
     }

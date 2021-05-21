@@ -3,7 +3,7 @@ import { DataItemType } from "../enum/typeEnum"
 
 export interface MovieItem extends BasicItem {
     readonly type: DataItemType.Movie;
-    genre: string;
+    gente: string;
     director: string;
     actors: string;
 }

@@ -8,7 +8,7 @@ export class Game implements GameItem {
     desc: string;
     readonly type: DataItemType.Game;
     platform: string;
-    genre: string;
+    gente: string;
 
     constructor(Title: string, Desc: string, Platform: "xbox" | "ps" | "pc", Genre: string) {
         this.id = cuid();
@@ -16,6 +16,6 @@ export class Game implements GameItem {
         this.desc = Desc;
         this.type = DataItemType.Game;
         this.platform = Platform;
-        this.genre = Genre;
+        this.gente = Genre;
     }
 }

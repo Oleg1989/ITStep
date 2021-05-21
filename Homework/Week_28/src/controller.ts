@@ -13,6 +13,8 @@ export class Controller implements ControllerInterface {
         this.view.bindGetItemsByType(this.handlerGetItemsByType);
         this.view.bindGetItemsById(this.handlerGetItemsById);
         this.view.bindAddItem(this.handlerAddItem);
+        this.view.bindDeleteItem(this.handlerDeleteItem);
+        this.repo.bindItemsListChanged(this.onItemsListChanged);
     }
     onItemsListChanged = (items: BasicItem[]) => {
         this.view.viewItems(items);
@@ -31,5 +33,11 @@ export class Controller implements ControllerInterface {
     }
     handlerAddItem = (item: BasicItem) => {
         this.repo.addItem(item);
+    }
+    handlerDeleteItem = (id: string, type: DataItemType) => {
+        this.repo.deleteItem(id, type);
+    }
+    handlerEditItem = (item: BasicItem) => {
+        this.repo.editItem(item);
     }
 }

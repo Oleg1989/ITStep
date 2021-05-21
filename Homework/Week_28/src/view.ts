@@ -142,6 +142,7 @@ export class View implements ViewInterface {
     }
     viewItems = (items: BasicItem[]) => {
         this.resetItemslist();
+        this.formAdd.style.display = 'none';
         items.forEach(element => {
             const item = new ViewItem();
             this.divItem.append(item.addItemContent(element));
@@ -149,21 +150,26 @@ export class View implements ViewInterface {
     }
     viewItemDsc = (item: BasicItem) => {
         this.resetDesclist();
+        this.resentFormAdd();
         if (item.type === DataItemType.Book) {
             const book = new ViewItem()
             this.divDesc.append(book.addItemDescBook(item));
+            document.getElementById('edit-book')?.addEventListener('click', this.viewModalEditItem);
         }
         if (item.type === DataItemType.Game) {
             const game = new ViewItem()
             this.divDesc.append(game.addItemDescGame(item));
+            document.getElementById('edit-game')?.addEventListener('click', this.viewModalEditItem);
         }
         if (item.type === DataItemType.Movie) {
             const movie = new ViewItem()
             this.divDesc.append(movie.addItemDescMovie(item));
+            document.getElementById('edit-movie')?.addEventListener('click', this.viewModalEditItem);
         }
         if (item.type === DataItemType.Music) {
             const music = new ViewItem()
             this.divDesc.append(music.addItemDescMusic(item));
+            document.getElementById('edit-music')?.addEventListener('click', this.viewModalEditItem);
         }
 
     }
@@ -232,6 +238,7 @@ export class View implements ViewInterface {
                 addGame.style.width = '30%';
                 addGame.style.margin = '10px auto';
                 addGame.style.fontSize = '24px';
+                addGame.style.cursor = 'pointer';
 
                 this.formAdd.append(modalGameTitle, inputGameTitle, inputGameDesc, inputGameGente, inputGamePlatform, addGame);
                 break;
@@ -304,6 +311,7 @@ export class View implements ViewInterface {
                 addMusic.style.width = '30%';
                 addMusic.style.margin = '10px auto';
                 addMusic.style.fontSize = '24px';
+                addMusic.style.cursor = 'pointer';
 
                 this.formAdd.append(modalMusicTitle, inputMusicTitle, inputMusicDesc, inputMusicGente, inputMusicPerformer, inputMusicAlbum, addMusic);
                 break;
@@ -376,6 +384,7 @@ export class View implements ViewInterface {
                 addMovie.style.width = '30%';
                 addMovie.style.margin = '10px auto';
                 addMovie.style.fontSize = '24px';
+                addMovie.style.cursor = 'pointer';
 
                 this.formAdd.append(modalMovieTitle, inputMovieTitle, inputMovieDesc, inputMovieGente, inputMovieDirector, inputMovieActors, addMovie);
                 break;
@@ -439,13 +448,299 @@ export class View implements ViewInterface {
                 addBook.style.width = '30%';
                 addBook.style.margin = '10px auto';
                 addBook.style.fontSize = '24px';
+                addBook.style.cursor = 'pointer';
 
                 this.formAdd.append(modalBookTitle, inputBookTitle, inputBookDesc, inputBookGente, inputBookAuthors, addBook);
+                break;
+            default:
+                break;
+        }
+    }
+    viewModalEditItem = (event: Event) => {
+        this.resentFormAdd();
+        switch ((event.target as HTMLElement)?.id) {
+            case 'edit-game':
+                this.formAdd.style.display = 'block';
+                this.formAdd.setAttribute('name', 'Game');
+                this.formAdd.style.width = '50%';
+                this.formAdd.style.border = '2px solid yellow';
+                this.formAdd.style.borderRadius = '10px';
+                this.formAdd.style.display = 'flex';
+                this.formAdd.style.flexDirection = "column";
+                this.formAdd.style.padding = '20px';
+                this.formAdd.style.textAlign = 'center';
+                this.formAdd.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+                this.formAdd.style.position = 'absolute';
+                this.formAdd.style.left = '25%';
+                this.formAdd.style.top = '30px';
+
+                let modalGameTitle = document.createElement('h1');
+                modalGameTitle.textContent = 'Game';
+
+                let inputGameTitle = document.createElement('input');
+                inputGameTitle.type = 'text';
+                inputGameTitle.id = 'title';
+                inputGameTitle.setAttribute('name', 'title');
+                inputGameTitle.setAttribute('placeholder', 'Title');
+                inputGameTitle.style.margin = '10px 0';
+                inputGameTitle.style.width = '100%';
+                inputGameTitle.style.fontSize = '24px';
+
+                let inputGameDesc = document.createElement('input');
+                inputGameDesc.type = 'text';
+                inputGameDesc.id = 'desc';
+                inputGameDesc.setAttribute('placeholder', 'Description');
+                inputGameDesc.setAttribute('name', 'desc');
+                inputGameDesc.style.margin = '10px 0';
+                inputGameDesc.style.width = '100%';
+                inputGameDesc.style.fontSize = '24px';
+
+                let inputGameGente = document.createElement('input');
+                inputGameGente.type = "text";
+                inputGameGente.setAttribute('placeholder', 'Gente');
+                inputGameGente.setAttribute('name', 'gente');
+                inputGameGente.id = "gente";
+                inputGameGente.style.margin = '10px 0';
+                inputGameGente.style.width = '100%';
+                inputGameGente.style.fontSize = '24px';
+
+                let inputGamePlatform = document.createElement('input');
+                inputGamePlatform.type = "text";
+                inputGamePlatform.setAttribute('placeholder', 'Platform');
+                inputGamePlatform.setAttribute('name', 'platform');
+                inputGamePlatform.id = "platform";
+                inputGamePlatform.style.margin = '10px 0';
+                inputGamePlatform.style.width = '100%';
+                inputGamePlatform.style.fontSize = '24px';
+
+                let addGame = document.createElement('input');
+                addGame.type = 'submit';
+                addGame.value = 'Edit game';
+                addGame.setAttribute('name', 'btnAdd');
+                addGame.id = 'edit';
+                addGame.style.width = '30%';
+                addGame.style.margin = '10px auto';
+                addGame.style.fontSize = '24px';
+                addGame.style.cursor = 'pointer';
+
+                this.formAdd.append(modalGameTitle, inputGameTitle, inputGameDesc, inputGameGente, inputGamePlatform, addGame);
+                break;
+            case 'edit-music':
+                this.formAdd.style.display = 'block';
+                this.formAdd.setAttribute('name', 'Music');
+                this.formAdd.style.width = '50%';
+                this.formAdd.style.border = '2px solid yellow';
+                this.formAdd.style.borderRadius = '10px';
+                this.formAdd.style.display = 'flex';
+                this.formAdd.style.flexDirection = "column";
+                this.formAdd.style.padding = '20px';
+                this.formAdd.style.textAlign = 'center';
+                this.formAdd.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+                this.formAdd.style.position = 'absolute';
+                this.formAdd.style.left = '25%';
+                this.formAdd.style.top = '30px';
+
+                let modalMusicTitle = document.createElement('h1');
+                modalMusicTitle.textContent = 'Music';
+
+                let inputMusicTitle = document.createElement('input');
+                inputMusicTitle.type = 'text';
+                inputMusicTitle.setAttribute('name', 'title');
+                inputMusicTitle.setAttribute('placeholder', 'Title');
+                inputMusicTitle.style.margin = '10px 0';
+                inputMusicTitle.style.width = '100%';
+                inputMusicTitle.style.fontSize = '24px';
+
+                let inputMusicDesc = document.createElement('input');
+                inputMusicDesc.type = 'text';
+                inputMusicDesc.setAttribute('placeholder', 'Description');
+                inputMusicDesc.setAttribute('name', 'desc');
+                inputMusicDesc.style.margin = '10px 0';
+                inputMusicDesc.style.width = '100%';
+                inputMusicDesc.style.fontSize = '24px';
+
+                let inputMusicGente = document.createElement('input');
+                inputMusicGente.type = "text";
+                inputMusicGente.setAttribute('placeholder', 'Gente');
+                inputMusicGente.setAttribute('name', 'gente');
+                inputMusicGente.id = "gente";
+                inputMusicGente.style.margin = '10px 0';
+                inputMusicGente.style.width = '100%';
+                inputMusicGente.style.fontSize = '24px';
+
+                let inputMusicPerformer = document.createElement('input');
+                inputMusicPerformer.type = "text";
+                inputMusicPerformer.setAttribute('placeholder', 'Performer');
+                inputMusicPerformer.setAttribute('name', 'performer');
+                inputMusicPerformer.id = "performer";
+                inputMusicPerformer.style.margin = '10px 0';
+                inputMusicPerformer.style.width = '100%';
+                inputMusicPerformer.style.fontSize = '24px';
+
+                let inputMusicAlbum = document.createElement('input');
+                inputMusicAlbum.type = "text";
+                inputMusicAlbum.setAttribute('placeholder', 'Album');
+                inputMusicAlbum.setAttribute('name', 'album');
+                inputMusicAlbum.id = "album";
+                inputMusicAlbum.style.margin = '10px 0';
+                inputMusicAlbum.style.width = '100%';
+                inputMusicAlbum.style.fontSize = '24px';
+
+                let addMusic = document.createElement('input');
+                addMusic.type = 'submit';
+                addMusic.value = 'Edit music';
+                addMusic.setAttribute('name', 'btnAdd');
+                addMusic.id = 'edit';
+                addMusic.style.width = '30%';
+                addMusic.style.margin = '10px auto';
+                addMusic.style.fontSize = '24px';
+                addMusic.style.cursor = 'pointer';
+
+                this.formAdd.append(modalMusicTitle, inputMusicTitle, inputMusicDesc, inputMusicGente, inputMusicPerformer, inputMusicAlbum, addMusic);
+                break;
+            case 'edit-movie':
+                this.formAdd.style.display = 'block';
+                this.formAdd.setAttribute('name', 'Movie');
+                this.formAdd.style.width = '50%';
+                this.formAdd.style.border = '2px solid yellow';
+                this.formAdd.style.borderRadius = '10px';
+                this.formAdd.style.display = 'flex';
+                this.formAdd.style.flexDirection = "column";
+                this.formAdd.style.padding = '20px';
+                this.formAdd.style.textAlign = 'center';
+                this.formAdd.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+                this.formAdd.style.position = 'absolute';
+                this.formAdd.style.left = '25%';
+                this.formAdd.style.top = '30px';
+
+                let modalMovieTitle = document.createElement('h1');
+                modalMovieTitle.textContent = 'Movie';
+
+                let inputMovieTitle = document.createElement('input');
+                inputMovieTitle.type = 'text';
+                inputMovieTitle.setAttribute('name', 'title');
+                inputMovieTitle.setAttribute('placeholder', 'Title');
+                inputMovieTitle.style.margin = '10px 0';
+                inputMovieTitle.style.width = '100%';
+                inputMovieTitle.style.fontSize = '24px';
+
+                let inputMovieDesc = document.createElement('input');
+                inputMovieDesc.type = 'text';
+                inputMovieDesc.setAttribute('placeholder', 'Description');
+                inputMovieDesc.setAttribute('name', 'desc');
+                inputMovieDesc.style.margin = '10px 0';
+                inputMovieDesc.style.width = '100%';
+                inputMovieDesc.style.fontSize = '24px';
+
+                let inputMovieGente = document.createElement('input');
+                inputMovieGente.type = "text";
+                inputMovieGente.setAttribute('placeholder', 'Gente');
+                inputMovieGente.setAttribute('name', 'gente');
+                inputMovieGente.id = "gente";
+                inputMovieGente.style.margin = '10px 0';
+                inputMovieGente.style.width = '100%';
+                inputMovieGente.style.fontSize = '24px';
+
+                let inputMovieDirector = document.createElement('input');
+                inputMovieDirector.type = "text";
+                inputMovieDirector.setAttribute('placeholder', 'Director');
+                inputMovieDirector.setAttribute('name', 'director');
+                inputMovieDirector.id = "actors";
+                inputMovieDirector.style.margin = '10px 0';
+                inputMovieDirector.style.width = '100%';
+                inputMovieDirector.style.fontSize = '24px';
+
+                let inputMovieActors = document.createElement('input');
+                inputMovieActors.type = "text";
+                inputMovieActors.setAttribute('placeholder', 'Actors');
+                inputMovieActors.setAttribute('name', 'actors');
+                inputMovieActors.id = "actors";
+                inputMovieActors.style.margin = '10px 0';
+                inputMovieActors.style.width = '100%';
+                inputMovieActors.style.fontSize = '24px';
+
+                let addMovie = document.createElement('input');
+                addMovie.type = 'submit';
+                addMovie.value = 'Edit movie';
+                addMovie.setAttribute('name', 'btnAdd');
+                addMovie.id = 'edit';
+                addMovie.style.width = '30%';
+                addMovie.style.margin = '10px auto';
+                addMovie.style.fontSize = '24px';
+                addMovie.style.cursor = 'pointer';
+
+                this.formAdd.append(modalMovieTitle, inputMovieTitle, inputMovieDesc, inputMovieGente, inputMovieDirector, inputMovieActors, addMovie);
+                break;
+            case 'edit-book':
+                this.formAdd.style.display = 'block';
+                this.formAdd.setAttribute('name', 'Book');
+                this.formAdd.style.width = '50%';
+                this.formAdd.style.border = '2px solid yellow';
+                this.formAdd.style.borderRadius = '10px';
+                this.formAdd.style.display = 'flex';
+                this.formAdd.style.flexDirection = "column";
+                this.formAdd.style.padding = '20px';
+                this.formAdd.style.textAlign = 'center';
+                this.formAdd.style.backgroundColor = 'rgb(0,128,128, 0.9)';
+                this.formAdd.style.position = 'absolute';
+                this.formAdd.style.left = '25%';
+                this.formAdd.style.top = '30px';
+
+                let modalBookTitle = document.createElement('h1');
+                modalBookTitle.textContent = 'Book';
+
+                let inputBookTitle = document.createElement('input');
+                inputBookTitle.type = 'text';
+                inputBookTitle.setAttribute('name', 'title');
+                inputBookTitle.setAttribute('placeholder', 'Title');
+                inputBookTitle.style.margin = '10px 0';
+                inputBookTitle.style.width = '100%';
+                inputBookTitle.style.fontSize = '24px';
+
+                let inputBookDesc = document.createElement('input');
+                inputBookDesc.type = 'text';
+                inputBookDesc.setAttribute('placeholder', 'Description');
+                inputBookDesc.setAttribute('name', 'desc');
+                inputBookDesc.style.margin = '10px 0';
+                inputBookDesc.style.width = '100%';
+                inputBookDesc.style.fontSize = '24px';
+
+                let inputBookGente = document.createElement('input');
+                inputBookGente.type = "text";
+                inputBookGente.setAttribute('placeholder', 'Gente');
+                inputBookGente.setAttribute('name', 'gente');
+                inputBookGente.id = "gente";
+                inputBookGente.style.margin = '10px 0';
+                inputBookGente.style.width = '100%';
+                inputBookGente.style.fontSize = '24px';
+
+                let inputBookAuthors = document.createElement('input');
+                inputBookAuthors.type = "text";
+                inputBookAuthors.setAttribute('placeholder', 'Authors');
+                inputBookAuthors.setAttribute('name', 'authors');
+                inputBookAuthors.id = "authors";
+                inputBookAuthors.style.margin = '10px 0';
+                inputBookAuthors.style.width = '100%';
+                inputBookAuthors.style.fontSize = '24px';
+
+                let addBook = document.createElement('input');
+                addBook.type = 'submit';
+                addBook.value = 'Edit book';
+                addBook.setAttribute('name', 'btnAdd');
+                addBook.id = 'edit';
+                addBook.style.width = '30%';
+                addBook.style.margin = '10px auto';
+                addBook.style.fontSize = '24px';
+                addBook.style.cursor = 'pointer';
+
+                this.formAdd.append(modalBookTitle, inputBookTitle, inputBookDesc, inputBookGente, inputBookAuthors, addBook);
+                break;
+            default:
                 break;
         }
     }
     closeModalAddItem = (event: Event) => {
-        if ((event.target as HTMLElement)?.id === 'btn-add') {
+        if ((event.target as HTMLElement)?.id === 'btn-add' || (event.target as HTMLElement)?.id === 'edit') {
             this.formAdd.style.display = 'none';
         }
     }
@@ -458,14 +753,18 @@ export class View implements ViewInterface {
         })
     }
     bindGetItemsById(handler: (id: string) => void) {
-        this.divItem.addEventListener('click', (event: Event) => {
+        this.divMain.addEventListener('click', (event: Event) => {
             let id = (event.target as Element).id;
+            let dataId = (event.target as HTMLElement).dataset.id;
             if (id) {
                 handler(id);
             }
+            if (dataId) {
+                handler(dataId);
+            }
         })
     }
-    bindAddItem(hendler: (item: BasicItem) => void) {
+    bindAddItem(handler: (item: BasicItem) => void) {
         this.formAdd.addEventListener('click', (event: Event) => {
             event.preventDefault();
             let id = (event.target as Element).id;
@@ -475,19 +774,19 @@ export class View implements ViewInterface {
                     switch (form.name) {
                         case 'Game':
                             const itemGame = new Game(form.elements.title.value, form.elements.desc.value, form.elements.platform.value, form.elements.gente.value);
-                            hendler(itemGame);
+                            handler(itemGame);
                             break;
                         case 'Music':
                             const itemMusic = new Music(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.performer.value, form.elements.album.value);
-                            hendler(itemMusic);
+                            handler(itemMusic);
                             break;
                         case 'Movie':
                             const itemMovie = new Movie(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.director.value, form.elements.actors.value);
-                            hendler(itemMovie);
+                            handler(itemMovie);
                             break;
                         case 'Book':
                             const itemBook = new Book(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.authors.value);
-                            hendler(itemBook);
+                            handler(itemBook);
                             break;
                         default:
                             break;
@@ -495,7 +794,51 @@ export class View implements ViewInterface {
 
                 }
             }
-        })
+        });
+    }
+    bindDeleteItem(handler: (id: string, type: DataItemType) => void) {
+        this.divDesc.addEventListener('click', (event: Event) => {
+            if ((event.target as HTMLElement).id === 'delete') {
+                let id = (event.target as HTMLElement).parentElement?.dataset.id;
+                let type = (event.target as HTMLElement).parentElement?.dataset.type;
+                if (id) {
+                    handler(id, (type as DataItemType));
+                    this.resetDesclist();
+                }
+            }
+        });
+    }
+    bindEditItem(handler: (item: BasicItem) => void) {
+        this.formAdd.addEventListener('click', (event: Event) => {
+            event.preventDefault();
+            let id = (event.target as Element).id;
+            let form = document.forms[0];
+            if (id) {
+                if (id === 'edit') {
+                    switch (form.name) {
+                        case 'Game':
+                            const itemGame = new Game(form.elements.title.value, form.elements.desc.value, form.elements.platform.value, form.elements.gente.value);
+                            handler(itemGame);
+                            break;
+                        case 'Music':
+                            const itemMusic = new Music(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.performer.value, form.elements.album.value);
+                            handler(itemMusic);
+                            break;
+                        case 'Movie':
+                            const itemMovie = new Movie(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.director.value, form.elements.actors.value);
+                            handler(itemMovie);
+                            break;
+                        case 'Book':
+                            const itemBook = new Book(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.authors.value);
+                            handler(itemBook);
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+            }
+        });
     }
     resetItemslist() {
         while (this.divItem.firstChild) {

@@ -3,7 +3,7 @@ import { DataItemType } from "../enum/typeEnum"
 
 export interface MusicItem extends BasicItem {
     readonly type: DataItemType.Music;
-    genre: string;
+    gente: string;
     performer: string;
     album: string;
 }

@@ -7,7 +7,7 @@ export class Book implements BookItem {
     title: string;
     desc: string;
     readonly type: DataItemType.Book;
-    genre: string;
+    gente: string;
     authors: string;
 
     constructor(Title: string, Desc: string, Genre: string, Authors: string) {
@@ -15,7 +15,7 @@ export class Book implements BookItem {
         this.title = Title;
         this.desc = Desc;
         this.type = DataItemType.Book;
-        this.genre = Genre;
+        this.gente = Genre;
         this.authors = Authors;
     }
 }
