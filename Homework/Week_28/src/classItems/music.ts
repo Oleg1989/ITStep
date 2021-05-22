@@ -6,7 +6,7 @@ export class Music implements MusicItem {
     id: string;
     title: string;
     desc: string;
-    readonly type: DataItemType.Music;
+    type: DataItemType.Music;
     gente: string;
     performer: string;
     album: string;

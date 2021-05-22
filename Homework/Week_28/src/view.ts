@@ -6,6 +6,11 @@ import { Book } from "./classItems/book";
 import { Game } from "./classItems/game";
 import { Movie } from "./classItems/movie";
 import { Music } from "./classItems/music";
+import { BookItem } from "./interface/bookItemInterface";
+import { MovieItem } from "./interface/movieItemInterface";
+import { GameItem } from "./interface/gameItemInterface";
+import { MusicItem } from "./interface/musicItemInterface";
+import { FormAddBookInterface } from "./interface/formAddBookInterface";
 
 export class View implements ViewInterface {
     divApp: HTMLElement;
@@ -152,22 +157,22 @@ export class View implements ViewInterface {
         this.resetDesclist();
         this.resentFormAdd();
         if (item.type === DataItemType.Book) {
-            const book = new ViewItem()
+            const book = new ViewItem();
             this.divDesc.append(book.addItemDescBook(item));
             document.getElementById('edit-book')?.addEventListener('click', this.viewModalEditItem);
         }
         if (item.type === DataItemType.Game) {
-            const game = new ViewItem()
+            const game = new ViewItem();
             this.divDesc.append(game.addItemDescGame(item));
             document.getElementById('edit-game')?.addEventListener('click', this.viewModalEditItem);
         }
         if (item.type === DataItemType.Movie) {
-            const movie = new ViewItem()
+            const movie = new ViewItem();
             this.divDesc.append(movie.addItemDescMovie(item));
             document.getElementById('edit-movie')?.addEventListener('click', this.viewModalEditItem);
         }
         if (item.type === DataItemType.Music) {
-            const music = new ViewItem()
+            const music = new ViewItem();
             this.divDesc.append(music.addItemDescMusic(item));
             document.getElementById('edit-music')?.addEventListener('click', this.viewModalEditItem);
         }
@@ -739,10 +744,55 @@ export class View implements ViewInterface {
                 break;
         }
     }
+    filingFormAdd = (item: BasicItem) => {
+        this.formAdd.setAttribute('data-id', `${item.id}`);
+        let form = document.forms[0];
+        switch (item.type) {
+            case DataItemType.Book:
+                form.elements.title.value = item.title;
+                form.elements.desc.value = item.desc;
+                form.elements.gente.value = (item as BookItem).gente;
+                form.elements.authors.value = (item as BookItem).authors;
+                break;
+            case DataItemType.Game:
+                form.elements.title.value = item.title;
+                form.elements.desc.value = item.desc;
+                form.elements.gente.value = (item as GameItem).gente;
+                form.elements.platform.value = (item as GameItem).platform;
+                break;
+            case DataItemType.Movie:
+                form.elements.title.value = item.title;
+                form.elements.desc.value = item.desc;
+                form.elements.gente.value = (item as MovieItem).gente;
+                form.elements.director.value = (item as MovieItem).director;
+                form.elements.actors.value = (item as MovieItem).actors;
+                break;
+            case DataItemType.Music:
+                form.elements.title.value = item.title;
+                form.elements.desc.value = item.desc;
+                form.elements.gente.value = (item as MusicItem).gente;
+                form.elements.performer.value = (item as MusicItem).performer;
+                form.elements.album.value = (item as MusicItem).album;
+                break;
+            default:
+                break;
+        }
+    }
     closeModalAddItem = (event: Event) => {
         if ((event.target as HTMLElement)?.id === 'btn-add' || (event.target as HTMLElement)?.id === 'edit') {
             this.formAdd.style.display = 'none';
         }
+    }
+    bindFilingFormAddGetItemsById(handler: (id: string) => void) {
+        this.divDesc.addEventListener('click', (event: Event) => {
+            let dataId = (event.target as HTMLElement).parentElement?.dataset.id;
+            let id = (event.target as Element).id;
+            if (id === 'edit-book' || id === 'edit-game' || id === 'edit-movie' || id === 'edit-music') {
+                if (dataId) {
+                    handler(dataId);
+                }
+            }
+        });
     }
     bindGetItemsByType(handler: (type: DataItemType) => void) {
         this.divType.addEventListener('click', (event: Event) => {
@@ -813,29 +863,61 @@ export class View implements ViewInterface {
             event.preventDefault();
             let id = (event.target as Element).id;
             let form = document.forms[0];
+            let dataId = form.dataset.id;
             if (id) {
                 if (id === 'edit') {
-                    switch (form.name) {
-                        case 'Game':
-                            const itemGame = new Game(form.elements.title.value, form.elements.desc.value, form.elements.platform.value, form.elements.gente.value);
-                            handler(itemGame);
-                            break;
-                        case 'Music':
-                            const itemMusic = new Music(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.performer.value, form.elements.album.value);
-                            handler(itemMusic);
-                            break;
-                        case 'Movie':
-                            const itemMovie = new Movie(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.director.value, form.elements.actors.value);
-                            handler(itemMovie);
-                            break;
-                        case 'Book':
-                            const itemBook = new Book(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.authors.value);
-                            handler(itemBook);
-                            break;
-                        default:
-                            break;
+                    if (dataId) {
+                        switch (form.name) {
+                            case 'Game':
+                                const itemGame: GameItem = {
+                                    id: dataId,
+                                    title: form.elements.title.value,
+                                    desc: form.elements.desc.value,
+                                    type: DataItemType.Game,
+                                    gente: form.elements.gente.value,
+                                    platform: form.elements.platform.value
+                                };
+                                handler(itemGame);
+                                break;
+                            case 'Music':
+                                const itemMusic: MusicItem = {
+                                    id: dataId,
+                                    title: form.elements.title.value,
+                                    desc: form.elements.desc.value,
+                                    type: DataItemType.Music,
+                                    gente: form.elements.gente.value,
+                                    performer: form.elements.performer.value,
+                                    album: form.elements.album.value
+                                };
+                                handler(itemMusic);
+                                break;
+                            case 'Movie':
+                                const itemMovie: MovieItem = {
+                                    id: dataId,
+                                    title: form.elements.title.value,
+                                    desc: form.elements.desc.value,
+                                    type: DataItemType.Movie,
+                                    gente: form.elements.gente.value,
+                                    director: form.elements.director.value,
+                                    actors: form.elements.actors.value
+                                };
+                                handler(itemMovie);
+                                break;
+                            case 'Book':
+                                const itemBook: BookItem = {
+                                    id: dataId,
+                                    title: form.elements.title.value,
+                                    desc: form.elements.desc.value,
+                                    type: DataItemType.Book,
+                                    gente: form.elements.gente.value,
+                                    authors: form.elements.authors.value
+                                };
+                                handler(itemBook);
+                                break;
+                            default:
+                                break;
+                        }
                     }
-
                 }
             }
         });

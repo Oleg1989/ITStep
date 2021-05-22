@@ -14,7 +14,9 @@ export class Controller implements ControllerInterface {
         this.view.bindGetItemsById(this.handlerGetItemsById);
         this.view.bindAddItem(this.handlerAddItem);
         this.view.bindDeleteItem(this.handlerDeleteItem);
+        this.view.bindEditItem(this.handlerEditItem);
         this.repo.bindItemsListChanged(this.onItemsListChanged);
+        this.view.bindFilingFormAddGetItemsById(this.handlerGetItemsByIdForEdit);
     }
     onItemsListChanged = (items: BasicItem[]) => {
         this.view.viewItems(items);
@@ -29,6 +31,12 @@ export class Controller implements ControllerInterface {
         let itemId = this.repo.getItemById(id);
         if (itemId) {
             this.view.viewItemDsc(itemId);
+        }
+    }
+    handlerGetItemsByIdForEdit = (id: string) => {
+        let item = this.repo.getItemById(id);
+        if (item) {
+            this.view.filingFormAdd(item);
         }
     }
     handlerAddItem = (item: BasicItem) => {

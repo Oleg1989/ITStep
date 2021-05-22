@@ -6,7 +6,7 @@ export class Book implements BookItem {
     id: string;
     title: string;
     desc: string;
-    readonly type: DataItemType.Book;
+    type: DataItemType.Book;
     gente: string;
     authors: string;
 

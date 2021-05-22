@@ -6,7 +6,7 @@ export class Movie implements MovieItem {
     id: string;
     title: string;
     desc: string;
-    readonly type: DataItemType.Movie;
+    type: DataItemType.Movie;
     gente: string;
     director: string;
     actors: string;

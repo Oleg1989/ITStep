@@ -6,7 +6,7 @@ export class Game implements GameItem {
     id: string;
     title: string;
     desc: string;
-    readonly type: DataItemType.Game;
+    type: DataItemType.Game;
     platform: string;
     gente: string;
 

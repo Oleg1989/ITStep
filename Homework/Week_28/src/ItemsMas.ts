@@ -66,6 +66,7 @@ export class DataItemsArray implements DataItemsArrayInterface {
                 }
             }
         });
+        this._commit(this.items);
     }
     get Items(): BasicItem[] {
         return this.items;
