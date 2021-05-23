@@ -16,6 +16,7 @@ export class Controller implements ControllerInterface {
         this.view.bindDeleteItem(this.handlerDeleteItem);
         this.view.bindEditItem(this.handlerEditItem);
         this.repo.bindItemsListChanged(this.onItemsListChanged);
+        this.repo.bindDescListChanged(this.onDescListChanged);
         this.view.bindFilingFormAddGetItemsById(this.handlerGetItemsByIdForEdit);
     }
     onItemsListChanged = (items: BasicItem[]) => {

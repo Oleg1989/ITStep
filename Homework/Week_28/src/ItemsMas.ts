@@ -17,10 +17,12 @@ export class DataItemsArray implements DataItemsArrayInterface {
         }
     }
     onItemsListChanged!: (items: BasicItem[]) => void;
+    onDescListChanged!: (items: BasicItem) => void;
     addItem(item: BasicItem): void {
         if (!this.items.find(x => x == item)) {
             this.items.push(item);
             this._commit(this.items);
+            this.onItemsListChanged(this.getItemsByType(item.type));
         }
         else {
             throw new Error("Element is not exist!!!");
@@ -66,6 +68,8 @@ export class DataItemsArray implements DataItemsArrayInterface {
                 }
             }
         });
+        this.onItemsListChanged(this.getItemsByType(item.type));
+        this.onDescListChanged(item);
         this._commit(this.items);
     }
     get Items(): BasicItem[] {
@@ -87,6 +91,9 @@ export class DataItemsArray implements DataItemsArrayInterface {
     }
     bindItemsListChanged = (handler: (items: BasicItem[]) => void) => {
         this.onItemsListChanged = handler;
+    }
+    bindDescListChanged = (handler: (items: BasicItem) => void) => {
+        this.onDescListChanged = handler;
     }
 
 }
