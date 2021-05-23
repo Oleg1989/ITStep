@@ -10,7 +10,6 @@ import { BookItem } from "./interface/bookItemInterface";
 import { MovieItem } from "./interface/movieItemInterface";
 import { GameItem } from "./interface/gameItemInterface";
 import { MusicItem } from "./interface/musicItemInterface";
-import { FormAddBookInterface } from "./interface/formAddBookInterface";
 
 export class View implements ViewInterface {
     divApp: HTMLElement;
@@ -747,32 +746,52 @@ export class View implements ViewInterface {
     filingFormAdd = (item: BasicItem) => {
         this.formAdd.setAttribute('data-id', `${item.id}`);
         let form = document.forms[0];
+        console.log(form);
+        let formInputs = document.getElementsByTagName('input');
         switch (item.type) {
             case DataItemType.Book:
-                form.elements.title.value = item.title;
-                form.elements.desc.value = item.desc;
-                form.elements.gente.value = (item as BookItem).gente;
-                form.elements.authors.value = (item as BookItem).authors;
+                formInputs[0].value = item.title;
+                formInputs[1].value = item.desc;
+                formInputs[2].value = (item as BookItem).gente;
+                formInputs[3].value = (item as BookItem).authors;
+                // form.elements.title.value = item.title;
+                // form.elements.desc.value = item.desc;
+                // form.elements.gente.value = (item as BookItem).gente;
+                // form.elements.authors.value = (item as BookItem).authors;
                 break;
             case DataItemType.Game:
-                form.elements.title.value = item.title;
-                form.elements.desc.value = item.desc;
-                form.elements.gente.value = (item as GameItem).gente;
-                form.elements.platform.value = (item as GameItem).platform;
+                formInputs[0].value = item.title;
+                formInputs[1].value = item.desc;
+                formInputs[2].value = (item as GameItem).gente;
+                formInputs[3].value = (item as GameItem).platform;
+                // form.elements.title.value = item.title;
+                // form.elements.desc.value = item.desc;
+                // form.elements.gente.value = (item as GameItem).gente;
+                // form.elements.platform.value = (item as GameItem).platform;
                 break;
             case DataItemType.Movie:
-                form.elements.title.value = item.title;
-                form.elements.desc.value = item.desc;
-                form.elements.gente.value = (item as MovieItem).gente;
-                form.elements.director.value = (item as MovieItem).director;
-                form.elements.actors.value = (item as MovieItem).actors;
+                formInputs[0].value = item.title;
+                formInputs[1].value = item.desc;
+                formInputs[2].value = (item as MovieItem).gente;
+                formInputs[3].value = (item as MovieItem).director;
+                formInputs[4].value = (item as MovieItem).actors;
+                // form.elements.title.value = item.title;
+                // form.elements.desc.value = item.desc;
+                // form.elements.gente.value = (item as MovieItem).gente;
+                // form.elements.director.value = (item as MovieItem).director;
+                // form.elements.actors.value = (item as MovieItem).actors;
                 break;
             case DataItemType.Music:
-                form.elements.title.value = item.title;
-                form.elements.desc.value = item.desc;
-                form.elements.gente.value = (item as MusicItem).gente;
-                form.elements.performer.value = (item as MusicItem).performer;
-                form.elements.album.value = (item as MusicItem).album;
+                formInputs[0].value = item.title;
+                formInputs[1].value = item.desc;
+                formInputs[2].value = (item as MovieItem).gente;
+                formInputs[3].value = (item as MusicItem).performer;
+                formInputs[4].value = (item as MusicItem).album;
+                // form.elements.title.value = item.title;
+                // form.elements.desc.value = item.desc;
+                // form.elements.gente.value = (item as MusicItem).gente;
+                // form.elements.performer.value = (item as MusicItem).performer;
+                // form.elements.album.value = (item as MusicItem).album;
                 break;
             default:
                 break;
@@ -819,23 +838,28 @@ export class View implements ViewInterface {
             event.preventDefault();
             let id = (event.target as Element).id;
             let form = document.forms[0];
+            let formInputs = document.getElementsByTagName('input');
             if (id) {
                 if (id === 'btn-add') {
                     switch (form.name) {
                         case 'Game':
-                            const itemGame = new Game(form.elements.title.value, form.elements.desc.value, form.elements.platform.value, form.elements.gente.value);
+                            const itemGame = new Game(formInputs[0].value, formInputs[1].value, formInputs[2].value, formInputs[3].value);
+                            //const itemGame = new Game(form.elements.title.value, form.elements.desc.value, form.elements.platform.value, form.elements.gente.value);
                             handler(itemGame);
                             break;
                         case 'Music':
-                            const itemMusic = new Music(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.performer.value, form.elements.album.value);
+                            const itemMusic = new Music(formInputs[0].value, formInputs[1].value, formInputs[2].value, formInputs[3].value, formInputs[4].value);
+                            //const itemMusic = new Music(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.performer.value, form.elements.album.value);
                             handler(itemMusic);
                             break;
                         case 'Movie':
-                            const itemMovie = new Movie(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.director.value, form.elements.actors.value);
+                            const itemMovie = new Movie(formInputs[0].value, formInputs[1].value, formInputs[2].value, formInputs[3].value, formInputs[4].value);
+                            // const itemMovie = new Movie(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.director.value, form.elements.actors.value);
                             handler(itemMovie);
                             break;
                         case 'Book':
-                            const itemBook = new Book(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.authors.value);
+                            const itemBook = new Book(formInputs[0].value, formInputs[1].value, formInputs[2].value, formInputs[3].value);
+                            // const itemBook = new Book(form.elements.title.value, form.elements.desc.value, form.elements.gente.value, form.elements.authors.value);
                             handler(itemBook);
                             break;
                         default:
@@ -863,6 +887,7 @@ export class View implements ViewInterface {
             event.preventDefault();
             let id = (event.target as Element).id;
             let form = document.forms[0];
+            let formInputs = document.getElementsByTagName('input');
             let dataId = form.dataset.id;
             if (id) {
                 if (id === 'edit') {
@@ -871,46 +896,68 @@ export class View implements ViewInterface {
                             case 'Game':
                                 const itemGame: GameItem = {
                                     id: dataId,
-                                    title: form.elements.title.value,
-                                    desc: form.elements.desc.value,
-                                    type: DataItemType.Game,
-                                    gente: form.elements.gente.value,
-                                    platform: form.elements.platform.value
+                                    title: formInputs[0].value,
+                                    desc: formInputs[1].value,
+                                    gente: formInputs[2].value,
+                                    platform: formInputs[3].value,
+                                    type: DataItemType.Game
+                                    // title: form.elements.title.value,
+                                    // desc: form.elements.desc.value,
+                                    // type: DataItemType.Game,
+                                    // gente: form.elements.gente.value,
+                                    // platform: form.elements.platform.value
                                 };
                                 handler(itemGame);
                                 break;
                             case 'Music':
                                 const itemMusic: MusicItem = {
                                     id: dataId,
-                                    title: form.elements.title.value,
-                                    desc: form.elements.desc.value,
+                                    title: formInputs[0].value,
+                                    desc: formInputs[1].value,
+                                    gente: formInputs[2].value,
+                                    performer: formInputs[3].value,
+                                    album: formInputs[4].value,
                                     type: DataItemType.Music,
-                                    gente: form.elements.gente.value,
-                                    performer: form.elements.performer.value,
-                                    album: form.elements.album.value
+                                    // title: form.elements.title.value,
+                                    // desc: form.elements.desc.value,
+                                    // type: DataItemType.Music,
+                                    // gente: form.elements.gente.value,
+                                    // performer: form.elements.performer.value,
+                                    // album: form.elements.album.value
                                 };
                                 handler(itemMusic);
                                 break;
                             case 'Movie':
                                 const itemMovie: MovieItem = {
                                     id: dataId,
-                                    title: form.elements.title.value,
-                                    desc: form.elements.desc.value,
+                                    title: formInputs[0].value,
+                                    desc: formInputs[1].value,
+                                    gente: formInputs[2].value,
+                                    director: formInputs[3].value,
+                                    actors: formInputs[4].value,
                                     type: DataItemType.Movie,
-                                    gente: form.elements.gente.value,
-                                    director: form.elements.director.value,
-                                    actors: form.elements.actors.value
+                                    // title: form.elements.title.value,
+                                    // desc: form.elements.desc.value,
+                                    // type: DataItemType.Movie,
+                                    // gente: form.elements.gente.value,
+                                    // director: form.elements.director.value,
+                                    // actors: form.elements.actors.value
                                 };
                                 handler(itemMovie);
                                 break;
                             case 'Book':
                                 const itemBook: BookItem = {
                                     id: dataId,
-                                    title: form.elements.title.value,
-                                    desc: form.elements.desc.value,
-                                    type: DataItemType.Book,
-                                    gente: form.elements.gente.value,
-                                    authors: form.elements.authors.value
+                                    title: formInputs[0].value,
+                                    desc: formInputs[1].value,
+                                    gente: formInputs[2].value,
+                                    authors: formInputs[3].value,
+                                    type: DataItemType.Book
+                                    // title: form.elements.title.value,
+                                    // desc: form.elements.desc.value,
+                                    // type: DataItemType.Book,
+                                    // gente: form.elements.gente.value,
+                                    // authors: form.elements.authors.value
                                 };
                                 handler(itemBook);
                                 break;

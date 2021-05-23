@@ -10,7 +10,7 @@ export class Game implements GameItem {
     platform: string;
     gente: string;
 
-    constructor(Title: string, Desc: string, Platform: "xbox" | "ps" | "pc", Genre: string) {
+    constructor(Title: string, Desc: string, Platform: string, Genre: string) {
         this.id = cuid();
         this.title = Title;
         this.desc = Desc;
