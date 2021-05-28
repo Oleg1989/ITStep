@@ -1,68 +1,69 @@
-import { io } from "socket.io-client";
+import '../node_modules/materialize-css/dist/css/materialize.min.css';
+import '../node_modules/materialize-css/dist/js/materialize.min';
+import { io, Socket } from "socket.io-client";
 
-const WS_URL = "ws://bt-21-playground-vppfc.ondigitalocean.app/";
+const socket: Socket = io("ws://bt-21-playground-vppfc.ondigitalocean.app/");
 
-const socket = io(WS_URL);
+const nicks = document.getElementById('nicks');
+const screen = document.getElementById('screen');
+const connected = document.getElementById('connected');
+let userList = {};
 
-socket.on('connect', () => {
-    //console.log(socket.id);
-    // socket.emit('reverse', 'Hello')
-    // socket.on('response', (str) => console.log(str))
-    //socket.emit('send_massage', "Oleg", "Welcom to my chat")
-    // socket.on('new_massage', (username, message) => console.log(`New massage from ${username} -> ${message}`))
-    let name = document.getElementById('name');
-    let message = document.getElementById('massege');
-    let screen = document.getElementById('screen');
-    const form = document.getElementById('form-massege');
-
-    if (form) {
-        form.addEventListener('click', (event: Event) => {
-            event.preventDefault();
-            if ((event.target as HTMLElement).id) {
-                if ((event.target as HTMLElement).id === 'send') {
-                    socket.emit('send_massage', (<HTMLInputElement>name).value, (<HTMLInputElement>message).value, socket.id);
-                    (<HTMLInputElement>message).value = '';
+document.addEventListener("DOMContentLoaded", function (event: Event) {
+    document.getElementById('add-nick')?.addEventListener('click', addNickName);
+    document.getElementById('message')?.addEventListener('click', sendMassage);
+    socket.on("connect", () => {
+        socket.emit("get_users");
+        socket.on("users_list", (users) => {
+            userList = users;
+            for (let key in users) {
+                if (users[key] !== 'Anonymous') {
+                    let li = document.createElement('li');
+                    li.classList.add('collection-item');
+                    li.textContent = `${users[key]}`;
+                    nicks?.append(li);
                 }
             }
         });
-    }
-    socket.on('new_massage', (username, message, userId) => {
-        console.log(message);
-        if (screen) {
-            let divMassege = document.createElement('div');
-            divMassege.style.margin = '5px';
 
-            let nameSpan = document.createElement('span');
-            nameSpan.textContent = `${username}:`;
-            nameSpan.style.color = 'red';
-            nameSpan.style.fontWeight = 'bolder';
-
-            let massegeSpan = document.createElement('span');
-            massegeSpan.textContent = ` ${message}`;
-
-            divMassege.append(nameSpan, massegeSpan);
-
-            screen.append(divMassege);
-        } else {
-            console.log('Error');
-        }
+        socket.on("new_user_connected", (socketId) => {
+            console.log(`${socketId} connected`);
+        });
+        socket.on("user_registered", (username, socketId) => {
+            console.log(`${socketId} registered as ${username}`);
+        });
+        socket.on("new_message", (message: string, socketId) => {
+            let li = document.createElement('li');
+            li.classList.add('collection-item');
+            li.textContent = `${message}`;
+            screen?.append(li);
+            console.log(`Message from ${socketId}: ${message}`);
+        });
     });
-
 });
 
-const addData = (username: string, massege: string) => {
-    let div = document.createElement('div');
-    div.style.margin = '5px';
-    let nameSpan = document.createElement('span');
-    nameSpan.textContent = `${username}:`;
-    nameSpan.style.color = 'red';
-    nameSpan.style.fontWeight = 'bolder';
 
-    let massegeSpan = document.createElement('span');
-    massegeSpan.textContent = ` ${massege}`;
+const addNickName = () => {
+    socket.emit("register", (<HTMLInputElement>document.getElementById('name')).value);
+    (<HTMLInputElement>document.getElementById('name')).value = '';
 
-    div.append(nameSpan, massegeSpan);
-    console.log(div);
+    socket.on("registration_completed", () => {
+        if (connected) {
+            connected.textContent = "I'm registered";
+            connected.classList.add('green-text');
+        }
+        console.log("I'm registered");
+        socket.emit("send_message", "Hi");
+    });
+}
+const sendMassage = () => {
+    socket.emit("send_message", (<HTMLInputElement>document.getElementById('textarea1')).value);
+    (<HTMLInputElement>document.getElementById('textarea1')).value = '';
 
-    return div;
+    socket.on("name_error", (error: string) => {
+        if (connected) {
+            connected.textContent = `${error}`
+            connected.classList.add('red-text');
+        }
+    });
 }
