@@ -7,7 +7,6 @@ const socket: Socket = io("ws://bt-21-playground-vppfc.ondigitalocean.app/");
 const nicks = document.getElementById('nicks');
 const screen = document.getElementById('screen');
 const connected = document.getElementById('connected');
-let userList = {};
 
 document.addEventListener("DOMContentLoaded", function (event: Event) {
     document.getElementById('add-nick')?.addEventListener('click', addNickName);
@@ -15,15 +14,41 @@ document.addEventListener("DOMContentLoaded", function (event: Event) {
     socket.on("connect", () => {
         socket.emit("get_users");
         socket.on("users_list", (users) => {
-            userList = users;
+            let counterAnonym: number = 0;
+            let counterUsers: number = 0;
+            let counterRegisteredUsers: number = 0;
+            console.log(users);
             for (let key in users) {
                 if (users[key] !== 'Anonymous') {
+                    if (nicks) {
+                        nicks.parentNode?.removeChild(nicks);
+                    }
                     let li = document.createElement('li');
                     li.classList.add('collection-item');
                     li.textContent = `${users[key]}`;
                     nicks?.append(li);
+                    counterRegisteredUsers++;
+                } else {
+                    counterAnonym++;
                 }
+                counterUsers++;
             }
+            if (counterRegisteredUsers === 0) {
+                if (nicks) {
+                    nicks.parentNode?.removeChild(nicks);
+                }
+                let li = document.createElement('li');
+                li.classList.add('collection-item');
+                li.textContent = 'There are no registered users!';
+                document.getElementById('nicks')?.append(li);
+            }
+            let anonym = document.createElement('p');
+            anonym.textContent = `Anonym - ${counterAnonym}`
+            document.getElementById('anonym')?.append(anonym);
+
+            let total = document.createElement('p');
+            total.textContent = `Total online - ${counterUsers}`;
+            document.getElementById('total')?.append(total);
         });
 
         socket.on("new_user_connected", (socketId) => {
