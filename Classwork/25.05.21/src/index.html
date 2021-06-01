@@ -40,28 +40,47 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12 ">
+            <div class="col s12">
                 <h2 class="header center-align"><span class="teal-text text-darken-2">Chat</span></h2>
                 <div class="card horizontal">
                     <div class="card-stacked">
                         <div class="card-content">
-                            <div class="col s9 z-depth-1" style="min-height: 400px; overflow-y: auto">
-                                <h5 id="connected" class="center-align"></h5>
-                                <ul class="collection" id='screen'>
-                                </ul>
+                            <div class="col s3 z-depth-1">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <ul class="collection" id='rooms'>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6 z-depth-1" style="min-height: 400px; height: 400px; overflow-y: auto">
+                                <div class="row">
+                                    <h5 id="connected" class="center-align"></h5>
+                                    <div class="col s12">
+                                        <ul class=" collection" id='screen'>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col s3 z-depth-1" style="min-height: 400px">
                                 <div class="row">
-                                    <div class="col s12 z-depth-1" style="overflow-y: auto">
-                                        <ul class="collection" id='nicks'>
-                                        </ul>
-                                    </div>
-                                    <div class="col s12 z-depth-1">
+                                    <div class="col s12">
                                         <div class="row">
-                                            <div class="col s12" id="anonym"></div>
+                                            <div class="col s12" style="height: 210px; overflow-y: auto">
+                                                <ul class="collection" id='nicks'>
+                                                </ul>
+                                            </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <hr>
+                                    <div class="col s12">
                                         <div class="row">
-                                            <div class="col s12" id="total"></div>
+                                            <div class="col s12" style="height: 100px">
+                                                <ul class="collection" id='anonym'>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
