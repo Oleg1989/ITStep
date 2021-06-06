@@ -21,6 +21,7 @@ export class UserList {
                 user.name = username;
             }
         });
+        this._usersUpdatedEvent.trigger();
     }
     get users(): User[] {
         return [...this._userList];

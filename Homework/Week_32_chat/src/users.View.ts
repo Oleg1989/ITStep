@@ -4,30 +4,22 @@ import { UsersUpdatedEvent } from "./userUpdatedEvent";
 export class UsersView implements IObserver {
     private _usersList: UserList;
     nicks: HTMLElement | null;
-    screen: HTMLElement | null;
-    time: HTMLElement | null;
-    connected: HTMLElement | null;
-    addNick: HTMLElement | null;
-    message: HTMLElement | null;
     anonym: HTMLElement | null;
-    rooms: HTMLElement | null;
-    constructor(userList: UserList, userUpdatedEvent: UsersUpdatedEvent) {
-        this._usersList = userList;
+    users: HTMLElement | null;
+    constructor(usersList: UserList, userUpdatedEvent: UsersUpdatedEvent) {
+        this._usersList = usersList;
         this.nicks = document.getElementById('nicks');
-        this.screen = document.getElementById('screen');
-        this.time = document.getElementById('time');
-        this.connected = document.getElementById('connected');
-        this.addNick = document.getElementById('add-nick');
-        this.message = document.getElementById('message');
         this.anonym = document.getElementById('anonym');
-        this.rooms = document.getElementById('rooms');
+        this.users = document.getElementById('users');
         userUpdatedEvent.subscribe(this);
-
     }
     render() {
         let counterAnonym: number = 0;
         let counterUsers: number = 0;
         let counterRegisteredUsers: number = 0;
+        if (this.users) {
+            this.users.textContent = 'Users';
+        }
         while (this.nicks?.firstChild) {
             this.nicks.removeChild(this.nicks.firstChild);
         }
@@ -44,11 +36,9 @@ export class UsersView implements IObserver {
             counterUsers++;
         });
         if (counterRegisteredUsers === 0) {
-            let li = document.createElement('li');
-            li.classList.add('collection-item');
-            li.classList.add('teal-text');
-            li.textContent = 'There are no registered users!';
-            this.nicks?.append(li);
+            if (this.users) {
+                this.users.textContent = 'There are no registered users!';
+            }
         }
         while (this.anonym?.firstChild) {
             this.anonym.removeChild(this.anonym.firstChild);
