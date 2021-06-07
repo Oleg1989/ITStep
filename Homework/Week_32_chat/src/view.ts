@@ -1,38 +1,44 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import { UsersUpdatedEvent } from "./userUpdatedEvent";
+import { UsersRoomUpdatedEvent } from "./userRoomUpdateEvent";
 import { UserList } from "./userList";
 import { UsersView } from "./users.View";
 import { DataChatView } from "./dataChatView";
 import { DataChat } from "./dataChat";
 import { DataChatInterface } from "./interface/dataChatInterface";
 import { User } from "./user";
-import { Room } from "./room";
+import { RoomList } from "./roomList";
 import { RoomInterface } from "./interface/roomInterface";
 import { RoomsView } from "./roomsView";
 import { UsersRoomView } from "./userRoomView";
+import { UsersRoomInterface } from "./interface/usersRoomInterface";
 import { io, Socket } from "socket.io-client";
 
 export class View {
     socket: Socket;
     connected: HTMLElement | null;
     userUpdatedEvent: UsersUpdatedEvent;
+    userRoomUpdatedEvent: UsersRoomUpdatedEvent;
     userList: UserList;
     dataChat: DataChat;
     userView: UsersView;
     dataChatView: DataChatView;
-    roomsView?: RoomsView;
-    rooms: Room;
-    usersRoomView?: UsersRoomView;
+    roomsView: RoomsView;
+    roomList: RoomList;
+    usersRoomView: UsersRoomView;
     constructor() {
         this.socket = io("ws://bt-21-playground-vppfc.ondigitalocean.app/");
         this.connected = document.getElementById('connected');
         this.userUpdatedEvent = new UsersUpdatedEvent();
+        this.userRoomUpdatedEvent = new UsersRoomUpdatedEvent();
         this.userList = new UserList(this.userUpdatedEvent);
         this.dataChat = new DataChat(this.userUpdatedEvent);
-        this.rooms = new Room(this.userUpdatedEvent);
+        this.roomList = new RoomList(this.userRoomUpdatedEvent);
         this.userView = new UsersView(this.userList, this.userUpdatedEvent);
         this.dataChatView = new DataChatView(this.dataChat, this.userUpdatedEvent);
+        this.roomsView = new RoomsView(this.roomList, this.userRoomUpdatedEvent);
+        this.usersRoomView = new UsersRoomView(this.roomList, this.userRoomUpdatedEvent);
 
         document.getElementById('add-nick')?.addEventListener('click', this.register);
         document.getElementById('rooms')?.addEventListener('click', this.viewRoom);
@@ -78,21 +84,32 @@ export class View {
                 this.connected.classList.add('green-text');
             }
         });
-        this.socket.on('users_list_for_room', (users, roomId) => {
-            console.log(users);
-            this.rooms.addUsersRoom(users);
-            this.usersRoomView = new UsersRoomView(this.rooms.usersRoom, this.userUpdatedEvent);
+        this.socket.on('users_list_for_room', (users: string[], roomId) => {
+            //let userList = this.userList.users;
+            let userList = this.userList.users.filter(user => {
+                for (let i = 0; i < users.length; i++) {
+                    return user.id === users[i];
+                }
+            });
+            const usersRoom: UsersRoomInterface = {
+                id: roomId,
+                users: userList
+            }
+            this.roomList.addUsersRoom(usersRoom);
+        });
+        this.socket.on('user_joined_room', (userId: string, roomId: string) => {
+            let user = this.userList.users.filter(user => {
+                return user.id === userId;
+            });
+            this.roomList.addUserRoom(user[0], roomId);
         });
 
     }
     getRooms = async () => {
         let response = await window.fetch('https://bt-21-playground-vppfc.ondigitalocean.app/rooms');
         if (response.ok) {
-            let roomsList = await response.json();
-            for (let i = 0; i < roomsList.length; i++) {
-                this.rooms.addRoom(roomsList[i]);
-            }
-            this.roomsView = new RoomsView(this.rooms.rooms, this.userUpdatedEvent);
+            let roomsList: RoomInterface[] = await response.json();
+            this.roomList.addRoom(roomsList);
         } else {
             alert("Ошибка HTTP: " + response.status);
         }
@@ -105,6 +122,7 @@ export class View {
     viewRoom = (event: Event) => {
         if ((event.target as HTMLElement)?.id) {
             this.roomsView?.renderRoom((event.target as HTMLElement)?.id);
+            this.roomList.idRoom = (event.target as HTMLElement)?.id;
             this.socket.emit('join_room', (event.target as HTMLElement)?.id);
             this.socket.emit('get_users_for_room', (event.target as HTMLElement)?.id);
         }

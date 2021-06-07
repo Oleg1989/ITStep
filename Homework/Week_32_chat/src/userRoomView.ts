@@ -1,29 +1,35 @@
-import { User } from "./user";
-import { UsersUpdatedEvent } from "./userUpdatedEvent";
+import { RoomList } from "./roomList";
+import { UsersRoomUpdatedEvent } from "./userRoomUpdateEvent";
 
 export class UsersRoomView implements IObserver {
-    private _usersRoomList: User[] = [];
+    private _usersRoomList: RoomList;
     nicks: HTMLElement | null;
     users: HTMLElement | null;
-    constructor(usersRoomList: User[], userUpdatedEvent: UsersUpdatedEvent) {
+    constructor(usersRoomList: RoomList, userRoomUpdatedEvent: UsersRoomUpdatedEvent) {
         this._usersRoomList = usersRoomList;
         this.nicks = document.getElementById('nicks');
         this.users = document.getElementById('users');
-        userUpdatedEvent.subscribe(this);
+        userRoomUpdatedEvent.subscribe(this);
     }
     render() {
-        if (this.users) {
-            this.users.textContent = `Users room`;
-        }
+        this._usersRoomList.rooms.forEach(room => {
+            if (this._usersRoomList.idRoom === room.id) {
+                if (this.users) {
+                    this.users.textContent = `Room - ${room.title}`;
+                }
+            }
+        });
         while (this.nicks?.firstChild) {
             this.nicks.removeChild(this.nicks.firstChild);
         }
-        this._usersRoomList.forEach(user => {
-            if (user.name !== 'Anonymous') {
-                let li = document.createElement('li');
-                li.classList.add('collection-item');
-                li.textContent = `${user.name}`;
-                this.nicks?.append(li);
+        this._usersRoomList.usersRoom.forEach(room => {
+            if (this._usersRoomList.idRoom === room.id) {
+                room.users.forEach(user => {
+                    let li = document.createElement('li');
+                    li.classList.add('collection-item');
+                    li.textContent = `${user.name}`;
+                    this.nicks?.append(li);
+                });
             }
         });
     }
