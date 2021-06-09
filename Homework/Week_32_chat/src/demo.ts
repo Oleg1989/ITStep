@@ -24,11 +24,4 @@ const packingStr = (str: string) => {
 const unpackingStr = (str: string) => {
 
 }
-const save = () => {
-    let arr
-
-}
-const multiplication = (a: number, b: number) => {
-    return a * b;
-}
 console.log(packingStr(str));
