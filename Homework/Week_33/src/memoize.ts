@@ -1,38 +1,45 @@
-interface FnInterface {
-    arg: string;
-    result: string;
-}
 
 const add = (a: number, b: number) => a + b;
-const deduct = (a: number, b: number) => a + b;
+const deduct = (a: number, b: number) => a - b;
+const getStr = (str: string) => 'Hello ' + str;
 
-const memoize = (fn: Function): any => {
+const memoize = (fn: Function) => {
 
-    let arrFn: FnInterface[] = [];
-    let newFn: FnInterface = {
-        arg: JSON.stringify(fn.arguments),
-        result: JSON.stringify(`${fn()}`),
-    };
-    arrFn.forEach(el => {
-        if (arrFn.length == 0) {
-            arrFn.push(newFn);
-        } else {
-            if (el.arg === newFn.arg && el.result == newFn.result) {
-                return JSON.parse(newFn.result);
-            } else {
-                return fn();
-            }
-        }
-    })
+    const cache: typeof fn.arguments = {};
+
+    return (...args: typeof fn.arguments) => {
+        const stringifiesdArgs = JSON.stringify(args);
+        const result = cache[stringifiesdArgs] || fn(...args);
+
+        cache[stringifiesdArgs] = result;
+
+        console.log(cache);
+
+        return result;
+    }
 }
 
 const memoizedAdd = memoize(add);
 const memoizedDeduct = memoize(deduct);
+const memoizedGetStr = memoize(getStr);
 
-memoizedAdd(1, 2);
-memoizedAdd(4, 2);
-memoizedAdd(1, 2);
+console.time();
+console.log(memoizedAdd(1, 2));
+console.timeEnd();
+console.time();
+console.log(memoizedAdd(1, 2));
+console.timeEnd();
 
-memoizedDeduct(8, 2);
-memoizedDeduct(4, 2);
-memoizedDeduct(8, 2);
+console.time();
+console.log(memoizedDeduct(8, 2));
+console.timeEnd();
+console.time();
+console.log(memoizedDeduct(8, 2));
+console.timeEnd();
+
+console.time();
+console.log(memoizedGetStr('Oleg'));
+console.timeEnd();
+console.time();
+console.log(memoizedGetStr('Oleg'));
+console.timeEnd();
