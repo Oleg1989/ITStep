@@ -1,4 +1,4 @@
-import { User } from "..//user";
+import { User } from "../repo/user";
 
 export interface UsersRoomInterface {
     id: string;

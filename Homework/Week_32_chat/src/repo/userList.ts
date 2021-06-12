@@ -1,4 +1,4 @@
-import { UsersUpdatedEvent } from "./userUpdatedEvent";
+import { UsersUpdatedEvent } from "../events/userUpdatedEvent";
 import { User } from "./user";
 
 export class UserList {

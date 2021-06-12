@@ -1,5 +1,6 @@
-import { DataChat } from "./dataChat";
-import { UsersUpdatedEvent } from "./userUpdatedEvent";
+import { DataChat } from "../repo/dataChat";
+import { UsersUpdatedEvent } from "../events/userUpdatedEvent";
+import { IObserver } from "../interface/iobserver";
 
 export class DataChatView implements IObserver {
     private _dataChat: DataChat;

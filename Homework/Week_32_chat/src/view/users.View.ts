@@ -1,5 +1,6 @@
-import { UserList } from "./userList";
-import { UsersUpdatedEvent } from "./userUpdatedEvent";
+import { UserList } from "../repo/userList";
+import { UsersUpdatedEvent } from "../events/userUpdatedEvent";
+import { IObserver } from "../interface/iobserver";
 
 export class UsersView implements IObserver {
     private _usersList: UserList;

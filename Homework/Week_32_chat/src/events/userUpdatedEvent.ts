@@ -1,7 +1,7 @@
-import { IEvent } from "./interface/ievent";
-import { IObserver } from "./interface/iobserver";
+import { IEvent } from "../interface/ievent";
+import { IObserver } from "../interface/iobserver";
 
-export class UsersRoomUpdatedEvent implements IEvent {
+export class UsersUpdatedEvent implements IEvent {
     private _subscribers: IObserver[] = [];
     trigger() {
         this._subscribers.forEach(s => s.notify());

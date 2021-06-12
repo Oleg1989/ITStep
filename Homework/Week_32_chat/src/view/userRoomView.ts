@@ -1,5 +1,6 @@
-import { RoomList } from "./roomList";
-import { UsersRoomUpdatedEvent } from "./userRoomUpdateEvent";
+import { RoomList } from "../repo/roomList";
+import { UsersRoomUpdatedEvent } from "../events/userRoomUpdateEvent";
+import { IObserver } from "../interface/iobserver";
 
 export class UsersRoomView implements IObserver {
     private _usersRoomList: RoomList;
