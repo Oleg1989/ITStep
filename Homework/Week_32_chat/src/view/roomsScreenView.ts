@@ -1,6 +1,5 @@
 import { UsersRoomUpdatedEvent } from "../events/userRoomUpdateEvent";
 import { RoomList } from "../repo/roomList";
-import { RoomInterface } from "../interface/roomInterface";
 import { IObserver } from "../interface/iobserver";
 
 export class RoomsScreenView implements IObserver {

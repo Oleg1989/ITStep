@@ -1,5 +1,4 @@
 import { RoomInterface } from "../interface/roomInterface";
-import { DataChatInterface } from "../interface/dataChatInterface";
 import { UsersRoomUpdatedEvent } from "../events/userRoomUpdateEvent";
 import { User } from "./user";
 import { UsersRoomInterface } from "../interface/usersRoomInterface";
@@ -18,14 +17,17 @@ export class RoomList {
         return this._dataRooms;
     }
     addDataRoom(dataRoom: DataRoomInterface) {
-        if (this._dataRooms.length === 0) {
-            this._dataRooms.push(dataRoom);
-        } else {
+        if (this._dataRooms.length > 0) {
             for (let i = 0; i < this._dataRooms.length; i++) {
                 if (this._dataRooms[i].id === dataRoom.id) {
-                    this._dataRooms.push(dataRoom);
+                    this._dataRooms[i].data.push(dataRoom.data[0]);
+                    this._usersRoomUpdatedEvent.trigger();
+                    return;
                 }
             }
+            this._dataRooms.push(dataRoom);
+        } else {
+            this._dataRooms.push(dataRoom);
         }
         this._usersRoomUpdatedEvent.trigger();
     }
@@ -51,8 +53,25 @@ export class RoomList {
                 }
             }
         });
-        console.log(this._usersRoom);
         this._usersRoomUpdatedEvent.trigger();
+    }
+    deleteUserRoom(user: User, roomId: string) {
+        console.log(user);
+        this._usersRoom.forEach(room => {
+            if (room.id === roomId) {
+                console.log(room.id);
+                console.log(roomId);
+                for (let i = 0; i < room.users.length; i++) {
+                    if (room.users[i].id == user.id) {
+                        console.log('delete');
+                        room.users = room.users.filter(userRoom => userRoom.id !== user.id);
+                        this._usersRoomUpdatedEvent.trigger();
+                    }
+                }
+            }
+        });
+        console.log(this._usersRoom);
+        // this._usersRoomUpdatedEvent.trigger();
     }
     addRoom(rooms: RoomInterface[]) {
         rooms.forEach(room => {

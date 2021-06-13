@@ -24,10 +24,6 @@ export class RoomsView implements IObserver {
             room.textContent = element.title;
             room.id = `${element.id}`;
 
-            // let span = document.createElement('span');
-            // span.classList.add('new');
-            // span.classList.add('badge');
-            // room.append(span);
             document.getElementById('rooms')?.append(room);
         });
     }

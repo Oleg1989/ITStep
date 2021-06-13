@@ -15,4 +15,7 @@ export class User {
     get id(): string {
         return `${this._userId}`;
     }
+    set id(id: string) {
+        this._userId = id;
+    }
 }

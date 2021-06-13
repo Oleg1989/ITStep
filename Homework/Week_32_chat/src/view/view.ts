@@ -103,7 +103,9 @@ export class View {
 
             let userList = this.userList.users.filter(user => {
                 for (let i = 0; i < users.length; i++) {
-                    return user.id === users[i];
+                    if (user.id === users[i]) {
+                        return user;
+                    }
                 }
             });
             //console.log(userList);
@@ -128,16 +130,24 @@ export class View {
                     }
                 }
             });
-        });
-        this.socket.on('leave_success', (roomId: string) => {
-            this.roomList.rooms.forEach(room => {
-                if (room.id == roomId) {
-                    if (this.connected) {
-                        this.connected.textContent = `You left the ${room.title} room!`;
-                        this.connected.classList.add('green-text');
-                    }
+            let nikeName = '';
+            this.userList.users.forEach(user => {
+                if (user.id == this.socket.id) {
+                    nikeName = user.name;
                 }
             });
+            let user = new User(this.socket.id, nikeName);
+            this.roomList.addUserRoom(user, roomId);
+        });
+        this.socket.on('leave_success', (roomId: string) => {
+            let nikeName = '';
+            this.userList.users.forEach(user => {
+                if (user.id == this.socket.id) {
+                    nikeName = user.name;
+                }
+            });
+            let user = new User(this.socket.id, nikeName);
+            this.roomList.deleteUserRoom(user, roomId);
         });
         this.socket.on('new_message_to_room', (message: string, roomId: string, userId: string) => {
             let nickName: string = '';
@@ -154,8 +164,6 @@ export class View {
                     time: `${time.getFullYear()} / ${time.getMonth() + 1} / ${time.getDate()} - (${time.getHours()}:${time.getMinutes()}:${time.getSeconds()})`
                 }]
             };
-            console.log(dataRoom);
-
             this.roomList.addDataRoom(dataRoom);
         });
 
@@ -178,15 +186,15 @@ export class View {
         this.userList.users.forEach(user => {
             if (user.id == this.socket.id && user.name !== 'Anonymous') {
                 if ((event.target as HTMLElement)?.id) {
-                    this.roomsView?.renderRoom((event.target as HTMLElement)?.id);
-                    // if (this.roomList.idRoom) {
-                    //     this.socket.emit('leave_room', this.roomList.idRoom);
-                    // } else {
-                    //     this.roomList.idRoom = (event.target as HTMLElement)?.id;
-                    //     this.socket.emit('join_room', (event.target as HTMLElement)?.id);
-                    // }
+                    if (this.roomList.idRoom) {
+                        this.socket.emit('leave_room', this.roomList.idRoom);
+                        this.socket.emit('join_room', (event.target as HTMLElement)?.id);
+                        this.roomsView?.renderRoom((event.target as HTMLElement)?.id);
+                    } else {
+                        this.socket.emit('join_room', (event.target as HTMLElement)?.id);
+                        this.roomsView?.renderRoom((event.target as HTMLElement)?.id);
+                    }
                     this.roomList.idRoom = (event.target as HTMLElement)?.id;
-                    this.socket.emit('join_room', (event.target as HTMLElement)?.id);
                     this.socket.emit('get_users_for_room', (event.target as HTMLElement)?.id);
                 }
             } else {
@@ -196,20 +204,10 @@ export class View {
                 }
             }
         });
-        // socket.emit('leave_room', ROOM_ID)
-        // socket.on('leave_success', (roomId) => { })
-        // socket.on('user_left_room', (userId, roomId) => { })
-        // socket.emit('msg_to_room', "Message", ROOM_ID)
-        // socket.on('new_message_to_room', (message, roomId, userId) => { })
-
     }
     sendMessage = (event: Event) => {
         let message = document.getElementById('textarea1');
         if ((message as HTMLInputElement).value !== '') {
-            this.socket.emit('msg_to_room', (message as HTMLInputElement).value, this.roomList.idRoom);
-            if (this.connected) {
-                //this.connected.textContent = '';
-            }
 
             let nickName: string = '';
             this.userList.users.forEach(user => {
@@ -226,24 +224,26 @@ export class View {
                 }]
             };
 
-            dataRoom.data.forEach(data => {
-                let liScreen = document.createElement('li');
-                liScreen.classList.add('collection-item');
-                liScreen.classList.add('teal-text');
-                liScreen.classList.add('text-darken-2');
-                liScreen.textContent = `${data.message}`;
-                this.screen?.append(liScreen);
+            let liScreen = document.createElement('li');
+            liScreen.classList.add('collection-item');
+            liScreen.classList.add('teal-text');
+            liScreen.classList.add('text-darken-2');
+            liScreen.textContent = `${dataRoom.data[0].message}`;
+            this.screen?.append(liScreen);
 
-                let liTime = document.createElement('li');
-                liTime.classList.add('collection-item');
-                liTime.classList.add('blue-text');
-                liTime.classList.add('text-darken-2');
-                liTime.textContent = `${data.time}`;
-                this.time?.append(liTime);
-            });
+            let liTime = document.createElement('li');
+            liTime.classList.add('collection-item');
+            liTime.classList.add('blue-text');
+            liTime.classList.add('text-darken-2');
+            liTime.textContent = `${dataRoom.data[0].time}`;
+            this.time?.append(liTime);
 
+            this.socket.emit('msg_to_room', (message as HTMLInputElement).value, this.roomList.idRoom);
             this.roomList.addDataRoom(dataRoom);
             (message as HTMLInputElement).value = '';
+            if (this.connected) {
+                this.connected.textContent = '';
+            }
         } else {
             if (this.connected) {
                 this.connected.textContent = "Fill in the input field!";
