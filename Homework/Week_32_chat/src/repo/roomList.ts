@@ -12,6 +12,12 @@ export class RoomList {
     private _usersRoomUpdatedEvent: UsersRoomUpdatedEvent;
     constructor(userRoomUpdatedEvent: UsersRoomUpdatedEvent) {
         this._usersRoomUpdatedEvent = userRoomUpdatedEvent;
+        let dataRooms = localStorage.getItem("dataRooms");
+        if (dataRooms) {
+            this._dataRooms = JSON.parse(dataRooms);
+        } else {
+            this._dataRooms = [];
+        }
     }
     get dataRooms() {
         return this._dataRooms;
@@ -20,7 +26,13 @@ export class RoomList {
         if (this._dataRooms.length > 0) {
             for (let i = 0; i < this._dataRooms.length; i++) {
                 if (this._dataRooms[i].id === dataRoom.id) {
-                    this._dataRooms[i].data.push(dataRoom.data[0]);
+                    if (this._dataRooms[i].data.length > 99) {
+                        this._dataRooms[i].data.shift();
+                        this._dataRooms[i].data.push(dataRoom.data[0]);
+                    } else {
+                        this._dataRooms[i].data.push(dataRoom.data[0]);
+                    }
+                    this._commit(this._dataRooms);
                     this._usersRoomUpdatedEvent.trigger();
                     return;
                 }
@@ -29,6 +41,7 @@ export class RoomList {
         } else {
             this._dataRooms.push(dataRoom);
         }
+        this._commit(this._dataRooms);
         this._usersRoomUpdatedEvent.trigger();
     }
     addUsersRoom(usersRoom: UsersRoomInterface) {
@@ -56,22 +69,16 @@ export class RoomList {
         this._usersRoomUpdatedEvent.trigger();
     }
     deleteUserRoom(user: User, roomId: string) {
-        console.log(user);
         this._usersRoom.forEach(room => {
             if (room.id === roomId) {
-                console.log(room.id);
-                console.log(roomId);
                 for (let i = 0; i < room.users.length; i++) {
                     if (room.users[i].id == user.id) {
-                        console.log('delete');
                         room.users = room.users.filter(userRoom => userRoom.id !== user.id);
-                        this._usersRoomUpdatedEvent.trigger();
                     }
                 }
             }
         });
-        console.log(this._usersRoom);
-        // this._usersRoomUpdatedEvent.trigger();
+        this._usersRoomUpdatedEvent.trigger();
     }
     addRoom(rooms: RoomInterface[]) {
         rooms.forEach(room => {
@@ -84,5 +91,8 @@ export class RoomList {
     }
     get rooms(): RoomInterface[] {
         return [...this._rooms];
+    }
+    _commit(dataRooms: DataRoomInterface[]) {
+        localStorage.setItem("dataRooms", JSON.stringify(dataRooms));
     }
 }

@@ -1,17 +1,16 @@
-import { UsersRoomUpdatedEvent } from "../events/userRoomUpdateEvent";
+import { UsersUpdatedEvent } from "../events/userUpdatedEvent";
 import { RoomList } from "../repo/roomList";
-import { RoomInterface } from "../interface/roomInterface";
 import { IObserver } from "../interface/iobserver";
 
 export class RoomsView implements IObserver {
     private _roomList: RoomList;
     rooms: HTMLElement | null;
     message: HTMLElement | null;
-    constructor(roomList: RoomList, userRoomUpdatedEvent: UsersRoomUpdatedEvent) {
+    constructor(roomList: RoomList, userUpdatedEvent: UsersUpdatedEvent) {
         this._roomList = roomList;
         this.rooms = document.getElementById('rooms');
         this.message = document.getElementById('message');
-        userRoomUpdatedEvent.subscribe(this);
+        userUpdatedEvent.subscribe(this);
     }
     render() {
         while (this.rooms?.firstChild) {
@@ -21,6 +20,7 @@ export class RoomsView implements IObserver {
             let room = document.createElement('li');
             room.classList.add('collection-item');
             room.classList.add('teal-text');
+            room.style.cursor = 'pointer';
             room.textContent = element.title;
             room.id = `${element.id}`;
 

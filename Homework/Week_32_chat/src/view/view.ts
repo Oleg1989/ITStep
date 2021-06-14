@@ -45,7 +45,7 @@ export class View {
         this.roomList = new RoomList(this.userRoomUpdatedEvent);
         this.userView = new UsersView(this.userList, this.userUpdatedEvent);
         this.dataChatView = new DataChatView(this.dataChat, this.userUpdatedEvent);
-        this.roomsView = new RoomsView(this.roomList, this.userRoomUpdatedEvent);
+        this.roomsView = new RoomsView(this.roomList, this.userUpdatedEvent);
         this.roomsScreenView = new RoomsScreenView(this.roomList, this.userRoomUpdatedEvent);
         this.usersRoomView = new UsersRoomView(this.roomList, this.userRoomUpdatedEvent);
 
@@ -99,8 +99,6 @@ export class View {
             }
         });
         this.socket.on('users_list_for_room', (users: string[], roomId: string) => {
-            //let userList = this.userList.users;
-
             let userList = this.userList.users.filter(user => {
                 for (let i = 0; i < users.length; i++) {
                     if (user.id === users[i]) {
@@ -108,7 +106,6 @@ export class View {
                     }
                 }
             });
-            //console.log(userList);
             const usersRoom: UsersRoomInterface = {
                 id: roomId,
                 users: userList
@@ -120,6 +117,16 @@ export class View {
                 return user.id === userId;
             });
             this.roomList.addUserRoom(user[0], roomId);
+        });
+        this.socket.on('user_left_room', (userId, roomId) => {
+            let nikeName = '';
+            this.userList.users.forEach(user => {
+                if (user.id == userId) {
+                    nikeName = user.name;
+                }
+            });
+            let user = new User(userId, nikeName);
+            this.roomList.deleteUserRoom(user, roomId);
         });
         this.socket.on('join_success', (roomId: string) => {
             this.roomList.rooms.forEach(room => {
