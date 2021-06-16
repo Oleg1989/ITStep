@@ -1,28 +1,46 @@
-import { BasicInterface } from "./interface/basicInterface";
+import { Question } from "./classElemet/question";
+import { Answer } from "./classElemet/answer";
 
-export class Repo {
-    private _elementQuestions: BasicInterface[];
+export class Model {
+    private _elementQuestions: Question[];
+    private _elementAnswers: Answer[];
     constructor() {
-        let arrElements = localStorage.getItem("items");
-        if (arrElements) {
-            this._elementQuestions = JSON.parse(arrElements);
+        let arrQuestions = localStorage.getItem("elementQuestions");
+        if (arrQuestions) {
+            this._elementQuestions = JSON.parse(arrQuestions);
         } else {
             this._elementQuestions = [];
         }
+        let arrAnswers = localStorage.getItem("elementAnswers");
+        if (arrAnswers) {
+            this._elementAnswers = JSON.parse(arrAnswers);
+        } else {
+            this._elementAnswers = [];
+        }
     }
-    get questions(): BasicInterface[] {
+    get questions(): Question[] {
         return this._elementQuestions;
     }
-    addItem(element: BasicInterface): void {
-        if (!this._elementQuestions.find(x => x == element)) {
-            this._elementQuestions.push(element);
-            this._commit(this._elementQuestions);
+    get answers(): Answer[] {
+        return this._elementAnswers;
+    }
+    addQuestion(question: Question): void {
+        this._elementQuestions.push(question);
+        this._commitQuestions(this._elementQuestions);
+    }
+    addAnswer(answer: Answer): void {
+        if (!this._elementAnswers.find(element => element !== answer)) {
+            this._elementAnswers.push(answer);
+            this._commitAnswers(this._elementAnswers);
         }
         else {
             throw new Error("Element is not exist!!!");
         }
     }
-    _commit(elements: BasicInterface[]) {
-        localStorage.setItem("elementQuestions", JSON.stringify(elements));
+    _commitQuestions(questions: Question[]) {
+        localStorage.setItem("elementQuestions", JSON.stringify(questions));
+    }
+    _commitAnswers(answers: Answer[]) {
+        localStorage.setItem("elementAnswers", JSON.stringify(answers));
     }
 }

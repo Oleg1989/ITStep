@@ -1,4 +1,6 @@
-import { QuestionInterface } from "./interface/questionsInterface";
+import { Question } from "./classElemet/question";
+import { Answer } from "./classElemet/answer";
+import { TypeAnswer } from "./enum/typeAnswer";
 import cuid from "cuid";
 
 export class View {
@@ -58,7 +60,11 @@ export class View {
         inputButton.style.cursor = 'pointer';
         inputButton.addEventListener('click', this.viewQuestins);
 
-        numberFormQuestin.append(title, inputNumber, inputButton);
+        let divNewQuestin = document.createElement('div');
+        divNewQuestin.id = 'new-question';
+        divNewQuestin.style.width = '100%';
+
+        numberFormQuestin.append(title, inputNumber, inputButton, divNewQuestin);
         this.divQuestions.append(numberFormQuestin);
 
         this.divAnswers = document.createElement('div');
@@ -76,6 +82,10 @@ export class View {
 
     viewQuestins = (event: Event) => {
         event.preventDefault();
+        let questions = document.getElementById('new-question');
+        while (questions?.firstChild) {
+            questions.removeChild(questions.firstChild);
+        }
         let alert = document.getElementById('alert');
         if (alert) {
             alert.textContent = 'Задайте кількість запитань (від 1 до 5)';
@@ -100,7 +110,7 @@ export class View {
                     question.setAttribute('data-type', 'question');
                     divQuestions.append(question);
                 }
-                this.divQuestions.append(divQuestions);
+                questions?.append(divQuestions);
                 let sentInput = document.createElement('input');
                 sentInput.type = 'submit';
                 sentInput.value = 'Sent';
@@ -215,9 +225,7 @@ export class View {
             this.formAdd.style.display = 'none';
         }
     }
-
     viewAnswerInput = (event: Event) => {
-        //event.preventDefault();
         let id = (event.target as HTMLElement).id;
         let divAnswer = document.getElementById('div-answer');
         if (id === 'one' && document.getElementById('input-one') == null) {
@@ -225,7 +233,6 @@ export class View {
                 divAnswer.removeChild(divAnswer.firstChild);
             }
             let pOne = document.getElementById('one');
-            console.log(pOne);
             if (pOne) {
                 let answer = document.createElement('input');
                 answer.type = 'text';
@@ -265,5 +272,35 @@ export class View {
             event.preventDefault();
         }
 
+    }
+    bindAddQuestionModalQuestin(handler: (question: Question) => void) {
+        this.formAdd.addEventListener('click', (event: Event) => {
+            if ((event.target as HTMLElement).id === 'btn-add') {
+                this.formAdd.style.display = 'none';
+                let inputAnswer = document.getElementById('div-answer')?.getElementsByTagName('input');
+                let type: TypeAnswer;
+                let answers: string | string[] = [];
+                if (inputAnswer) {
+                    if (inputAnswer.length == 1) {
+                        type = TypeAnswer.One;
+                        answers = inputAnswer[0].value;
+                    } else {
+                        type = TypeAnswer.Many;
+                        for (let i = 0; i < inputAnswer.length; i++) {
+                            answers.push(inputAnswer[i].value);
+                        }
+                    }
+                } else {
+                    type = TypeAnswer.FreeForm;
+                }
+                const question = new Question(
+                    (document.getElementById('title') as HTMLInputElement).value,
+                    (document.getElementById('desc') as HTMLInputElement).value,
+                    type,
+                    answers
+                );
+                handler(question);
+            }
+        });
     }
 }

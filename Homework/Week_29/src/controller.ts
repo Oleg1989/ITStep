@@ -1,11 +1,18 @@
-import { Repo } from "./model";
+import { Model } from "./model";
 import { View } from "./view";
+import { Question } from "./classElemet/question";
+import { Answer } from "./classElemet/answer";
 
 export class Controller {
     view: View;
-    repo: Repo;
-    constructor(view: View, repo: Repo) {
+    model: Model;
+    constructor(view: View, model: Model) {
         this.view = view;
-        this.repo = repo;
+        this.model = model;
+
+        this.view.bindAddQuestionModalQuestin(this.handlerAddaddQuestion);
+    }
+    handlerAddaddQuestion = (question: Question) => {
+        this.model.addQuestion(question);
     }
 }
