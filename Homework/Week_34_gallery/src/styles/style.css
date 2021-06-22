@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.container {
+	width: 90%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+
+}
+#main {
+	width: 400px;
+	height: 600px;
+	border: 2px solid red;
+}
+#gallery {
+	width: 80px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+img {
+	flex-grow: 2; 
+	width: 70px;
+	margin: 5px;
+}
