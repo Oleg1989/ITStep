@@ -12,6 +12,7 @@ export class Gallery implements GalleryInterface {
         this.addRoutes();
     }
     addRoutes = async () => {
+        const mainContainer = document.getElementById('main');
         let response = await window.fetch(this.url);
         if (response.ok) {
             let pictureList: PictureInterface[] = await response.json();
@@ -36,7 +37,14 @@ export class Gallery implements GalleryInterface {
                 mainContainer.append(h1);
             }
         } else {
-            alert("Ошибка HTTP: " + response.status);
+            while (mainContainer?.firstChild) {
+                mainContainer.removeChild(mainContainer.firstChild);
+            }
+            let h1 = document.createElement('h1');
+            h1.textContent = '404 - не знайдено!!!';
+            h1.style.textAlign = 'center';
+
+            mainContainer?.append(h1);
         }
     }
     navigate = async (path: string, push: boolean) => {
