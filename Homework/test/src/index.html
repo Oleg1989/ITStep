@@ -4,28 +4,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <title>Store warehouse manager</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <div id="main">
-            <!-- <img id="img_1" src="https://picsum.photos/id/237/200/300" alt="photo 1">
-            <img id="img_2" src="https://picsum.photos/id/238/200/300" alt="photo 2">
-            <img id="img_3" src="https://picsum.photos/id/239/200/300" alt="photo 3">
-            <img id="img_4" src="https://picsum.photos/id/240/200/300" alt="photo 4">
-            <img id="img_5" src="https://picsum.photos/id/241/200/300" alt="photo 5"> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col s12">
+                <nav>
+                    <div class="nav-wrapper blue-grey darken-1">
+                        <a href="#!" class="brand-logo center">Store warehouse manager</a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a class="waves-effect waves-light btn modal-trigger grey darken-2" href="#modal1">Add
+                                    Product
+                                    <i class="material-icons right">send</i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4 class="center-align">Add Product</h4>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="title" type="text" class="validate">
+                                        <label for="title">Title</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select>
+                                            <option value="" disabled selected>Choose your option
+                                            </option>
+                                            <option value="Bulk products">Bulk products</option>
+                                            <option value="Liquid products">Liquid products</option>
+                                        </select>
+                                        <label>Product type</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="quantity-of-product" type="number" class="validate">
+                                        <label for="quantity-of-product">Quantity of product</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="gallery">
-            <a href="/img_1" alt="img 1"><img src="https://picsum.photos/id/237/200/300" alt="photo 1"></a>
-            <a href="/img_2" alt="img 2"><img src="https://picsum.photos/id/238/200/300" alt="photo 2"></a>
-            <a href="/img_3" alt="img 3"><img src="https://picsum.photos/id/239/200/300" alt="photo 3"></a>
-            <a href="/img_4" alt="img 4"><img src="https://picsum.photos/id/240/200/300" alt="photo 4"></a>
-            <a href="/img_5" alt="img 5"><img src="https://picsum.photos/id/241/200/300" alt="photo 3"></a>
+        <div class="row">
+            <div class="col s6">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="grey-text text-darken-2 center-align">Bulk products</h5>
+                        <ul class="collapsible">
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">filter_drama</i>First
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="progress">
+                                        <div class="determinate" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col s12">
+                        <h5 class="grey-text text-darken-2 center-align">Liquid products</h5>
+                        <ul class="collapsible">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                                <div class="collapsible-body">
+                                    <div class="progress">
+                                        <div class="determinate" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col s6">
+                <h5 class="grey-text text-darken-2 center-align">The balance of the store</h5>
+                <table class="striped centered z-depth-2">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Item Name</th>
+                            <th>Item Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Alvin</td>
+                            <td>Eclair</td>
+                            <td>$0.87</td>
+                        </tr>
+                        <tr>
+                            <td>Alan</td>
+                            <td>Jellybean</td>
+                            <td>$3.76</td>
+                        </tr>
+                        <tr>
+                            <td>Jonathan</td>
+                            <td>Lollipop</td>
+                            <td>$7.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="./index.ts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+
+            var el = document.querySelectorAll('select');
+            var inst = M.FormSelect.init(el);
+
+            // Collapsible
+            var e = document.querySelectorAll('.collapsible');
+            var ins = M.Collapsible.init(e);
+        });
+    </script>
 </body>
 
 </html>
