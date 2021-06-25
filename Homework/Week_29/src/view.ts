@@ -297,7 +297,8 @@ export class View {
                     (document.getElementById('title') as HTMLInputElement).value,
                     (document.getElementById('desc') as HTMLInputElement).value,
                     type,
-                    answers
+                    answers,
+                    (document.getElementById('correct-answer') as HTMLInputElement).value,
                 );
                 handler(question);
             }
