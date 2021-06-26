@@ -16,14 +16,15 @@
                     <div class="nav-wrapper blue-grey darken-1">
                         <a href="#!" class="brand-logo center">Store warehouse manager</a>
                         <ul class="right hide-on-med-and-down">
-                            <li><a class="waves-effect waves-light btn modal-trigger grey darken-2" href="#modal1">Add
+                            <li><a class="waves-effect waves-light btn modal-trigger grey darken-2"
+                                    href="#addProduct">Add
                                     Product
                                     <i class="material-icons right">send</i></a>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                <div id="modal1" class="modal">
+                <div id="addProduct" class="modal">
                     <div class="modal-content">
                         <h4 class="center-align">Add Product</h4>
                         <div class="row">
@@ -36,7 +37,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <select>
+                                        <select id="type-product">
                                             <option value="" disabled selected>Choose your option
                                             </option>
                                             <option value="Bulk products">Bulk products</option>
@@ -55,7 +56,32 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add
+                        <a href="#!" class="modal-close waves-effect btn modal-trigger grey darken-2" id="add">Add
+                        </a>
+                    </div>
+                </div>
+                <div id="remove-modal" class="modal">
+                    <div class="modal-content">
+                        <h4 class="center-align">Remove Product</h4>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="remove-title" type="text" class="validate">
+                                        <label for="remove-title">Title</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="remove-quantity-of-product" type="number" class="validate">
+                                        <label for="remove-quantity-of-product">Quantity of product</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect btn modal-trigger grey darken-2" id="remove">Remove
                         </a>
                     </div>
                 </div>
@@ -63,66 +89,91 @@
         </div>
         <div class="row">
             <div class="col s6">
-                <div class="row">
+                <div class="row" id="menu-product">
                     <div class="col s12">
                         <h5 class="grey-text text-darken-2 center-align">Bulk products</h5>
-                        <ul class="collapsible">
-                            <li>
-                                <div class="collapsible-header">
-                                    <i class="material-icons">filter_drama</i>First
-                                </div>
-                                <div class="collapsible-body">
-                                    <div class="progress">
-                                        <div class="determinate" style="width: 100%"></div>
-                                    </div>
-                                </div>
-                            </li>
+                        <ul class="collapsible" id="bulk-products">
                         </ul>
                     </div>
                     <div class="col s12">
                         <h5 class="grey-text text-darken-2 center-align">Liquid products</h5>
-                        <ul class="collapsible">
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-                                <div class="collapsible-body">
-                                    <div class="progress">
-                                        <div class="determinate" style="width: 100%"></div>
-                                    </div>
-                                </div>
-                            </li>
+                        <ul class="collapsible" id="liquid-products">
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col s6">
                 <h5 class="grey-text text-darken-2 center-align">The balance of the store</h5>
-                <table class="striped centered z-depth-2">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
-                        </tr>
-                    </thead>
+                <div class="row">
+                    <div class="col s12">
+                        <ul class="tabs z-depth-2">
+                            <li class="tab col s6"><a class="active" href="#test1">Bulk products</a></li>
+                            <li class="tab col s6"><a href="#test2">Liquid products</a></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div id="test1" class="col s12">
+                                <table class="striped centered z-depth-2">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Alvin</td>
-                            <td>Eclair</td>
-                            <td>$0.87</td>
-                        </tr>
-                        <tr>
-                            <td>Alan</td>
-                            <td>Jellybean</td>
-                            <td>$3.76</td>
-                        </tr>
-                        <tr>
-                            <td>Jonathan</td>
-                            <td>Lollipop</td>
-                            <td>$7.00</td>
-                        </tr>
-                    </tbody>
-                </table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Alvin</td>
+                                            <td>Eclair</td>
+                                            <td>$0.87</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alan</td>
+                                            <td>Jellybean</td>
+                                            <td>$3.76</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jonathan</td>
+                                            <td>Lollipop</td>
+                                            <td>$7.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="test2" class="col s12">
+                                <table class="striped centered z-depth-2">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Item Name</th>
+                                            <th>Item Price</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Alvin</td>
+                                            <td>Eclair</td>
+                                            <td>$0.87</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alan</td>
+                                            <td>Jellybean</td>
+                                            <td>$3.76</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jonathan</td>
+                                            <td>Lollipop</td>
+                                            <td>$7.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -138,6 +189,10 @@
             // Collapsible
             var e = document.querySelectorAll('.collapsible');
             var ins = M.Collapsible.init(e);
+
+            // Tabs
+            var elem = document.querySelectorAll('.tabs');
+            var instance = M.Tabs.init(elem);
         });
     </script>
 </body>
