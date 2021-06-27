@@ -1,6 +1,7 @@
 import { Product } from "./product";
 import { productType } from "./enum/productType";
 import { typeContainer } from "./enum/typeContainer";
+import _ from "lodash";
 
 export class View {
     addProduct: HTMLElement | null;
@@ -10,6 +11,7 @@ export class View {
     menuProduct: HTMLElement | null;
     removeModal: HTMLElement | null;
     divHeader: HTMLElement;
+    balanceTable: HTMLElement | null;
     constructor() {
         this.addProduct = document.getElementById('add');
         this.liquidProducts = document.getElementById('liquid-products');
@@ -18,6 +20,7 @@ export class View {
         this.menuProduct = document.getElementById('menu-product');
         this.removeModal = document.getElementById('remove-modal');
         this.divHeader = document.createElement('div');
+        this.balanceTable = document.getElementById('balance-table');
     }
     viewProducts = (products: { [key: string]: Product }) => {
         this.resetLiquidProducts();
@@ -166,6 +169,63 @@ export class View {
             }
         }
     }
+    viewBalance = (parameters: { [key: string]: number }, products: { [key: string]: Product }) => {
+        this.resetBalanceTable();
+        let Boxes = Object.keys(products).filter(e => products[e].container === typeContainer.Box);
+        let Barrels = Object.keys(products).filter(e => products[e].container === typeContainer.Barrel);
+        if (this.balanceTable) {
+            let thead = document.createElement('thead');
+
+            let trHead = document.createElement('tr');
+
+            let tdHeadParametr = document.createElement('th');
+            tdHeadParametr.textContent = 'Parameter';
+
+            let tdHeadValue = document.createElement('th');
+            tdHeadValue.textContent = 'Value';
+
+            trHead.append(tdHeadParametr, tdHeadValue);
+            thead.append(trHead);
+            this.balanceTable.append(thead);
+
+            let tbody = document.createElement('tbody');
+            for (let key in parameters) {
+                let tr = document.createElement('tr');
+
+                let tdParametr = document.createElement('td');
+                tdParametr.textContent = `${key}`;
+
+                let tdValue = document.createElement('td');
+                tdValue.textContent = `${parameters[key]}`;
+
+                tr.append(tdParametr, tdValue);
+                tbody.append(tr);
+                this.balanceTable.append(tbody);
+            }
+
+            let trBoxes = document.createElement('tr');
+
+            let tdBoxesParametr = document.createElement('td');
+            tdBoxesParametr.textContent = 'Number of boxes with products';
+
+            let tdBoxesValue = document.createElement('td');
+            tdBoxesValue.textContent = `${Boxes.length}`;
+
+            trBoxes.append(tdBoxesParametr, tdBoxesValue);
+            tbody.append(trBoxes);
+
+            let trBarrels = document.createElement('tr');
+
+            let tdBarrelsParametr = document.createElement('td');
+            tdBarrelsParametr.textContent = 'Number of barrels with products';
+
+            let tdBarrelsValue = document.createElement('td');
+            tdBarrelsValue.textContent = `${Barrels.length}`;
+
+            trBarrels.append(tdBarrelsParametr, tdBarrelsValue);
+            tbody.append(trBarrels);
+        }
+    }
     bindAddProduct(handler: (product: Product) => void) {
         this.addProduct?.addEventListener('click', (event: Event) => {
             if ((event.target as HTMLElement).id == 'add') {
@@ -213,6 +273,11 @@ export class View {
     resetBulkProducts() {
         while (this.bulkProducts?.firstChild) {
             this.bulkProducts.removeChild(this.bulkProducts.firstChild);
+        }
+    }
+    resetBalanceTable() {
+        while (this.balanceTable?.firstChild) {
+            this.balanceTable.removeChild(this.balanceTable.firstChild);
         }
     }
 }
