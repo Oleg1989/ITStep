@@ -12,6 +12,8 @@ export class View {
     removeModal: HTMLElement | null;
     divHeader: HTMLElement;
     balanceTable: HTMLElement | null;
+    bulkTable: HTMLElement | null;
+    liquidTable: HTMLElement | null;
     constructor() {
         this.addProduct = document.getElementById('add');
         this.liquidProducts = document.getElementById('liquid-products');
@@ -21,6 +23,8 @@ export class View {
         this.removeModal = document.getElementById('remove-modal');
         this.divHeader = document.createElement('div');
         this.balanceTable = document.getElementById('balance-table');
+        this.bulkTable = document.getElementById('bulk-table');
+        this.liquidTable = document.getElementById('liquid-table');
     }
     viewProducts = (products: { [key: string]: Product }) => {
         this.resetLiquidProducts();
@@ -31,7 +35,9 @@ export class View {
 
                 let divHeader = document.createElement('div');
                 divHeader.classList.add('collapsible-header');
-                divHeader.textContent = `${products[key].title}`
+                divHeader.textContent = `${products[key].title}`;
+                divHeader.setAttribute('data-title', `${products[key].title}`);
+                divHeader.addEventListener('click', this.getTitle);
 
                 let i = document.createElement('i');
                 i.classList.add('material-icons');
@@ -41,6 +47,7 @@ export class View {
                 let a = document.createElement('a');
                 a.setAttribute('href', '#removeProduct');
                 a.classList.add('modal-trigger');
+                a.setAttribute('data-title', `${products[key].title}`);
 
                 a.append(i);
                 divHeader.prepend(a);
@@ -101,16 +108,19 @@ export class View {
 
                 let divHeader = document.createElement('div');
                 divHeader.classList.add('collapsible-header');
-                divHeader.textContent = `${products[key].title}`
+                divHeader.textContent = `${products[key].title}`;
+                divHeader.setAttribute('data-title', `${products[key].title}`);
+                divHeader.addEventListener('click', this.getTitle);
 
                 let i = document.createElement('i');
                 i.classList.add('material-icons');
-                i.textContent = 'delete'
+                i.textContent = 'delete';
                 i.id = products[key].id;
 
                 let a = document.createElement('a');
                 a.setAttribute('href', '#removeProduct');
                 a.classList.add('modal-trigger');
+                a.setAttribute('data-title', `${products[key].title}`);
 
                 a.append(i);
                 divHeader.prepend(a);
@@ -171,8 +181,16 @@ export class View {
     }
     viewBalance = (parameters: { [key: string]: number }, products: { [key: string]: Product }) => {
         this.resetBalanceTable();
-        let Boxes = Object.keys(products).filter(e => products[e].container === typeContainer.Box);
-        let Barrels = Object.keys(products).filter(e => products[e].container === typeContainer.Barrel);
+        let Boxes: number = 0;
+        let Barrels: number = 0;
+        for (let key in products) {
+            if (products[key].container == typeContainer.Box) {
+                Boxes += products[key].numberContainers;
+            }
+            if (products[key].container == typeContainer.Barrel) {
+                Barrels += products[key].numberContainers;
+            }
+        }
         if (this.balanceTable) {
             let thead = document.createElement('thead');
 
@@ -203,27 +221,94 @@ export class View {
                 this.balanceTable.append(tbody);
             }
 
-            let trBoxes = document.createElement('tr');
+            // let trBoxes = document.createElement('tr');
 
-            let tdBoxesParametr = document.createElement('td');
-            tdBoxesParametr.textContent = 'Number of boxes with products';
+            // let tdBoxesParametr = document.createElement('td');
+            // tdBoxesParametr.textContent = 'Number of boxes with products';
 
-            let tdBoxesValue = document.createElement('td');
-            tdBoxesValue.textContent = `${Boxes.length}`;
+            // let tdBoxesValue = document.createElement('td');
+            // tdBoxesValue.textContent = `${Boxes}`;
 
-            trBoxes.append(tdBoxesParametr, tdBoxesValue);
-            tbody.append(trBoxes);
+            // trBoxes.append(tdBoxesParametr, tdBoxesValue);
+            // tbody.append(trBoxes);
 
-            let trBarrels = document.createElement('tr');
+            // let trBarrels = document.createElement('tr');
 
-            let tdBarrelsParametr = document.createElement('td');
-            tdBarrelsParametr.textContent = 'Number of barrels with products';
+            // let tdBarrelsParametr = document.createElement('td');
+            // tdBarrelsParametr.textContent = 'Number of barrels with products';
 
-            let tdBarrelsValue = document.createElement('td');
-            tdBarrelsValue.textContent = `${Barrels.length}`;
+            // let tdBarrelsValue = document.createElement('td');
+            // tdBarrelsValue.textContent = `${Barrels}`;
 
-            trBarrels.append(tdBarrelsParametr, tdBarrelsValue);
-            tbody.append(trBarrels);
+            // trBarrels.append(tdBarrelsParametr, tdBarrelsValue);
+            // tbody.append(trBarrels);
+        }
+    }
+    viewStoreInformation = (products: { [key: string]: Product }) => {
+        this.resetStoreInformation();
+        if (this.bulkTable) {
+            let thead = document.createElement('thead');
+
+            let trHead = document.createElement('tr');
+
+            let tdHeadParametr = document.createElement('th');
+            tdHeadParametr.textContent = 'Name of the product';
+
+            let tdHeadValue = document.createElement('th');
+            tdHeadValue.textContent = 'Product quantity';
+
+            trHead.append(tdHeadParametr, tdHeadValue);
+            thead.append(trHead);
+            this.bulkTable.append(thead);
+
+            let tbody = document.createElement('tbody');
+            for (let key in products) {
+                if (products[key].type == productType.bulkProducts) {
+                    let tr = document.createElement('tr');
+
+                    let tdParametr = document.createElement('td');
+                    tdParametr.textContent = `${products[key].title}`;
+
+                    let tdValue = document.createElement('td');
+                    tdValue.textContent = `${products[key].currentQuantity}kg`;
+
+                    tr.append(tdParametr, tdValue);
+                    tbody.append(tr);
+                    this.bulkTable.append(tbody);
+                }
+            }
+        }
+        if (this.liquidTable) {
+            let thead = document.createElement('thead');
+
+            let trHead = document.createElement('tr');
+
+            let tdHeadParametr = document.createElement('th');
+            tdHeadParametr.textContent = 'Name of the product';
+
+            let tdHeadValue = document.createElement('th');
+            tdHeadValue.textContent = 'Product quantity';
+
+            trHead.append(tdHeadParametr, tdHeadValue);
+            thead.append(trHead);
+            this.liquidTable.append(thead);
+
+            let tbody = document.createElement('tbody');
+            for (let key in products) {
+                if (products[key].type == productType.liquidProducts) {
+                    let tr = document.createElement('tr');
+
+                    let tdParametr = document.createElement('td');
+                    tdParametr.textContent = `${products[key].title}`;
+
+                    let tdValue = document.createElement('td');
+                    tdValue.textContent = `${products[key].currentQuantity}l`;
+
+                    tr.append(tdParametr, tdValue);
+                    tbody.append(tr);
+                    this.liquidTable.append(tbody);
+                }
+            }
         }
     }
     bindAddProduct(handler: (product: Product) => void) {
@@ -278,6 +363,23 @@ export class View {
     resetBalanceTable() {
         while (this.balanceTable?.firstChild) {
             this.balanceTable.removeChild(this.balanceTable.firstChild);
+        }
+    }
+    resetStoreInformation() {
+        while (this.bulkTable?.firstChild) {
+            this.bulkTable.removeChild(this.bulkTable.firstChild);
+        }
+        while (this.liquidTable?.firstChild) {
+            this.liquidTable.removeChild(this.liquidTable.firstChild);
+        }
+    }
+    getTitle = (event: Event) => {
+        let productName = (event.target as HTMLElement).parentElement?.dataset.title;
+        if (productName) {
+            let title = document.getElementById('remove-title');
+            if (title) {
+                (title as HTMLInputElement).value = productName;
+            }
         }
     }
 }

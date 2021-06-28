@@ -11,17 +11,22 @@ export class Controller {
 
         this.view.viewProducts(this.model.products);
         this.view.viewBalance(this.model.parameters, this.model.products);
+        this.view.viewStoreInformation(this.model.products);
 
         this.view.bindAddProduct(this.handlerAddProduct);
         this.view.bindRemoveProduct(this.handlerRemoveProduct);
         this.model.bindArrProductsChanged(this.onArrProductsChanged);
         this.model.bindBalanceTableChanged(this.onBalanceTableChanged);
+        this.model.bindStoreInformationChanged(this.onStoreInformationChanged);
     }
-    onArrProductsChanged = (arrProducts: { [key: string]: Product }) => {
-        this.view.viewProducts(arrProducts);
+    onArrProductsChanged = (objProducts: { [key: string]: Product }) => {
+        this.view.viewProducts(objProducts);
     }
-    onBalanceTableChanged = (parametrs: { [key: string]: number }, arrProducts: { [key: string]: Product }) => {
-        this.view.viewBalance(parametrs, arrProducts);
+    onBalanceTableChanged = (parametrs: { [key: string]: number }, objProducts: { [key: string]: Product }) => {
+        this.view.viewBalance(parametrs, objProducts);
+    }
+    onStoreInformationChanged = (objProducts: { [key: string]: Product }) => {
+        this.view.viewStoreInformation(objProducts);
     }
     handlerAddProduct = (product: Product) => {
         this.model.addProduct(product);

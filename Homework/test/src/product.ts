@@ -9,6 +9,7 @@ export class Product {
     container: typeContainer;
     maxCapacity: number;
     currentQuantity: number;
+    numberContainers: number;
     constructor(Title: string, Type: productType, Container: typeContainer, CurrentQuantity: number) {
         this.id = cuid();
         this.title = Title;
@@ -16,5 +17,6 @@ export class Product {
         this.container = Container;
         this.currentQuantity = CurrentQuantity;
         this.maxCapacity = 100;
+        this.numberContainers = 1;
     }
 }
