@@ -1,7 +1,5 @@
 import { Question } from "./classElemet/question";
-import { Answer } from "./classElemet/answer";
 import { TypeAnswer } from "./enum/typeAnswer";
-import cuid from "cuid";
 
 export class View {
     divApp: HTMLElement;
@@ -60,11 +58,31 @@ export class View {
         inputButton.style.cursor = 'pointer';
         inputButton.addEventListener('click', this.viewQuestins);
 
+        let sentInput = document.createElement('button');
+        sentInput.textContent = 'Sent';
+        sentInput.id = 'sent';
+        sentInput.style.width = '40%';
+        sentInput.style.backgroundColor = 'blue';
+        sentInput.style.color = 'white';
+        sentInput.style.margin = '5px auto';
+        sentInput.style.fontSize = '24px';
+        sentInput.style.cursor = 'pointer';
+
+        let deleteQuestions = document.createElement('button');
+        deleteQuestions.textContent = 'Delete';
+        deleteQuestions.id = 'delete';
+        deleteQuestions.style.width = '60%';
+        deleteQuestions.style.backgroundColor = 'red';
+        deleteQuestions.style.color = 'white';
+        deleteQuestions.style.margin = '5px auto';
+        deleteQuestions.style.fontSize = '24px';
+        deleteQuestions.style.cursor = 'pointer';
+
         let divNewQuestin = document.createElement('div');
         divNewQuestin.id = 'new-question';
         divNewQuestin.style.width = '100%';
 
-        numberFormQuestin.append(title, inputNumber, inputButton, divNewQuestin);
+        numberFormQuestin.append(title, inputNumber, inputButton, sentInput, deleteQuestions, divNewQuestin);
         this.divQuestions.append(numberFormQuestin);
 
         this.divAnswers = document.createElement('div');
@@ -74,6 +92,10 @@ export class View {
         this.divAnswers.style.borderRadius = '5px';
         this.divAnswers.style.border = '2px solid yellow';
         this.divAnswers.style.backgroundColor = 'rgba(255,255,0, 0.1)';
+        this.divAnswers.style.width = '100%';
+        this.divAnswers.style.display = 'flex';
+        this.divAnswers.style.flexDirection = 'column';
+        this.divAnswers.style.justifyContent = 'space-between';
 
         this.divMain.append(this.divQuestions, this.divAnswers);
         this.divApp.append(this.formAdd, this.divMain);
@@ -88,7 +110,7 @@ export class View {
         }
         let alert = document.getElementById('alert');
         if (alert) {
-            alert.textContent = 'Задайте кількість запитань (від 1 до 5)';
+            alert.textContent = 'Задайте кількість запитань (від 1 до 3)';
             alert.style.color = 'green';
             alert.style.textAlign = 'center';
         }
@@ -99,7 +121,7 @@ export class View {
         divQuestions.style.flexDirection = 'column';
         divQuestions.addEventListener('click', this.viewModalQuestin);
         if (number) {
-            if (parseInt(number) > 0 && parseInt(number) <= 5) {
+            if (parseInt(number) > 0 && parseInt(number) <= 3) {
                 for (let i = 0; i < parseInt(number); i++) {
                     let question = document.createElement('div');
                     question.textContent = `Question ${i + 1}`;
@@ -111,16 +133,6 @@ export class View {
                     divQuestions.append(question);
                 }
                 questions?.append(divQuestions);
-                let sentInput = document.createElement('input');
-                sentInput.type = 'submit';
-                sentInput.value = 'Sent';
-                sentInput.style.width = '40%';
-                sentInput.style.backgroundColor = 'blue';
-                sentInput.style.color = 'white';
-                sentInput.style.margin = '5px auto';
-                sentInput.style.fontSize = '24px';
-                sentInput.style.cursor = 'pointer';
-                divQuestions.append(sentInput);
             } else {
                 if (alert) {
                     alert.textContent = 'Мінімум 1 максимум 5 питань!';
@@ -160,15 +172,6 @@ export class View {
             inputTitle.style.margin = '10px 0';
             inputTitle.style.width = '100%';
             inputTitle.style.fontSize = '24px';
-
-            let inputImg = document.createElement('input');
-            inputImg.type = 'text';
-            inputImg.id = 'desc';
-            inputImg.setAttribute('placeholder', 'ImgURL');
-            inputImg.setAttribute('name', 'imgUrl');
-            inputImg.style.margin = '10px 0';
-            inputImg.style.width = '100%';
-            inputImg.style.fontSize = '24px';
 
             let divAnswer = document.createElement('div');
             divAnswer.id = 'answer-div';
@@ -220,7 +223,7 @@ export class View {
             addQuestion.style.fontSize = '24px';
             addQuestion.style.cursor = 'pointer';
 
-            this.formAdd.append(modalTitle, inputTitle, inputImg, divAnswer, addQuestion);
+            this.formAdd.append(modalTitle, inputTitle, divAnswer, addQuestion);
         } else {
             this.formAdd.style.display = 'none';
         }
@@ -236,14 +239,23 @@ export class View {
             if (pOne) {
                 let answer = document.createElement('input');
                 answer.type = 'text';
-                answer.id = 'input-one';
-                answer.setAttribute('name', 'answer');
-                answer.setAttribute('placeholder', 'Answer');
+                answer.classList.add('many-inputs')
+                answer.setAttribute('name', `version`);
+                answer.setAttribute('placeholder', `Version`);
                 answer.style.margin = '10px 0';
                 answer.style.width = '100%';
                 answer.style.fontSize = '24px';
 
-                divAnswer?.append(answer);
+                let correctAnswer = document.createElement('input');
+                correctAnswer.type = 'text';
+                correctAnswer.id = 'correct-answer';
+                correctAnswer.setAttribute('placeholder', 'Correct answer');
+                correctAnswer.setAttribute('name', 'correct-answer');
+                correctAnswer.style.margin = '10px 0';
+                correctAnswer.style.width = '100%';
+                correctAnswer.style.fontSize = '24px';
+
+                divAnswer?.append(answer, correctAnswer);
             }
         }
         if (id === 'many' && document.getElementsByClassName('many-inputs').length == 0) {
@@ -254,24 +266,240 @@ export class View {
                 let answer = document.createElement('input');
                 answer.type = 'text';
                 answer.classList.add('many-inputs')
-                answer.setAttribute('name', `answer${i}`);
-                answer.setAttribute('placeholder', `Answer ${i + 1}`);
+                answer.setAttribute('name', `version${i}`);
+                answer.setAttribute('placeholder', `Version ${i + 1}`);
                 answer.style.margin = '10px 0';
                 answer.style.width = '100%';
                 answer.style.fontSize = '24px';
 
                 divAnswer?.append(answer);
             }
+            let correctAnswer = document.createElement('input');
+            correctAnswer.type = 'text';
+            correctAnswer.id = 'correct-answer';
+            correctAnswer.setAttribute('placeholder', 'Correct answer');
+            correctAnswer.setAttribute('name', 'correct-answer');
+            correctAnswer.style.margin = '10px 0';
+            correctAnswer.style.width = '100%';
+            correctAnswer.style.fontSize = '24px';
+
+            divAnswer?.append(correctAnswer);
         }
         if (id === 'free') {
             while (divAnswer?.firstChild) {
                 divAnswer.removeChild(divAnswer.firstChild);
             }
+            let correctAnswer = document.createElement('input');
+            correctAnswer.type = 'text';
+            correctAnswer.id = 'correct-answer';
+            correctAnswer.setAttribute('placeholder', 'Correct answer');
+            correctAnswer.setAttribute('name', 'correct-answer');
+            correctAnswer.style.margin = '10px 0';
+            correctAnswer.style.width = '100%';
+            correctAnswer.style.fontSize = '24px';
+
+            divAnswer?.append(correctAnswer);
         }
         if (id === 'btn-add') {
             event.preventDefault();
         }
 
+    }
+    viewTests = (questions: Question[]) => {
+        let divQuestion = document.getElementById('answer');
+        if (divQuestion) {
+            while (divQuestion.firstChild) {
+                divQuestion.removeChild(divQuestion.firstChild);
+            }
+            let div = document.createElement('div');
+            div.id = "check-questions"
+
+            questions.forEach(element => {
+                if (element.typeAnswer == TypeAnswer.One) {
+                    let divNew = document.createElement('div');
+                    divNew.style.margin = '5px';
+                    divNew.style.padding = '5px';
+                    divNew.style.border = '2px solid gray';
+                    divNew.style.borderRadius = '5px';
+                    divNew.id = element.id;
+
+                    let title = document.createElement('h2');
+                    title.textContent = element.text;
+                    title.style.textAlign = 'center';
+
+                    let answer = document.createElement('span');
+
+                    answer.textContent = `Answer: ${element.arrAnswers}`;
+
+                    let pYes = document.createElement('p');
+                    pYes.textContent = 'Yes';
+
+                    let inputYes = document.createElement('input');
+                    inputYes.type = 'radio';
+                    inputYes.id = 'yes';
+                    inputYes.setAttribute('name', 'check-boolean');
+                    inputYes.value = 'true'
+
+                    pYes.append(inputYes);
+
+                    let pNot = document.createElement('p');
+                    pNot.textContent = 'Not';
+
+                    let inputNot = document.createElement('input');
+                    inputNot.type = 'radio';
+                    inputNot.id = 'not';
+                    inputNot.setAttribute('name', 'check-boolean');
+                    inputNot.value = 'false'
+
+                    pNot.append(inputNot);
+
+                    divNew.append(title, answer, pYes, pNot);
+                    div.append(divNew);
+                }
+                if (element.typeAnswer == TypeAnswer.Many) {
+                    let divNew = document.createElement('div');
+                    divNew.style.margin = '5px';
+                    divNew.style.padding = '5px';
+                    divNew.style.border = '2px solid gray';
+                    divNew.style.borderRadius = '5px';
+                    divNew.id = element.id;
+
+                    let title = document.createElement('h2');
+                    title.textContent = element.text;
+                    title.style.textAlign = 'center';
+
+                    divNew.append(title);
+
+                    if (typeof (element.arrAnswers) == "object") {
+                        let i: number = 0;
+                        element.arrAnswers.forEach(e => {
+                            let p = document.createElement('p');
+                            p.textContent = `Answer ${e}`;
+
+                            let input = document.createElement('input');
+                            input.type = 'radio';
+                            input.setAttribute('name', 'check');
+                            input.value = `${e}`;
+
+                            p.append(input);
+                            divNew.append(p);
+                            i++;
+                        });
+                    }
+                    div.append(divNew);
+                }
+                if (element.typeAnswer == TypeAnswer.FreeForm) {
+                    let divNew = document.createElement('div');
+                    divNew.style.margin = '5px';
+                    divNew.style.padding = '5px';
+                    divNew.style.border = '2px solid gray';
+                    divNew.style.borderRadius = '5px';
+                    divNew.id = element.id;
+
+                    let title = document.createElement('h2');
+                    title.textContent = element.text;
+                    title.style.textAlign = 'center';
+
+                    divNew.append(title);
+
+                    if (element.arrAnswers.length == 0) {
+                        let p = document.createElement('p');
+                        p.textContent = `Your answer - `;
+
+                        let input = document.createElement('input');
+                        input.type = 'text';
+                        input.setAttribute('name', 'check-free');
+
+                        p.append(input);
+                        divNew.append(p);
+                        div.append(divNew);
+                    }
+                }
+                divQuestion?.append(div);
+            });
+            let check = document.createElement('button');
+            check.textContent = 'Check';
+            check.id = 'check';
+            check.style.width = '20%';
+            check.style.backgroundColor = 'grey';
+            check.style.color = 'white';
+            check.style.margin = '5px auto';
+            check.style.fontSize = '24px';
+            check.style.cursor = 'pointer';
+            divQuestion?.append(check);
+        }
+    }
+    viewCheckQuestions = (questions: Question[]) => {
+        this.divMain.addEventListener('click', (event: Event) => {
+            let checkQuestions = document.getElementById('check-questions');
+            if (checkQuestions) {
+                if ((event.target as HTMLElement).id == 'check') {
+                    let arrQuestionId = checkQuestions?.querySelectorAll('div');
+                    for (let i = 0; i < arrQuestionId.length; i++) {
+                        if (questions[i].id == arrQuestionId[i].id) {
+                            if (questions[i].typeAnswer == TypeAnswer.One) {
+                                let answer = arrQuestionId[i].querySelector('input[name="check-boolean"]:checked');
+                                if ((answer as HTMLInputElement).value == 'true') {
+                                    if (+questions[i].arrAnswers[0] == +questions[i].correctAnswer) {
+                                        let question = document.getElementById(`${questions[i].id}`);
+                                        if (question) {
+                                            question.style.border = '4px solid green';
+                                        }
+                                    } else {
+                                        let question = document.getElementById(`${questions[i].id}`);
+                                        if (question) {
+                                            question.style.border = '4px solid red';
+                                        }
+                                    }
+                                } else {
+                                    if (+questions[i].arrAnswers[0] !== +questions[i].correctAnswer) {
+                                        let question = document.getElementById(`${questions[i].id}`);
+                                        if (question) {
+                                            question.style.border = '4px solid green';
+                                        }
+                                    } else {
+                                        let question = document.getElementById(`${questions[i].id}`);
+                                        if (question) {
+                                            question.style.border = '4px solid red';
+                                        }
+                                    }
+                                }
+                            }
+                            if (questions[i].typeAnswer == TypeAnswer.Many) {
+                                let answer = arrQuestionId[i].querySelector('input[name="check"]:checked');
+                                if (+(answer as HTMLInputElement).value == +questions[i].correctAnswer) {
+                                    let question = document.getElementById(`${questions[i].id}`);
+                                    if (question) {
+                                        question.style.border = '4px solid green';
+                                    }
+                                } else {
+                                    let question = document.getElementById(`${questions[i].id}`);
+                                    if (question) {
+                                        question.style.border = '4px solid red';
+                                    }
+                                }
+
+                            }
+                            if (questions[i].typeAnswer == TypeAnswer.FreeForm) {
+                                let answer = arrQuestionId[i].querySelector('input[name="check-free"]');
+                                if (+(answer as HTMLInputElement).value == +questions[i].correctAnswer) {
+                                    let question = document.getElementById(`${questions[i].id}`);
+                                    if (question) {
+                                        question.style.border = '4px solid green';
+                                    }
+                                } else {
+                                    let question = document.getElementById(`${questions[i].id}`);
+                                    if (question) {
+                                        question.style.border = '4px solid red';
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
     bindAddQuestionModalQuestin(handler: (question: Question) => void) {
         this.formAdd.addEventListener('click', (event: Event) => {
@@ -281,26 +509,38 @@ export class View {
                 let type: TypeAnswer;
                 let answers: string | string[] = [];
                 if (inputAnswer) {
-                    if (inputAnswer.length == 1) {
+                    if (inputAnswer.length == 2) {
                         type = TypeAnswer.One;
                         answers = inputAnswer[0].value;
-                    } else {
+                    } else if (inputAnswer.length > 2) {
                         type = TypeAnswer.Many;
                         for (let i = 0; i < inputAnswer.length; i++) {
-                            answers.push(inputAnswer[i].value);
+                            if (inputAnswer[i].id !== 'correct-answer') {
+                                answers.push(inputAnswer[i].value);
+                            }
                         }
+                    } else {
+                        type = TypeAnswer.FreeForm;
                     }
-                } else {
-                    type = TypeAnswer.FreeForm;
+                    if ((document.getElementById('title') as HTMLInputElement).value == '' || (document.getElementById('correct-answer') as HTMLInputElement).value == '') {
+                        alert('Заповніть всі поля!');
+                    } else {
+                        const question = new Question(
+                            (document.getElementById('title') as HTMLInputElement).value,
+                            type,
+                            answers,
+                            (document.getElementById('correct-answer') as HTMLInputElement).value,
+                        );
+                        handler(question);
+                    }
                 }
-                const question = new Question(
-                    (document.getElementById('title') as HTMLInputElement).value,
-                    (document.getElementById('desc') as HTMLInputElement).value,
-                    type,
-                    answers,
-                    (document.getElementById('correct-answer') as HTMLInputElement).value,
-                );
-                handler(question);
+            }
+        });
+    }
+    bindDeleteQuestins(handler: () => void) {
+        this.divMain.addEventListener('click', (event: Event) => {
+            if ((event.target as HTMLElement).id === 'delete') {
+                handler();
             }
         });
     }
