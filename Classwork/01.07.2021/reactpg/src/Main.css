@@ -1,0 +1,37 @@
+.container {
+    width: 90%;
+    border:  2px solid red;
+    margin: 5px auto;
+    min-height: 100px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.main {
+    width: 70%;
+    min-height: 50px;
+    border: 2px solid blue;
+    margin: 5px;
+    border-radius: 5px;
+}
+.add-item {
+    width: 30%;
+    min-height: 10px;
+    border: 2px solid silver;
+    margin: 5px;
+    border-radius: 5px;
+}
+#title-item {
+    width: 80%;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 22px;
+}
+#btn-add {
+    background-color: green;
+    border-radius: 5px;
+    font-size: 22px;
+    margin: 5px;
+    padding: 5px;
+}
