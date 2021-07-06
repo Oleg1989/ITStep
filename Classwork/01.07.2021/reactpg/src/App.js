@@ -1,7 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
-import './Main.css'
+// import './Main.css';
 import { Container } from "./Container";
+
 
 function App() {
   return (
