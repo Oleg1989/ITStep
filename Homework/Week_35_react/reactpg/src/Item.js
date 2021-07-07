@@ -1,23 +1,49 @@
 
 function Item() {
     return (
-        <>
-            <div className="item">
-                <input type="checkbox" id='1' />
-                <label for='1'>Item 1</label>
-                <button className='delete'>Delete</button>
+        <div className="row">
+            <div className="col s12">
+                <ul className="collection with-header col s12">
+                    <li className="collection-header"><h4 className="teal-text text-darken-2">To do list</h4></li>
+                    <li className="collection-item left-align">
+                        <div>
+                            <label>
+                                <input type="checkbox" />
+                                <span>Item 1</span>
+                            </label>
+                            <a href="#!" className="secondary-content"><i className="material-icons">delete</i></a>
+                        </div>
+                    </li>
+                    <li className="collection-item left-align">
+                        <div>
+                            <label>
+                                <input type="checkbox" />
+                                <span>Item 2</span>
+                            </label>
+                            <a href="#!" className="secondary-content"><i className="material-icons">delete</i></a>
+                        </div>
+                    </li>
+                    <li className="collection-item left-align">
+                        <div>
+                            <label>
+                                <input type="checkbox" />
+                                <span>Item 3</span>
+                            </label>
+                            <a href="#!" className="secondary-content"><i className="material-icons">delete</i></a>
+                        </div>
+                    </li>
+                    <li className="collection-item left-align">
+                        <div>
+                            <label>
+                                <input type="checkbox" />
+                                <span>Item 4</span>
+                            </label>
+                            <a href="#!" className="secondary-content"><i className="material-icons">delete</i></a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div className="item">
-                <input type="checkbox" id='2' />
-                <label for='2'>Item 2</label>
-                <button className='delete'>Delete</button>
-            </div>
-            <div className="item">
-                <input type="checkbox" id='3' />
-                <label for='3'>Item 3</label>
-                <button className='delete'>Delete</button>
-            </div>
-        </>
+        </div>
     );
 }
 

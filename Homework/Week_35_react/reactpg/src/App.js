@@ -1,5 +1,5 @@
 import './App.css';
-import './Main.css'
+import 'materialize-css/dist/css/materialize.min.css'
 import { Container } from "./Container";
 
 function App() {
