@@ -1,6 +1,9 @@
+import { TableGrid } from './components/TableGrid';
+import 'materialize-css/dist/css/materialize.min.css';
+import dataTest from './dataTest'
 
 export function Container() {
     return <div className="container">
-        <h1>Hello world!!</h1>
+        <TableGrid dataTest={dataTest} />
     </div>
 }

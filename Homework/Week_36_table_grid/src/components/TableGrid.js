@@ -1,63 +1,42 @@
 import React from "react";
+import { Search } from './Search';
+import { ThId } from "./ThId";
+import { ThName } from "./ThName";
+import { ThDate } from "./ThDate";
+import { Tbody } from "./TableBody";
+import { sortBy, find } from 'lodash';
 
 export class TableGrid extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            counterValue: 0,
-            email: '',
-            password: '',
-            login: false
+            data: props.dataTest
         }
     }
-    increaseCounter = () => {
-        this.setState({ counterValue: this.state.counterValue + 1 });
+    sort = (event) => {
+        this.setState({ data: sortBy(this.state.data, [event.target.id]) });
     }
-    decreaseCounter = () => {
-        this.setState({ counterValue: this.state.counterValue - 1 });
+    getName = (event) => {
+        this.setState({ name: event.target.value });
     }
-    login = () => {
-        if (this.state.email && this.state.password) {
-            console.log(this.state.email);
-            console.log(this.state.password);
-            this.state.login = true;
-        } else {
-            console.log("Перевірте свій email або password!");
-        }
-    }
-    chackEmail = (event) => {
-        let valueEmail = event.target.value;
-        if (valueEmail.length < 5) {
-            event.target.style.outline = "1px solid red";
-        } else {
-            event.target.style.outline = "1px solid green";
-            this.setState({ email: this.state.email = valueEmail });
-        }
-    }
-    chackPassword = (event) => {
-        let valuePassword = event.target.value;
-        if (valuePassword.length < 8) {
-            event.target.style.outline = "1px solid red";
-        } else {
-            event.target.style.outline = "1px solid green";
-            this.setState({ password: this.state.password = valuePassword });
-        }
+    findByName = () => {
+        this.setState({ data: [find(this.state.data, { 'title': this.state.name })] });
     }
     render() {
         return (
-            // <Welcom name={this.getUser()} nightMode={false} />
-            <Counter
-                value={this.state.counterValue}
-                onIncrease={this.increaseCounter}
-                onDecrease={this.decreaseCounter}
-                onLogin={this.login}
-                onChackEmail={this.chackEmail}
-                onChackPassword={this.chackPassword}
-                welcom={this.state.welcom}
-            />
+            <>
+                <Search onFindByName={this.findByName} onGetName={this.getName} />
+                <table>
+                    <thead>
+                        <tr>
+                            <ThId onSort={this.sort} />
+                            <ThName onSort={this.sort} />
+                            <ThDate onSort={this.sort} />
+                        </tr>
+                    </thead>
+                    <Tbody data={this.state.data} />
+                </table>
+            </>
         );
-    }
-    getUser() {
-        return `${this.props.user.fistName} ${this.props.user.lastName}`;
     }
 }
