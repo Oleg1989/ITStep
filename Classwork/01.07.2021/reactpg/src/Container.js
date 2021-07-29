@@ -1,13 +1,20 @@
-import { Main } from "./Main";
-import { AddItem } from "./AddItem";
-import { Dashboard } from "./Dashborad";
-import { Clock } from './Clock';
+import { useState } from 'react';
 
 export function Container() {
-    return <div className="container">
-        {/* <Main />
-        <AddItem /> */}
-        {/* <Dashboard /> */}
-        <Clock />
-    </div>
+    const [isLogin, setLogin] = useState(false);
+
+    if (isLogin) {
+        return (
+            <div className="container">
+                <button onClick={() => setLogin(false)}>Logout</button>
+            </div>
+        );
+    } else {
+        return (
+            <div className="container">
+                <button onClick={() => setLogin(true)}>Login</button>
+            </div>
+        );
+    }
+
 }

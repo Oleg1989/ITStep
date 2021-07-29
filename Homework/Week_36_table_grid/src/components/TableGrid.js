@@ -10,22 +10,24 @@ export class TableGrid extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: props.dataTest
+            data: props.dataTest,
         }
     }
     sort = (event) => {
         this.setState({ data: sortBy(this.state.data, [event.target.id]) });
     }
-    getName = (event) => {
-        this.setState({ name: event.target.value });
-    }
-    findByName = () => {
-        this.setState({ data: [find(this.state.data, { 'title': this.state.name })] });
+    // getName = (event) => {
+    //     console.log(event.target.value);
+
+    //     this.setState({ name: event.target.value });
+    // }
+    findByName = (event) => {
+        this.setState({ data: [find(this.state.data, { 'title': event.target.value })] });
     }
     render() {
         return (
             <>
-                <Search onFindByName={this.findByName} onGetName={this.getName} />
+                <Search onFindByName={this.findByName} />
                 <table>
                     <thead>
                         <tr>

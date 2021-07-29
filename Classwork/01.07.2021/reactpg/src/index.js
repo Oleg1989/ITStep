@@ -4,14 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// function tick(){
-//   const element = (
-//     <div>
-//       <h1>Hello, world!</h1>
-//       <h2>It's {new Date().toLocaleTimeString()}</h2>
-//     </div>
-//   )
-// }
 ReactDOM.render(
   <React.StrictMode>
     <App />
