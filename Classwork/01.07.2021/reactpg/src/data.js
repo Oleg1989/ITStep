@@ -1,5 +1,5 @@
 
-export const getData = async () => {
+export async function getData() {
     let response = await window.fetch('https://bt-21-playground-vppfc.ondigitalocean.app/forecast');
     if (response.ok) {
         let data = await response.json();
@@ -7,4 +7,5 @@ export const getData = async () => {
     } else {
         alert("Ошибка HTTP: " + response.status);
     }
+
 }
