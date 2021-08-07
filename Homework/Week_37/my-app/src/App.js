@@ -1,12 +1,12 @@
 // import logo from './logo.svg';
 import './App.css';
-import VerticalTabs from './Container'
+import Container from './Container'
 
 function App() {
 
   return (
     <div className="App">
-      <VerticalTabs />
+      <Container />
     </div>
   );
 }
