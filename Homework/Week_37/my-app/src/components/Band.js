@@ -4,7 +4,7 @@ export default function Band() {
     return (
         <div className="card">
             <div className="card-image waves-effect waves-block waves-light">
-                <img className="activator" src={band} />
+                <img className="activator" src={band} alt="Band" />
             </div>
             <div className="card-content">
                 <span className="card-title activator grey-text text-darken-4">Metallica<i className="material-icons right">more_vert</i></span>
