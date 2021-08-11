@@ -6,36 +6,36 @@ interface EditorState {
 };
 interface State {
     currentState: EditorState;
-    prevState: EditorState[];
-    nextState: EditorState[];
+    stateData: EditorState[];
 };
 
 export default function Editor() {
-    const [state, setState] = useState<State>({ currentState: { article: "" }, prevState: [], nextState: [], }); console.log(state);
+    const [state, setState] = useState<State>({ currentState: { article: "" }, stateData: [] });
+    console.log(state);
     const onArticleEdit = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setState((prevState) => ({
-            ...state, currentState: { article: event.target.value }, prevState: [...state.prevState, { article: state.currentState.article }],
-            nextState: [],
+        setState((stateData) => ({
+            ...state,
+            currentState: { article: event.target.value },
+            stateData: [...state.stateData, { article: state.currentState.article }],
         }));
     };
     const onUndo = () => {
-        const nextStateItem = { ...state.currentState };
-        const newCurrentState = state.prevState.pop();
+        const stateItem = { ...state.currentState };
+        const newCurrentState = state.stateData.pop();
         if (newCurrentState)
             setState({
                 ...state,
                 currentState: newCurrentState,
-                nextState: [nextStateItem, ...state.nextState],
+                stateData: [stateItem, ...state.stateData],
             });
     };
     const onRedo = () => {
-        const newCurrentState = state.nextState.shift();
+        const newCurrentState = state.stateData.shift();
         if (newCurrentState)
             setState({
                 ...state,
                 currentState: newCurrentState,
-                nextState: [...state.nextState],
-                prevState: [...state.prevState, state.currentState],
+                stateData: [...state.stateData, state.currentState],
             });
     };
     return (
