@@ -1,5 +1,17 @@
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+    authenticated,
+} from './chatSlice';
 
 export function RegisterForm() {
+    const [inputValue, setInputValue] = useState('');
+    const dispatch = useDispatch();
+    const singIn = () => {
+        if (inputValue !== '') {
+            dispatch(authenticated());
+        }
+    }
     return (
         <div className="row">
             <div className="card">
@@ -13,7 +25,12 @@ export function RegisterForm() {
                                     <div className="row">
                                         <div className="input-field col s12">
                                             <i className="material-icons prefix">account_circle</i>
-                                            <input id="nikname" type="text" className="validate" />
+                                            <input
+                                                id="nikname"
+                                                type="text"
+                                                className="validate"
+                                                value={inputValue}
+                                                onChange={(event) => { setInputValue(event.target.value) }} />
                                             <label htmlFor="nikname">Nikname</label>
                                         </div>
                                     </div>
@@ -21,9 +38,14 @@ export function RegisterForm() {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="modal-close btn waves-effect waves-light" type="submit" name="action"
-                                id="add-nick">Submit
-                            <i className="material-icons right">send</i>
+                            <button
+                                className="modal-close btn waves-effect waves-light"
+                                type="button"
+                                name="action"
+                                id="add-nick"
+                                onClick={singIn}>
+                                Submit
+                                <i className="material-icons right">send</i>
                             </button>
                         </div>
                     </div>

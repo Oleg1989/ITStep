@@ -8,7 +8,7 @@ export function SendMessage() {
                         <div className="row">
                             <div className="input-field col s12">
                                 <i className="material-icons prefix">textsms</i>
-                                <textarea id="textarea1" className="materialize-textarea"></textarea>
+                                <textarea id="textarea1" className="materialize-textarea" disabled></textarea>
                                 <label htmlFor="textarea1">Massage</label>
                             </div>
                         </div>
