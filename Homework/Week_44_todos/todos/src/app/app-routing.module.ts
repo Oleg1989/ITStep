@@ -21,7 +21,7 @@ const routes: Routes = [
     canActivate: [AboutGuard],
   },
   {
-    path: 'edit-todo',
+    path: 'todos/:id',
     component: EditTodoComponent,
     canActivate: [AboutGuard],
   }

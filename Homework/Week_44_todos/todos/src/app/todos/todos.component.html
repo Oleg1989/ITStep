@@ -6,7 +6,7 @@
                     <h1>New todo:</h1>
                 </div>
                 <div class="col s2">
-                    <button class="btn waves-effect waves-light deep-orange darken-4" type="button" name="action"
+                    <button class="btn waves-effect waves-light teal darken-4" type="button" name="action"
                         (click)="singOut()" [routerLink]="['/','login']">Sing
                         out</button>
                 </div>
@@ -16,11 +16,11 @@
     <div class="row valign-wrapper">
         <div class="input-field col s10">
             <i class="material-icons prefix">textsms</i>
-            <input type="text" id="autocomplete-input" class="autocomplete" />
+            <input type="text" id="autocomplete-input" class="autocomplete" [(ngModel)]="inputTodo" />
             <label for="autocomplete-input">Input todo</label>
         </div>
         <div class="input-field col s2">
-            <button class="btn waves-effect waves-light" type="button" name="action">ADD
+            <button class="btn waves-effect waves-light" type="button" name="action" (click)="addTodo()">ADD
             </button>
         </div>
     </div>
@@ -32,16 +32,17 @@
     <div class="row">
         <div class="col s12">
             <div class="row z-depth-2 valign-wrapper" *ngFor="let todo of todos; let ind = index">
-                <div class="col s10">
-                    <p>{{ind + 1}}. {{todo.title}}</p>
+                <div class="col s10" [ngClass]="{done: todo.completed}">
+                    <p>{{+ind + 1}}. {{todo.title}}</p>
                 </div>
                 <div class="col s1">
-                    <button class="btn waves-effect green darken-4" type="button" name="action">Done
+                    <button class="btn waves-effect yellow darken-4 " type="button" name="action" id="{{todo.id}}"
+                        (click)="doneTodo($event)">Done
                     </button>
                 </div>
                 <div class="col s1">
                     <button class="btn waves-effect light-blue darken-4" type="button" name="action"
-                        [routerLink]="['/','edit-todo']">Edit
+                        [disabled]="todo.completed" [routerLink]="['/todos', todo.id]">Edit
                     </button>
                 </div>
             </div>
