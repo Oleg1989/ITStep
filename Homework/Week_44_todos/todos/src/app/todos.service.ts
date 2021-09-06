@@ -9,7 +9,27 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class TodosService {
   isLogedUser: boolean = false;
+  private todos: Todo[] = [];
   constructor(private http: HttpClient) {
+    this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos', {
+      params: {
+        _limit: 5,
+      }
+    }).subscribe((todos: Todo[]) => {
+      this.todos = todos;
+    });
+  }
+
+  set setTodos(todos: Todo[]) {
+    this.todos = [...todos];
+  }
+
+  set setTodo(todo: Todo) {
+    this.todos.unshift(todo);
+  }
+
+  get getTodos(): Todo[] {
+    return this.todos;
   }
 
   singIn(name: string | null) {
@@ -17,16 +37,22 @@ export class TodosService {
       this.isLogedUser = true;
     }
   }
+
   singOut() {
     this.isLogedUser = false;
   }
 
-  getAll(): Observable<Todo[]> {
-    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos', {
-      params: {
-        _limit: 5,
-      }
-    })
+  // getAll(): Observable<Todo[]> {
+  //   this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos', {
+  //     params: {
+  //       _limit: 5,
+  //     }
+  //   }).subscribe((todos: Todo[]) => {
+  //     this.todos = todos;
+  //   });
+  // }
+  get(id: Number): Observable<Todo> {
+    return this.http.get<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`);
   }
 
   create(todo: Todo): Observable<Todo> {

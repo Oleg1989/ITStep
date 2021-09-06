@@ -13,22 +13,21 @@
             </div>
             <div class="col s12">
                 <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="todo.title"></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="col s4 center-align">
                     <button class="btn waves-effect waves-light grey darken-4" type="button" name="action"
-                        [routerLink]="['/','todos-list']">Go
-                        back</button>
+                        [routerLink]="['/','todos-list']">Go back</button>
                 </div>
                 <div class="col s4 center-align">
-                    <button class="btn waves-effect waves-light deep-orange darken-4" type="button"
-                        name="action">Delete</button>
+                    <button class="btn waves-effect waves-light deep-orange darken-4" type="button" name="action"
+                        (click)="delete()" [routerLink]="['/','todos-list']">Delete</button>
                 </div>
                 <div class="col s4 center-align">
-                    <button class="btn waves-effect waves-light light-blue darken-4" type="button"
-                        name="action">Change</button>
+                    <button class="btn waves-effect waves-light light-blue darken-4" type="button" name="action"
+                        (click)="update()">Change</button>
                 </div>
             </div>
         </div>

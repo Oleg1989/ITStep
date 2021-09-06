@@ -11,10 +11,11 @@ import { TodosService } from '../todos.service';
 export class TodosComponent implements OnInit {
   todos: Todo[] = [];
   inputTodo: string = '';
-  constructor(private todosService: TodosService) { }
+  constructor(private todosService: TodosService) {
+  }
 
   ngOnInit(): void {
-    this.getAll();
+    this.todos = this.todosService.getTodos;
   }
 
   singOut() {
@@ -29,14 +30,16 @@ export class TodosComponent implements OnInit {
           todo.completed = !todo.completed;
         }
       });
+      this.todosService.setTodos = this.todos;
     }
   }
 
-  getAll() {
-    this.todosService.getAll().subscribe((todos: Todo[]) => {
-      this.todos = todos;
-    });
-  }
+  // getAll() {
+  //   this.todosService.getAll().subscribe((todos: Todo[]) => {
+  //     this.todosService.setTodos = todos;
+  //     this.todos = this.todosService.getTodos;
+  //   });
+  // }
 
   addTodo() {
     this.todosService.create({
@@ -44,7 +47,7 @@ export class TodosComponent implements OnInit {
       title: this.inputTodo,
       completed: false,
     }).subscribe((todo: Todo) => {
-      this.todos.unshift(todo);
+      this.todosService.setTodo = todo;
     });
     this.inputTodo = '';
   }
