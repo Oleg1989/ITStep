@@ -18,7 +18,7 @@ const initialState = {
   totalUsersStatus: 'Initial value',
   totalAnonymous: 0,
   totalAnonymousStatus: 'Initial value',
-  roomActive: '',
+  roomActive: null,
   roomActiveStatus: 'Not active',
   disabled: true,
   disabledStatus: 'Inactive',
@@ -120,12 +120,14 @@ export const chatSlice = createSlice({
       state.userStatus = 'You are not registered';
     },
     joinRoomChat: (state, id) => {
-      state.rooms.forEach((room) => {
-        if (room.id === id.payload) {
-          state.roomActive = room.title;
-          state.roomActiveStatus = 'Active';
-        }
-      });
+      // state.rooms.forEach((room) => {
+      //   if (room.id === id.payload) {
+      //     state.roomActive = room;
+      //     state.roomActiveStatus = 'Active';
+      //   }
+      // });
+      state.roomActive = state.rooms.find((room) => room.id === id.payload);
+      state.roomActiveStatus = 'Active';
     },
     disabled: (state) => {
       state.disabled = false;
@@ -139,6 +141,9 @@ export const chatSlice = createSlice({
       })
       .addCase(getRooms.fulfilled, (state, action) => {
         state.rooms = [...action.payload];
+        state.rooms.forEach((room) => {
+          state.usersRoom.push({ id: room.id, title: room.title, users: [] });
+        });
         state.roomsStatus = 'Loaded rooms';
       })
       .addCase(authenticatedChat.pending, (state) => {
@@ -218,27 +223,39 @@ export const chatSlice = createSlice({
       })
       .addCase(getUsersForRoomChat.fulfilled, (state, action) => {
         let users = [];
-        for (let i = 0; i < action.payload.length; i++) {
-          users.push(state.registeredUsers.find((user) => user.id === action.payload[i]));
-        }
-        state.usersRoom = [...users];
+        state.usersRoom.forEach((room) => {
+          if (action.payload.id === room.id) {
+            for (let i = 0; i < action.payload.users.length; i++) {
+              users.push(state.registeredUsers.find((user) => user.id === action.payload.users[i]));
+            }
+            room.users = [...users];
+          }
+        });
         state.usersRoomStaus = 'Users for room loaded';
       })
       .addCase(userJoinedRoom.pending, (state) => {
         state.usersRoomStaus = 'loading';
       })
       .addCase(userJoinedRoom.fulfilled, (state, action) => {
-        state.usersRoom.unshift(state.registeredUsers.find((user) => user.id === action.payload));
-        console.log(state.usersRoom);
+        //state.usersRoom.push(state.registeredUsers.find((user) => user.id === action.payload));
+        state.usersRoom.forEach((room) => {
+          if (action.payload.roomId === room.id) {
+            let user = state.registeredUsers.find((user) => user.id === action.payload.userId);
+            room.users.push(user);
+          }
+        });
         state.usersRoomStaus = 'User for room added';
       })
       .addCase(userLeftRoom.pending, (state) => {
         state.usersRoomStaus = 'loading';
       })
       .addCase(userLeftRoom.fulfilled, (state, action) => {
-        const newUser = state.registeredUsers.find((user) => user.id === action.payload);
-        state.usersRoom = state.usersRoom.filter((user) => user.id === newUser.id);
-        console.log(state.usersRoom);
+        state.usersRoom.forEach((room) => {
+          if (action.payload.roomId === room.id) {
+            let user = state.registeredUsers.find((user) => user.id === action.payload.userId);
+            room.users = room.users.filter((u) => u.id !== user.id);
+          }
+        });
         state.usersRoomStaus = 'User for room deleted';
       });
   },

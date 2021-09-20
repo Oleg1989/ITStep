@@ -7,11 +7,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     getRooms,
     getUsersChat,
+    selectChatUser,
+    socket,
     newUserConnectedChat,
     userDisconnectedChat,
-    selectChatUser,
     newUserRegisterChat,
-    socket,
+    userJoinedRoom,
+    userLeftRoom,
+    getUsersForRoomChat
 } from './chatSlice';
 
 export function Chat() {
@@ -33,6 +36,26 @@ export function Chat() {
 
         socket.on("user_registered", (username, socketId) => {
             dispatch(newUserRegisterChat({ id: socketId, nick: username }));
+        });
+
+        socket.on('users_list_for_room', (users, roomId) => {
+            dispatch(getUsersForRoomChat({ users: users, id: roomId }));
+        });
+
+        socket.on('join_success', (roomId) => {
+            dispatch(userJoinedRoom({ userId: socket.id, roomId: roomId }));
+        });
+
+        socket.on('leave_success', (roomId) => {
+            dispatch(userLeftRoom({ userId: socket.id, roomId: roomId }));
+        });
+
+        socket.on('user_joined_room', (userId, roomId) => {
+            dispatch(userJoinedRoom({ userId: userId, roomId: roomId }));
+        });
+
+        socket.on('user_left_room', (userId, roomId) => {
+            dispatch(userLeftRoom({ userId: userId, roomId: roomId }));
         });
 
     }, [dispatch, user]);

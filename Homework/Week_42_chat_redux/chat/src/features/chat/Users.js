@@ -19,8 +19,12 @@ export function Users() {
     const liItems = null;
 
     const itemUsers = (liItems) => {
-        if (roomActive !== '') {
-            return liItems = usersRoom.map((user, index) => <ItemUser user={user.nick} key={index}></ItemUser>);
+        if (roomActive) {
+            usersRoom.forEach((room) => {
+                if (room.id === roomActive.id) {
+                    return liItems = room.users.map((user) => <ItemUser user={user.nick} key={user.id}></ItemUser>);
+                }
+            });
         } else {
             return liItems = registeredUsers.map((user, index) => <ItemUser user={user.nick} key={index}></ItemUser>);
         }

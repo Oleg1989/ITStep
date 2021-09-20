@@ -13,7 +13,7 @@ import {
 export function Container() {
     const user = useSelector(selectChatUser);
     const auth = useSelector(selectChatAuth);
-    const room = useSelector(selectChatRoomActive);
+    const roomActive = useSelector(selectChatRoomActive);
     const dispatch = useDispatch();
 
     if (auth) {
@@ -30,7 +30,7 @@ export function Container() {
                         <i className="material-icons right">send</i>
                     </button>
                 </p>
-                <h2 className="header center-align"><span className="teal-text text-darken-4">Chat (user: {user}) {room}</span></h2>
+                <h2 className="header center-align"><span className="teal-text text-darken-4">Chat (user: {user}) {roomActive ? roomActive.title : ''}</span></h2>
                 <Chat />
             </>
         );
