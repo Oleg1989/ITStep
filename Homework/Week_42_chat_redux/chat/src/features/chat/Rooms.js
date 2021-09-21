@@ -26,18 +26,6 @@ export function Rooms() {
             socket.emit('get_users_for_room', event.target.id);
         }
 
-        // if (roomActive !== '') {
-        //     socket.emit('join_room', event.target.id);
-        //     dispatch(joinRoomChat(event.target.id));
-        //     dispatch(disabled());
-        //     socket.emit('get_users_for_room', event.target.id);
-        // } else {
-        //     socket.emit('leave_room', event.target.id);
-        //     socket.emit('join_room', event.target.id);
-        //     dispatch(joinRoomChat(event.target.id));
-        //     dispatch(disabled());
-        //     socket.emit('get_users_for_room', event.target.id);
-        // }
     }
 
     return (

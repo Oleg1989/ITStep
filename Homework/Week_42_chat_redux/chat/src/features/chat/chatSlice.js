@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 
 export const socket = io('ws://bt-21-playground-vppfc.ondigitalocean.app/');
 
-const initialState = {
+export const initialState = {
   auth: false,
   authStatus: 'Not authenticated',
   rooms: [],
@@ -24,6 +24,8 @@ const initialState = {
   disabledStatus: 'Inactive',
   usersRoom: [],
   usersRoomStaus: 'Not loaded users for room',
+  messageRooms: [],
+  messageRoomsStatus: 'There are no messages'
 };
 
 export const getRooms = createAsyncThunk(
@@ -109,6 +111,13 @@ export const userLeftRoom = createAsyncThunk(
   }
 );
 
+export const newMessageToRoom = createAsyncThunk(
+  'chat/newMessageToRoom',
+  async (message) => {
+    return message;
+  }
+);
+
 export const chatSlice = createSlice({
   name: 'chat',
   initialState,
@@ -120,18 +129,30 @@ export const chatSlice = createSlice({
       state.userStatus = 'You are not registered';
     },
     joinRoomChat: (state, id) => {
-      // state.rooms.forEach((room) => {
-      //   if (room.id === id.payload) {
-      //     state.roomActive = room;
-      //     state.roomActiveStatus = 'Active';
-      //   }
-      // });
       state.roomActive = state.rooms.find((room) => room.id === id.payload);
       state.roomActiveStatus = 'Active';
     },
     disabled: (state) => {
       state.disabled = false;
       state.disabledStatus = 'Active';
+    },
+    sendMessagToRoom: (state, action) => {
+      state.messageRooms.forEach((room) => {
+        if (room.id === action.payload.roomId) {
+          let newUser = null;
+          state.registeredUsers.forEach((user) => {
+            if (user.id === action.payload.userId) {
+              newUser = user.nick;
+            }
+          });
+          room.userMessages.push(
+            {
+              user: newUser,
+              message: action.payload.message,
+              date: new Date().toLocaleString() + ""
+            });
+        }
+      });
     }
   },
   extraReducers: (builder) => {
@@ -143,6 +164,7 @@ export const chatSlice = createSlice({
         state.rooms = [...action.payload];
         state.rooms.forEach((room) => {
           state.usersRoom.push({ id: room.id, title: room.title, users: [] });
+          state.messageRooms.push({ id: room.id, title: room.title, userMessages: [] });
         });
         state.roomsStatus = 'Loaded rooms';
       })
@@ -209,6 +231,9 @@ export const chatSlice = createSlice({
           state.registeredUsersStatus = 'User disconnected';
           state.totalUsers = state.usersAnonymous.length + state.registeredUsers.length;
           state.totalUsersStatus = 'The value has changed';
+          state.usersRoom.forEach((room) => {
+            room.users = room.users.filter((user) => user.id !== action.payload);
+          });
         } else {
           state.usersAnonymous = state.usersAnonymous.filter((user) => user.id !== action.payload);
           state.totalAnonymousStatus = 'User disconnected';
@@ -237,7 +262,6 @@ export const chatSlice = createSlice({
         state.usersRoomStaus = 'loading';
       })
       .addCase(userJoinedRoom.fulfilled, (state, action) => {
-        //state.usersRoom.push(state.registeredUsers.find((user) => user.id === action.payload));
         state.usersRoom.forEach((room) => {
           if (action.payload.roomId === room.id) {
             let user = state.registeredUsers.find((user) => user.id === action.payload.userId);
@@ -257,11 +281,34 @@ export const chatSlice = createSlice({
           }
         });
         state.usersRoomStaus = 'User for room deleted';
+      })
+      .addCase(newMessageToRoom.pending, (state) => {
+        state.messageRoomsStatus = 'loading';
+      })
+      .addCase(newMessageToRoom.fulfilled, (state, action) => {
+        state.messageRooms.forEach((room) => {
+          if (room.id === action.payload.roomId) {
+            let newUser = null;
+            state.registeredUsers.forEach((user) => {
+              if (user.id === action.payload.userId) {
+                newUser = user.nick;
+              }
+            });
+            room.userMessages.push(
+              {
+                user: newUser,
+                message: action.payload.message,
+                date: new Date().toLocaleString() + ""
+              });
+          }
+        });
+        state.messageRoomsStatus = 'Message added';
       });
+
   },
 });
 
-export const { notAuthenticated, joinRoomChat, disabled } = chatSlice.actions;
+export const { notAuthenticated, joinRoomChat, disabled, sendMessagToRoom } = chatSlice.actions;
 
 export const selectChatAuth = (state) => state.chat.auth;
 export const selectChatRooms = (state) => state.chat.rooms;
@@ -272,5 +319,6 @@ export const selectChatTotalUsers = (state) => state.chat.totalUsers;
 export const selectChatRoomActive = (state) => state.chat.roomActive;
 export const selectChatDisabled = (state) => state.chat.disabled;
 export const selectChatUsersRoom = (state) => state.chat.usersRoom;
+export const selectChatMessageRooms = (state) => state.chat.messageRooms;
 
 export default chatSlice.reducer;

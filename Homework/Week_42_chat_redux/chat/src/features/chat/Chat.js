@@ -14,7 +14,8 @@ import {
     newUserRegisterChat,
     userJoinedRoom,
     userLeftRoom,
-    getUsersForRoomChat
+    getUsersForRoomChat,
+    newMessageToRoom
 } from './chatSlice';
 
 export function Chat() {
@@ -58,6 +59,10 @@ export function Chat() {
             dispatch(userLeftRoom({ userId: userId, roomId: roomId }));
         });
 
+        socket.on('new_message_to_room', (message, roomId, userId) => {
+            dispatch(newMessageToRoom({ message: message, roomId: roomId, userId: userId }));
+        });
+
     }, [dispatch, user]);
 
     return (
@@ -71,11 +76,7 @@ export function Chat() {
                                     <Rooms />
                                 </div>
                             </div>
-                            <div className="col s8 z-depth-1">
-                                <div className="row">
-                                    <Message />
-                                </div>
-                            </div>
+                            <Message />
                             <div className="col s2 z-depth-1">
                                 <Users />
                             </div>

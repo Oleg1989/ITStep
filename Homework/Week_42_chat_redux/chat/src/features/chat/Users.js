@@ -22,20 +22,25 @@ export function Users() {
         if (roomActive) {
             usersRoom.forEach((room) => {
                 if (room.id === roomActive.id) {
-                    return liItems = room.users.map((user) => <ItemUser user={user.nick} key={user.id}></ItemUser>);
+                    liItems = room.users.map((u, index) => <ItemUser user={u.nick} key={index}></ItemUser>);
                 }
             });
+            return liItems;
         } else {
             return liItems = registeredUsers.map((user, index) => <ItemUser user={user.nick} key={index}></ItemUser>);
         }
     }
+    const divStyle = {
+        height: '210px',
+        overflowY: 'auto'
+    };
 
     return (
         <>
             <div className="row">
                 <div className="col s12">
                     <div className="row">
-                        <div className="col s12">
+                        <div className="col s12" style={divStyle}>
                             <h6 className="header center-align"><span className="teal-text"
                                 id="users">Users</span></h6>
                             <ul className="collection">

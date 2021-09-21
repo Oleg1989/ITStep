@@ -7,7 +7,7 @@ import {
     notAuthenticated,
     selectChatAuth,
     selectChatUser,
-    selectChatRoomActive
+    selectChatRoomActive,
 } from './chatSlice';
 
 export function Container() {
