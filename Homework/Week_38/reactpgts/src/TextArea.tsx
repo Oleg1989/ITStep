@@ -1,5 +1,4 @@
 import React, { useState, ChangeEvent } from "react";
-// import EventEmitter from "events";
 
 interface EditorState {
     article: string;
